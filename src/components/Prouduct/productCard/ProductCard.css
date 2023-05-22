@@ -1,0 +1,104 @@
+/* .instagram-card {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .instagram-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .card-content h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .card-content p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .card-content a {
+    display: inline-block;
+    background-color: #2f95dc;
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 14px;
+  }
+  
+  .card-content a:hover {
+    background-color: #257bbf;
+  } */
+
+  .instagram-card {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .card-header img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .username {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .card-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .likes, .comments {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  
+  .like-count, .comment-count {
+    font-size: 14px;
+  }
+  
+  .caption {
+    margin-bottom: 10px;
+  }
+  
+  .caption .username {
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+  .caption-text {
+    font-size: 14px;
+  }
+  .funcline{
+    display: flex;
+    justify-content: space-between;
+  }
+  .funcline-left{
+    display: flex;
+  }
+  
