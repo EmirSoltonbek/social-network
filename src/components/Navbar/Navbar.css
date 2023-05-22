@@ -1,0 +1,14 @@
+a{
+    text-decoration: none!important;
+
+}
+.css-hip9hq-MuiPaper-root-MuiAppBar-root,.MuiToolbar-root ,.MuiToolbar-gutters ,.MuiToolbar-regular ,.css-hyum1k-MuiToolbar-root,.css-hip9hq-MuiPaper-root-MuiAppBar-root{
+    background-color:inherit!important;
+    box-shadow: none!important;
+    color: black;
+}
+button{
+    background-color: inherit;
+    border: none;
+    padding: 0 15px;
+}
