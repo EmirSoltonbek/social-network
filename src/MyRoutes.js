@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import ChatPage from "./pages/ChatPage";
 import RegisterFormPage from "./pages/RegisterFormPage";
 import ProductListPage from "./pages/ProductListPage";
-import { Route, Routes } from "react-router";
 import HomePage from "./pages/HomePage";
 
 function MyRoutes() {
