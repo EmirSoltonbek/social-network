@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Sidebar,
   Menu,
@@ -19,6 +19,11 @@ import { useNavigate } from "react-router";
 function Navbar() {
   const { collapseSidebar, toggleSidebar, collapsed, toggled, broken, rtl } =
     useProSidebar();
+  // Изначально закрытая боковая панель
+  useEffect(() => {
+    collapseSidebar();
+  }, []); // Вызывается только при монтировании компонента
+
   const toggle = () => {
     toggleSidebar();
     if (toggled) {
@@ -34,14 +39,24 @@ function Navbar() {
   return (
     <div
       id="app"
-      style={({ height: "100vh" }, { display: "flex", flexDirection: "row" })}
+      style={({ height: "100vh" }, { display: "inline-flex", flexDirection: "row" })}
     >
       <Sidebar
-        backgroundColor="rgb(0, 249, 249)"
+        className="sidebar"
         rtl={false}
-        style={{ height: "100vh" }}
-        breakPoint="sm"
-        transitionDuration={800}
+        style={{
+          position: "fixed",
+          left: 0,
+          top: 0,
+          height: "100vh",
+          width: collapsed ? "32px" : "120px", // Изменение ширины в зависимости от состояния collapsed
+          minWidth: collapsed ? "45px" : "180px", // Изменение ширины в зависимости от состояния collapsed
+          transition: "width 0.3s ease-in-out",
+          backgroundColor: "#f0f0f0",
+          overflowY: "auto",
+          zIndex: 100,
+        }}
+        collapsed={collapsed}
       >
         <Menu>
           <MenuItem
@@ -49,53 +64,39 @@ function Navbar() {
             onClick={() => {
               collapseSidebar();
             }}
-            style={{ textAlign: "center" }}
+            style={{ textAlign: "center", paddingLeft:"5px" }}
+
           >
             {" "}
             <h2>Admin</h2>
           </MenuItem>
 
-          <SubMenu
+          <MenuItem
             onClick={() => navigate("/")}
             icon={<HomeOutlinedIcon />}
-            label="Home"
+            style={{paddingLeft:"5px"}}
           >
-            <MenuItem icon={<PeopleOutlinedIcon />}>Item 1</MenuItem>
-            <MenuItem icon={<PeopleOutlinedIcon />}>Item 2</MenuItem>
-            <MenuItem icon={<PeopleOutlinedIcon />}>Item 3</MenuItem>
-          </SubMenu>
-          <MenuItem icon={<PeopleOutlinedIcon />}>Team</MenuItem>
-          <MenuItem icon={<ContactsOutlinedIcon />}>Contacts</MenuItem>
+          Home
+          </MenuItem>
+          <MenuItem icon={<PeopleOutlinedIcon />}
+           style={{paddingLeft:"5px"}}>Team</MenuItem>
+          <MenuItem icon={<ContactsOutlinedIcon />}
+           style={{paddingLeft:"5px"}}>Contacts</MenuItem>
           <MenuItem
             onClick={() => {
               navigate("product-list");
-            }}
+            }
+    }       style={{paddingLeft:"5px"}}
             icon={<ReceiptOutlinedIcon />}
           >
             Profile
           </MenuItem>
-          <MenuItem icon={<HelpOutlineOutlinedIcon />}>FAQ</MenuItem>
-          <MenuItem icon={<CalendarTodayOutlinedIcon />}>Calendar</MenuItem>
+          <MenuItem icon={<HelpOutlineOutlinedIcon />}
+          style={{paddingLeft:"5px"}}>FAQ</MenuItem>
+          <MenuItem icon={<CalendarTodayOutlinedIcon />}
+          style={{paddingLeft:"5px"}}>Calendar</MenuItem>
         </Menu>
       </Sidebar>
-      <main>
-        {/* <h1
-          onClick={() => {
-            toggle();
-          }}
-          style={{ color: "white", marginLeft: "5rem" }}
-        >
-          React-Pro-Sidebar
-        </h1>
-        {toggled ? (
-          <h1 style={{ color: "white", marginLeft: "5rem" }}>Toggled</h1>
-        ) : (
-          <h1 style={{ color: "white", marginLeft: "5rem" }}>Not Toggled</h1>
-        )}
-        {broken && (
-          <h1 style={{ color: "white", marginLeft: "5rem" }}>Small screen</h1>
-        )} */}
-      </main>
     </div>
   );
 }
