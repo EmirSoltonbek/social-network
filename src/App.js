@@ -8,7 +8,7 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <ProductCard />
+      <MyRoutes />
       <Footer />
     </div>
   );

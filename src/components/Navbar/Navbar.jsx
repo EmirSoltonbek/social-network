@@ -14,6 +14,7 @@ import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import { useNavigate } from "react-router";
 
 function Navbar() {
   const { collapseSidebar, toggleSidebar, collapsed, toggled, broken, rtl } =
@@ -28,6 +29,8 @@ function Navbar() {
       collapseSidebar();
     }
   };
+
+  const navigate = useNavigate();
   return (
     <div
       id="app"
@@ -52,20 +55,31 @@ function Navbar() {
             <h2>Admin</h2>
           </MenuItem>
 
-          <SubMenu icon={<HomeOutlinedIcon />} label="Home">
+          <SubMenu
+            onClick={() => navigate("/")}
+            icon={<HomeOutlinedIcon />}
+            label="Home"
+          >
             <MenuItem icon={<PeopleOutlinedIcon />}>Item 1</MenuItem>
             <MenuItem icon={<PeopleOutlinedIcon />}>Item 2</MenuItem>
             <MenuItem icon={<PeopleOutlinedIcon />}>Item 3</MenuItem>
           </SubMenu>
           <MenuItem icon={<PeopleOutlinedIcon />}>Team</MenuItem>
           <MenuItem icon={<ContactsOutlinedIcon />}>Contacts</MenuItem>
-          <MenuItem icon={<ReceiptOutlinedIcon />}>Profile</MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate("product-list");
+            }}
+            icon={<ReceiptOutlinedIcon />}
+          >
+            Profile
+          </MenuItem>
           <MenuItem icon={<HelpOutlineOutlinedIcon />}>FAQ</MenuItem>
           <MenuItem icon={<CalendarTodayOutlinedIcon />}>Calendar</MenuItem>
         </Menu>
       </Sidebar>
       <main>
-        <h1
+        {/* <h1
           onClick={() => {
             toggle();
           }}
@@ -80,7 +94,7 @@ function Navbar() {
         )}
         {broken && (
           <h1 style={{ color: "white", marginLeft: "5rem" }}>Small screen</h1>
-        )}
+        )} */}
       </main>
     </div>
   );
