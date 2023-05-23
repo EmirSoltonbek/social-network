@@ -14,6 +14,7 @@ import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import FaceIcon from "@mui/icons-material/Face";
 import { useNavigate } from "react-router";
 
 function Navbar() {
@@ -39,7 +40,9 @@ function Navbar() {
   return (
     <div
       id="app"
-      style={({ height: "100vh" }, { display: "inline-flex", flexDirection: "row" })}
+      style={
+        ({ height: "100vh" }, { display: "inline-flex", flexDirection: "row" })
+      }
     >
       <Sidebar
         className="sidebar"
@@ -64,8 +67,7 @@ function Navbar() {
             onClick={() => {
               collapseSidebar();
             }}
-            style={{ textAlign: "center", paddingLeft:"5px" }}
-
+            style={{ textAlign: "center", paddingLeft: "5px" }}
           >
             {" "}
             <h2>Admin</h2>
@@ -74,27 +76,44 @@ function Navbar() {
           <MenuItem
             onClick={() => navigate("/")}
             icon={<HomeOutlinedIcon />}
-            style={{paddingLeft:"5px"}}
+            style={{ paddingLeft: "5px" }}
           >
-          Home
+            Home
           </MenuItem>
-          <MenuItem icon={<PeopleOutlinedIcon />}
-           style={{paddingLeft:"5px"}}>Team</MenuItem>
-          <MenuItem icon={<ContactsOutlinedIcon />}
-           style={{paddingLeft:"5px"}}>Contacts</MenuItem>
+          <MenuItem
+            icon={<PeopleOutlinedIcon />}
+            style={{ paddingLeft: "5px" }}
+          >
+            Team
+          </MenuItem>
+          <MenuItem
+            icon={<ContactsOutlinedIcon />}
+            style={{ paddingLeft: "5px" }}
+          >
+            Contacts
+          </MenuItem>
           <MenuItem
             onClick={() => {
               navigate("product-list");
-            }
-    }       style={{paddingLeft:"5px"}}
+            }}
+            style={{ paddingLeft: "5px" }}
             icon={<ReceiptOutlinedIcon />}
           >
             Profile
           </MenuItem>
-          <MenuItem icon={<HelpOutlineOutlinedIcon />}
-          style={{paddingLeft:"5px"}}>FAQ</MenuItem>
-          <MenuItem icon={<CalendarTodayOutlinedIcon />}
-          style={{paddingLeft:"5px"}}>Calendar</MenuItem>
+          <MenuItem
+            icon={<HelpOutlineOutlinedIcon />}
+            style={{ paddingLeft: "5px" }}
+          >
+            FAQ
+          </MenuItem>
+          <MenuItem
+            onClick={() => navigate("/register")}
+            icon={<FaceIcon />}
+            style={{ paddingLeft: "5px" }}
+          >
+            LogIn
+          </MenuItem>
         </Menu>
       </Sidebar>
     </div>
