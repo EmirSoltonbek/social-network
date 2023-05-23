@@ -12,3 +12,13 @@ button{
     border: none;
     padding: 0 15px;
 }
+#app{
+    display: inline-block!important;
+}
+.css-1wvake5 .ps-collapsed {
+    /* width: 80px; */
+    min-width: 50px!important;
+}
+.css-1wvake5{
+    min-width: 150px!important;
+}

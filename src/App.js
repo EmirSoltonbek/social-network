@@ -8,8 +8,14 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <MyRoutes />
-      <Footer />
+      <div
+        style={{
+          marginLeft: "46px",
+        }}
+      >
+        <MyRoutes />
+        <Footer />
+      </div>
     </div>
   );
 };
