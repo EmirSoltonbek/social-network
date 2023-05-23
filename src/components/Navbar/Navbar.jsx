@@ -74,7 +74,7 @@ function Navbar() {
           </MenuItem>
 
           <MenuItem
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/home")}
             icon={<HomeOutlinedIcon />}
             style={{ paddingLeft: "5px" }}
           >
