@@ -33,6 +33,7 @@ input:not(:focus):invalid {
   background: #f1f5fe;
   height: 100vh;
   display: flex;
+
   flex-direction: column;
   justify-content: center;
   align-items: center;
