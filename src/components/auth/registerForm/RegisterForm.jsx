@@ -9,7 +9,7 @@ const RegisterForm = () => {
           <div className="circle"></div>
           <div className="register-form-container">
             <form action="">
-              <h1 className="form-title">/ Регистрация</h1>
+              <h1 className="form-title">Регистрация</h1>
               <div className="form-fields">
                 <div className="form-field">
                   <input
