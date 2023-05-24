@@ -1,11 +1,18 @@
+import "./EditProduct.css";
 import React, { useEffect, useState } from 'react'
 import { useProduct } from '../../../contexts/ProductContextProvider'
+import { useNavigate, useParams } from "react-router-dom";
 
-const AddProduct = () => {
-  const { getCategories, categories, createProduct } = useProduct();
-useEffect(()=>{
-  console.log(getCategories().then())
-},[])
+const EditProduct = () => {
+    const navigate = useNavigate();
+  const { 
+    getCategories, 
+    categories, 
+    createProduct, 
+    oneProduct,
+    getOneProduct,
+    updateProduct, } = useProduct();
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -17,11 +24,26 @@ useEffect(()=>{
   const [category, setCategory] = useState("");
 
 
-  console.log(category);
+  const { id } = useParams();
 
   useEffect(() => {
     getCategories();
+    getOneProduct(id);
   }, []);
+
+  useEffect(()=>{
+  if(oneProduct){
+    setTitle(oneProduct.title);
+    setDescription(oneProduct.description);
+    setPrice(oneProduct.price);
+    setSize(oneProduct.size);
+    setColor(oneProduct.color);
+    setGender(oneProduct.gender);
+    setQuantity(oneProduct.quantity);
+    setCategory(oneProduct.category.id);
+    setImages(oneProduct.images);
+  }
+  },[])
 
   function handleSave() {
     const newProduct = new FormData();
@@ -34,12 +56,12 @@ useEffect(()=>{
     newProduct.append("quantity", quantity);
     newProduct.append("category", category);
     newProduct.append("images", images);
-    createProduct(newProduct);
+    updateProduct(id, newProduct); 
   }
 
   return (
     <div>
-      <h2>Add Product</h2>
+      <h2>Edit Product</h2>
       <input
         onChange={(e) => setImages(e.target.files[0])}
         type="file"
@@ -124,9 +146,12 @@ useEffect(()=>{
       </select>
      
       <br />
-      <button onClick={handleSave}>Create Product</button>
+      <button onClick={() => {
+        handleSave();
+        navigate('/product-list')
+        }}>Save Changes</button>
     </div>
   );
 }
 
-export default AddProduct
+export default EditProduct

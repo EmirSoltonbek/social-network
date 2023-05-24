@@ -31,7 +31,6 @@ const RegisterForm = () => {
   return (
     <div>
       <div className="body">
-        <div className="main">
           <div className="circle"></div>
           <div className="register-form-container">
             <form action="">
@@ -85,7 +84,6 @@ const RegisterForm = () => {
               </div>
             </form>
           </div>
-        </div>
       </div>
     </div>
   );
