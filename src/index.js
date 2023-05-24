@@ -4,17 +4,21 @@ import "./index.css";
 import App from "./App";
 import { ProSidebarProvider } from "react-pro-sidebar";
 import { BrowserRouter } from "react-router-dom";
+import ProductContextProvider from "./contexts/ProductContextProvider";
 import AuthContextProvider from "./contexts/AuthContextProvider";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ProSidebarProvider>
+      <ProductContextProvider>
         <AuthContextProvider>
-          <App />
+          <ProSidebarProvider>
+            <App />
+          </ProSidebarProvider>
         </AuthContextProvider>
-      </ProSidebarProvider>
+      </ProductContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
