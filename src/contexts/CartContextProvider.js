@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react'
-import { getCountProductsInCart } from '../helpers/functions';
+import { calcSubPrice, calcTotalPrice, getCountProductsInCart } from '../helpers/functions';
 
 
 export const cartContext = createContext();
@@ -50,6 +50,10 @@ const CartContextProvider = ({children}) => {
 
   function addProductToCart(product) {
     const userEmail = localStorage.getItem("email");
+    if (!userEmail) {
+        alert("ты виновен по причине, незарегестрированный долбаеб, иди регайся");
+        return null;
+    }
     let cart = JSON.parse(localStorage.getItem(userEmail));
     if (!cart) {
         cart = {
@@ -75,10 +79,13 @@ const CartContextProvider = ({children}) => {
         })
     }
 
+    cart.totalPrice = calcTotalPrice(cart.products);
+
     localStorage.setItem(userEmail, JSON.stringify(cart));
     dispatch({type: "GET_CART", payload: cart});
   }
 
+//   ! delete
   function deleteCartProduct (id) {
     const userEmail = localStorage.getItem("email");
     let cart = JSON.parse(localStorage.getItem(userEmail));
@@ -87,9 +94,42 @@ const CartContextProvider = ({children}) => {
         return elem.item.id != id;
     });
 
+    cart.totalPrice = calcTotalPrice(cart.products);
+
     localStorage.setItem(userEmail, JSON.stringify(cart));
     dispatch({type: "GET_CART", payload: cart});
   }
+//   ! delete finish
+
+  function checkProductInCart(id) {
+    const userEmail = localStorage.getItem("email");
+    let cart = JSON.parse(localStorage.getItem(userEmail));
+    if (cart) {
+        let newCart = cart.products.filter(elem => elem.item.id === id);
+        return newCart.length > 0;
+    }
+  }
+
+//   !changeProductCount
+function changeProductCount(count, id) {
+    const userEmail = localStorage.getItem("email");
+    let cart = JSON.parse(localStorage.getItem(userEmail));
+    cart.products = cart.products.map(elem => {
+        if (elem.item.id === id) {
+            elem.count = count;
+          elem.subPrice = calcSubPrice(elem);
+
+        }
+        return elem;
+    });
+
+    cart.totalPrice = calcTotalPrice(cart.products);
+
+    localStorage.setItem(userEmail, JSON.stringify(cart));
+    dispatch({type: "GET_CART", payload: cart});
+
+}
+// ! changeProductCount finish
 
 
 //   getCart();
@@ -104,7 +144,7 @@ const CartContextProvider = ({children}) => {
 
 
     const values = {
-
+        addProductToCart, checkProductInCart, deleteCartProduct, changeProductCount, getCart, cart: state.cart,
     }
   return (
     <cartContext.Provider value={values}>{children}</cartContext.Provider>
