@@ -32,10 +32,12 @@ const ProductList = () => {
   return (
     <div>
       <h1>PRODUCT LIST</h1>
+      <div style={{display:"flex", flexWrap:"wrap"}}>
       {products.map((item) => (
         console.log(item),
         <ProductCard key={item.id} item={item} />
       ))}
+      </div>
       <Pagination>
         <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} />
         {getPagesCount().map((item) =>

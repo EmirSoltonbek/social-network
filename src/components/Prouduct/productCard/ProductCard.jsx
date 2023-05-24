@@ -5,8 +5,12 @@
 // // import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 // // import TurnedInNotIcon from "@mui/icons-material/TurnedInNot";
 import { Carousel, Button } from "react-bootstrap";
+import { useProduct } from "../../../contexts/ProductContextProvider";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({item}) => {
+  const navigate = useNavigate()
+  const{deleteProduct}=useProduct();
   return (
     <div>
       {/* <div className="instagram-card">
@@ -74,6 +78,8 @@ const ProductCard = ({item}) => {
         <p className="card-text">{item.description}</p>
         <p className="card-text">Price: {item.price}</p>
         <Button variant="primary">Add to Cart</Button>
+        <Button variant="danger" onClick={()=>{deleteProduct(item.id)}}>Delete</Button>
+        <Button variant="primary" onClick={()=>navigate(`/edit/${item.id}`)}>Edit</Button>
       </div>
     </div> 
    </div>
