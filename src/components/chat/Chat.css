@@ -6,9 +6,6 @@
 
 body {
   font-family: "Rodoto", sans-serif;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
 }
 .app {
   position: fixed;
