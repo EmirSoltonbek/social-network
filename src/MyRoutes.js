@@ -4,13 +4,17 @@ import ChatPage from "./pages/ChatPage";
 import RegisterFormPage from "./pages/RegisterFormPage";
 import ProductListPage from "./pages/ProductListPage";
 import HomePage from "./pages/HomePage";
+import AddProductPage from "./pages/AddProductPage";
+import Login from "./components/auth/Login";
 
 function MyRoutes() {
   const PUBLIC_ROUTES = [
     { link: "/product-list", element: <ProductListPage />, id: 1 },
     { link: "/", element: <HomePage />, id: 2 },
-    { link: "/chat", element: <ChatPage />, id: 3 },
-    { link: "/register", element: <RegisterFormPage />, id: 4 },
+    { link: "/add", element: <AddProductPage />, id: 3 },
+    { link: "/chat", element: <ChatPage />, id: 4 },
+    { link: "/register", element: <RegisterFormPage />, id: 5 },
+    { link: "/login", element: <Login />, id: 6 },
   ];
   return (
     <div>
@@ -21,7 +25,6 @@ function MyRoutes() {
       </Routes>
     </div>
   );
-
 }
 
 export default MyRoutes;
