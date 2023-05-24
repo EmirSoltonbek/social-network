@@ -14,7 +14,6 @@ const App = () => {
         }}
       >
         <MyRoutes />
-        <Footer />
       </div>
     </div>
   );
