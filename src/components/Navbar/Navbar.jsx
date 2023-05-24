@@ -112,6 +112,14 @@ function Navbar() {
             icon={<FaceIcon />}
             style={{ paddingLeft: "5px" }}
           >
+            Register
+          </MenuItem>
+
+          <MenuItem
+            onClick={() => navigate("/login")}
+            icon={<FaceIcon />}
+            style={{ paddingLeft: "5px" }}
+          >
             LogIn
           </MenuItem>
         </Menu>
