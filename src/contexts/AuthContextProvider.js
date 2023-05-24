@@ -114,13 +114,14 @@ const AuthContextProvider = ({ children }) => {
   async function handleLogin(formData, email) {
     try {
       setLoading(true);
-      const res = await axios.post(`${API2}/account/login/`, formData);
+      const res = await axios.post(`${API}/account/login/`, formData);
+      console.log(res);
       localStorage.setItem("tokens", JSON.stringify(res.data));
       localStorage.setItem("email", email);
       setCurrentUser(email);
       navigate("/");
     } catch (error) {
-      setError(Object.values(error.response.data));
+      setError(Object.values(error.message));
     } finally {
       setLoading(false);
     }
