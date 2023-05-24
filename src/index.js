@@ -6,19 +6,20 @@ import { ProSidebarProvider } from "react-pro-sidebar";
 import { BrowserRouter } from "react-router-dom";
 import ProductContextProvider from "./contexts/ProductContextProvider";
 import AuthContextProvider from "./contexts/AuthContextProvider";
+import CartContextProvider from "./contexts/CartContextProvider";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
     <BrowserRouter>
       <ProductContextProvider>
         <AuthContextProvider>
-          <ProSidebarProvider>
-            <App />
-          </ProSidebarProvider>
+          <CartContextProvider>
+            <ProSidebarProvider>
+              <App />
+            </ProSidebarProvider>
+          </CartContextProvider>
         </AuthContextProvider>
       </ProductContextProvider>
     </BrowserRouter>
-  </React.StrictMode>
 );

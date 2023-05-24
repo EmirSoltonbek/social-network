@@ -5,12 +5,14 @@
 // // import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 // // import TurnedInNotIcon from "@mui/icons-material/TurnedInNot";
 import { Carousel, Button } from "react-bootstrap";
+import { useCart } from "../../../contexts/CartContextProvider";
 import { useProduct } from "../../../contexts/ProductContextProvider";
 import { useNavigate } from "react-router-dom";
 
-const ProductCard = ({item}) => {
-  const navigate = useNavigate()
-  const{deleteProduct}=useProduct();
+const ProductCard = ({ item }) => {
+  const { addProductToCart } = useCart();
+  const navigate = useNavigate();
+  const { deleteProduct } = useProduct();
   return (
     <div>
       {/* <div className="instagram-card">
@@ -65,24 +67,46 @@ const ProductCard = ({item}) => {
 //         </div>
 //       </div> */}
       <div className="card" style={{ width: "280px" }}>
-      <Carousel>
-        {item.images.map((image, index) => (
-          console.log(image),
-          <Carousel.Item key={index}>
-            <img className="d-block w-100" src={image.image} alt={`Image ${index}`} />
-          </Carousel.Item>
-        ))}
-      </Carousel>
-      <div className="card-body">
-        <h5 className="card-title">{item.title}</h5>
-        <p className="card-text">{item.description}</p>
-        <p className="card-text">Price: {item.price}</p>
-        <Button variant="primary">Add to Cart</Button>
-        <Button variant="danger" onClick={()=>{deleteProduct(item.id)}}>Delete</Button>
-        <Button variant="primary" onClick={()=>navigate(`/edit/${item.id}`)}>Edit</Button>
+        <Carousel>
+          {item.images.map(
+            (image, index) => (
+              console.log(image),
+              (
+                <Carousel.Item key={index}>
+                  <img
+                    className="d-block w-100"
+                    src={image.image}
+                    alt={`Image ${index}`}
+                  />
+                </Carousel.Item>
+              )
+            )
+          )}
+        </Carousel>
+        <div className="card-body">
+          <h5 className="card-title">{item.title}</h5>
+          <p className="card-text">{item.description}</p>
+          <p className="card-text">Price: {item.price}</p>
+          <Button variant="primary" onClick={() => addProductToCart(item)}>
+            Add to Cart
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => {
+              deleteProduct(item.id);
+            }}
+          >
+            Delete
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => navigate(`/edit/${item.id}`)}
+          >
+            Edit
+          </Button>
+        </div>
       </div>
-    </div> 
-   </div>
+    </div>
   );
 };
 
@@ -92,7 +116,7 @@ const ProductCard = ({item}) => {
 // function ProductCard() {
 //   return (
 //     <Carousel fade>
-      
+
 //       <Carousel.Item>
 //         <img
 //           className="d-block w-100"
@@ -107,6 +131,8 @@ const ProductCard = ({item}) => {
 
 //     </Carousel>
 //   );
-// }
+{
+  /* } */
+}
 
 export default ProductCard;
