@@ -20,7 +20,7 @@ const reducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         products: action.payload.results,
-        pages: Math.ceil(action.payload.count / 12),
+        pages: Math.ceil(action.payload.count / 3),
       };
     case "GET_ONE_PRODUCT":
       return { ...state, oneProduct: action.payload };
@@ -52,9 +52,9 @@ const ProductContextProvider = ({ children }) => {
   }
   async function createProduct(newProduct) {
     try {
-      const res = await axios.post(`${API}/products/`, newProduct, getConfig());
+      const res = await axios.post(`${API}/product/`, newProduct, getConfig());
       console.log(res);
-      navigate("/products");
+      // navigate("/products");
     } catch (error) {
       console.log(error);
     }
@@ -63,7 +63,7 @@ const ProductContextProvider = ({ children }) => {
   async function getProducts() {
     try {
       const res = await axios(
-        `${API}/products/${window.location.search}`,
+        `${API}/product/${window.location.search}`,
         getConfig()
       );
       dispatch({ type: "GET_PRODUCTS", payload: res.data });
@@ -73,22 +73,22 @@ const ProductContextProvider = ({ children }) => {
   }
   async function deleteProduct(id) {
     try {
-      await axios.delete(`${API}/products/${id}/`, getConfig());
+      await axios.delete(`${API}/product/${id}/`, getConfig());
       getProducts();
     } catch (error) {
       console.log(error);
     }
   }
   async function getOneProduct(id) {
-    const res = await axios(`${API}/products/${id}/`, getConfig());
+    const res = await axios(`${API}/product/${id}/`, getConfig());
 
     dispatch({ type: "GET_ONE_PRODUCT", payload: res.data });
   }
 
   async function updateProduct(id, editedProduct) {
     try {
-      await axios.patch(`${API}/products/${id}/`, editedProduct, getConfig());
-      navigate("/products");
+      await axios.patch(`${API}/product/${id}/`, editedProduct, getConfig());
+      // navigate("/products");
     } catch (error) {
       console.log(error);
     }

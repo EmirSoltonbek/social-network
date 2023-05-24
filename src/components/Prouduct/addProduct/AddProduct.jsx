@@ -3,12 +3,19 @@ import { useProduct } from '../../../contexts/ProductContextProvider'
 
 const AddProduct = () => {
   const { getCategories, categories, createProduct } = useProduct();
-
+useEffect(()=>{
+  console.log(getCategories().then())
+},[])
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
+  const [gender, setGender] = useState("");
+  const [images, setImages] = useState(null);
+  const [quantity, setQuantity] = useState(0);
   const [category, setCategory] = useState("");
-  const [image, setImage] = useState(null);
+
 
   console.log(category);
 
@@ -21,14 +28,23 @@ const AddProduct = () => {
     newProduct.append("title", title);
     newProduct.append("description", description);
     newProduct.append("price", price);
+    newProduct.append("size", size);
+    newProduct.append("color", color);
+    newProduct.append("gender", gender);
+    newProduct.append("quantity", quantity);
     newProduct.append("category", category);
-    newProduct.append("image", image);
+    newProduct.append("images", images);
     createProduct(newProduct);
   }
 
   return (
     <div>
       <h2>Add Product</h2>
+      <input
+        onChange={(e) => setImages(e.target.files[0])}
+        type="file"
+        accept="image/*"
+      />
       <input
         onChange={(e) => setTitle(e.target.value)}
         placeholder="title"
@@ -44,6 +60,60 @@ const AddProduct = () => {
         placeholder="price"
         type="text"
       />
+     
+        <select onChange={(e) => setSize(e.target.value)}>
+        <option> Choose size</option>
+          <option>
+          s
+          </option>
+          <option>
+          m
+          </option>
+          <option>
+          l
+          </option>
+      </select>
+      <select onChange={(e) => setColor(e.target.value)}>
+        <option> Choose color</option>
+          <option>
+          red
+          </option>
+          <option>
+          blue
+          </option>
+          <option>
+          green
+          </option>
+          <option>
+          yellow
+          </option>
+          <option>
+          brown
+          </option>
+          <option>
+          black
+          </option>
+          <option>
+          white
+          </option>
+          <option>
+          gray
+          </option>
+      </select>
+      <select onChange={(e) => setGender(e.target.value)}>
+        <option> Choose gender</option>
+          <option>
+          male
+          </option>
+          <option>
+          female
+          </option>
+      </select>
+      <input
+      onChange={(e)=>setQuantity(e.target.value)}
+      placeholder='quantity'
+      type="number"
+       />
       <select onChange={(e) => setCategory(e.target.value)}>
         <option> Choose category</option>
         {categories.map((item) => (
@@ -52,11 +122,7 @@ const AddProduct = () => {
           </option>
         ))}
       </select>
-      <input
-        onChange={(e) => setImage(e.target.files[0])}
-        type="file"
-        accept="image/*"
-      />
+     
       <br />
       <button onClick={handleSave}>Create Product</button>
     </div>

@@ -5,7 +5,7 @@ import ProductCard from "../components/Prouduct/productCard/ProductCard";
 function ProductListPage() {
   return (
     <div>
-      <ProductCard />
+      <ProductList />
     </div>
   );
 }
