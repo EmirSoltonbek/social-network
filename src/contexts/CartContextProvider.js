@@ -26,6 +26,81 @@ const INIT_STATE = {
 const CartContextProvider = ({children}) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
+  function getCart() {
+    const userEmail = localStorage.getItem("email");
+    let cart = JSON.parse(localStorage.getItem(userEmail));
+    if (!cart) {
+        localStorage.setItem(userEmail,
+            JSON.stringify({
+                products: [],
+                totalPrice: 0,
+              }) 
+            )
+    }
+    cart = {
+        products: [],
+        totalPrice: 0,
+    }
+
+    dispatch({
+        type: "GET_CART",
+        payload: cart,
+    })
+  }
+
+  function addProductToCart(product) {
+    const userEmail = localStorage.getItem("email");
+    let cart = JSON.parse(localStorage.getItem(userEmail));
+    if (!cart) {
+        cart = {
+            products: [],
+            totalPrice: 0,
+        }
+    }
+    // формирование продукта, который будет хранится в корзине
+    let newProduct = {
+        item: product, // сам продукт
+        count: 1, // кол-во данного продукта
+        subPrice: +product.price, // стоимость за 1 шт.
+      };
+
+    let productToFind = cart.products.filter(elem => {
+        return elem.item.id === product.id;
+    });
+    if (productToFind.length === 0) {
+        cart.products.push(newProduct);
+    } else {
+        cart.products = cart.products.filter(elem => {
+            return elem.item.id != product.id;
+        })
+    }
+
+    localStorage.setItem(userEmail, JSON.stringify(cart));
+    dispatch({type: "GET_CART", payload: cart});
+  }
+
+  function deleteCartProduct (id) {
+    const userEmail = localStorage.getItem("email");
+    let cart = JSON.parse(localStorage.getItem(userEmail));
+
+    cart.products = cart.products.filter(elem => {
+        return elem.item.id != id;
+    });
+
+    localStorage.setItem(userEmail, JSON.stringify(cart));
+    dispatch({type: "GET_CART", payload: cart});
+  }
+
+
+//   getCart();
+
+
+  
+  // функция для получения данных корзины из localStorage
+  
+
+
+
 
 
     const values = {
