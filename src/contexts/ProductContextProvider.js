@@ -20,7 +20,7 @@ const reducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         products: action.payload.results,
-        pages: Math.ceil(action.payload.count / 3),
+        pages: Math.ceil(action.payload.count / 10),
       };
     case "GET_ONE_PRODUCT":
       return { ...state, oneProduct: action.payload };

@@ -6,9 +6,13 @@
 // // import TurnedInNotIcon from "@mui/icons-material/TurnedInNot";
 import { Carousel, Button } from "react-bootstrap";
 import { useCart } from "../../../contexts/CartContextProvider";
+import { useProduct } from "../../../contexts/ProductContextProvider";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ item }) => {
   const { addProductToCart } = useCart();
+  const navigate = useNavigate();
+  const { deleteProduct } = useProduct();
   return (
     <div>
       {/* <div className="instagram-card">
@@ -86,6 +90,20 @@ const ProductCard = ({ item }) => {
           <Button variant="primary" onClick={() => addProductToCart(item)}>
             Add to Cart
           </Button>
+          <Button
+            variant="danger"
+            onClick={() => {
+              deleteProduct(item.id);
+            }}
+          >
+            Delete
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => navigate(`/edit/${item.id}`)}
+          >
+            Edit
+          </Button>
         </div>
       </div>
     </div>
@@ -113,6 +131,8 @@ const ProductCard = ({ item }) => {
 
 //     </Carousel>
 //   );
-// }
+{
+  /* } */
+}
 
 export default ProductCard;
