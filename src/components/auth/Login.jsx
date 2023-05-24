@@ -6,8 +6,6 @@ import Loader from "../Loader";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [phone, setPhone] = useState(0);
 
   const { handleLogin, loading, error, setError } = useAuth();
 
