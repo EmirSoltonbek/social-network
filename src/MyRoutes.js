@@ -6,6 +6,7 @@ import ProductListPage from "./pages/ProductListPage";
 import HomePage from "./pages/HomePage";
 import AddProductPage from "./pages/AddProductPage";
 import Login from "./components/auth/Login";
+import EditProductPage from "./pages/EditProductPage";
 
 function MyRoutes() {
   const PUBLIC_ROUTES = [
@@ -15,6 +16,7 @@ function MyRoutes() {
     { link: "/chat", element: <ChatPage />, id: 4 },
     { link: "/register", element: <RegisterFormPage />, id: 5 },
     { link: "/login", element: <Login />, id: 6 },
+    { link: "/edit/:id", element: <EditProductPage />, id: 7 },
   ];
   return (
     <div>
