@@ -1,0 +1,51 @@
+.profileBody {
+  position: relative;
+  top: -20px;
+  background-color: white;
+  border-radius: 20px;
+  width: 100%;
+  padding-top: 3em;
+  display: grid;
+}
+
+.eactPosts {
+  width: 220px;
+  /* min-width: 250px; */
+}
+.eactPosts1 {
+  width: 520px;
+  /* min-width: 250px; */
+}
+.postsContainer1 {
+  /* display: flex; */
+  flex-wrap: flex;
+  /* justify-content: center; */
+}
+.postsContainer3 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: space-around;
+}
+
+.upperPostsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.5em 0;
+}
+
+.upperPostsContainer h1 {
+  font-weight: 400;
+  color: #353535;
+}
+
+.upperPostsContainer span {
+  display: flex;
+  gap: 0.5em;
+}
+
+.upperPostsContainer button {
+  border: none;
+  background-color: transparent;
+}
