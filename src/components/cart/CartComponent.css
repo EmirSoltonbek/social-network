@@ -1,0 +1,22 @@
+.product {
+  display: flex;
+  padding: 10px;
+  width: 100%;
+}
+
+.text_wrap {
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+.sub_price {
+  margin-left: auto;
+  margin-right: 20px;
+  font-size: 1.5rem;
+}
+
+.image_wrap img {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 10px;
+}
