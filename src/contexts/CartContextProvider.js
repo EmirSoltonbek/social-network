@@ -35,12 +35,13 @@ const CartContextProvider = ({children}) => {
                 products: [],
                 totalPrice: 0,
               }) 
-            )
+            );
+            cart = {
+                products: [],
+                totalPrice: 0,
+            }
     }
-    cart = {
-        products: [],
-        totalPrice: 0,
-    }
+
 
     dispatch({
         type: "GET_CART",
