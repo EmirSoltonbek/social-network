@@ -8,7 +8,7 @@ const ProductList = () => {
   const { getProducts, products, pages } = useProduct();
   const [searchParams, setSearchParams] = useSearchParams();
   console.log(products);
-  
+
   const [currentPage, setCurrentPage] = useState(1);
   function getPagesCount() {
     const pageCountArr = [];
@@ -32,11 +32,10 @@ const ProductList = () => {
   return (
     <div>
       <h1>PRODUCT LIST</h1>
-      <div style={{display:"flex", flexWrap:"wrap"}}>
-      {products.map((item) => (
-        console.log(item),
-        <ProductCard key={item.id} item={item} />
-      ))}
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {products.map((item) => (
+          <ProductCard key={item.id} item={item} />
+        ))}
       </div>
       <Pagination>
         <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} />
