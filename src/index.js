@@ -8,10 +8,12 @@ import ProductContextProvider from "./contexts/ProductContextProvider";
 import AuthContextProvider from "./contexts/AuthContextProvider";
 import CartContextProvider from "./contexts/CartContextProvider";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ProfileContextProvider from "./contexts/ProfileContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <BrowserRouter>
+  <BrowserRouter>
+    <ProfileContextProvider>
       <ProductContextProvider>
         <AuthContextProvider>
           <CartContextProvider>
@@ -21,5 +23,6 @@ root.render(
           </CartContextProvider>
         </AuthContextProvider>
       </ProductContextProvider>
-    </BrowserRouter>
+    </ProfileContextProvider>
+  </BrowserRouter>
 );
