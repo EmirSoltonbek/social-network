@@ -12,7 +12,8 @@ useEffect(()=>{
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
   const [gender, setGender] = useState("");
-  const [images, setImages] = useState(null);
+  const [image1, setImage1] = useState(null);
+  const [image2, setImage2] = useState(null);
   const [quantity, setQuantity] = useState(0);
   const [category, setCategory] = useState("");
 
@@ -33,7 +34,8 @@ useEffect(()=>{
     newProduct.append("gender", gender);
     newProduct.append("quantity", quantity);
     newProduct.append("category", category);
-    newProduct.append("images", images);
+    newProduct.append("image1", image1);
+    newProduct.append("image2", image2);
     createProduct(newProduct);
   }
 
@@ -41,7 +43,12 @@ useEffect(()=>{
     <div>
       <h2>Add Product</h2>
       <input
-        onChange={(e) => setImages(e.target.files[0])}
+        onChange={(e) => setImage1(e.target.files[0])}
+        type="file"
+        accept="image/*"
+      />
+      <input
+        onChange={(e) => setImage2(e.target.files[0])}
         type="file"
         accept="image/*"
       />
@@ -122,7 +129,6 @@ useEffect(()=>{
           </option>
         ))}
       </select>
-     
       <br />
       <button onClick={handleSave}>Create Product</button>
     </div>

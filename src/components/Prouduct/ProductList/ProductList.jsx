@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Pagination } from "react-bootstrap";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 import ProductCard from "../productCard/ProductCard";
 import { useProduct } from "../../../contexts/ProductContextProvider";
+import { useSearchParams } from "react-router-dom";
 
 const ProductList = () => {
   const { getProducts, products, pages } = useProduct();
