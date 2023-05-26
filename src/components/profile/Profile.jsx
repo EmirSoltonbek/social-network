@@ -8,13 +8,23 @@ import post from "../../assets/Image 01.jpg";
 import GridOnIcon from "@mui/icons-material/GridOn";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import ProfileModal from "./ProfileModal";
+import { useParams } from "react-router-dom";
 
 function Profile() {
   const [grid, setGrid] = useState(true);
   const [modal, setModal] = useState(false);
+  const { id } = useParams();
+  console.log(id);
 
   return (
-    <div style={{ maxWidth: "720px", width: "100%", margin: "0 auto" }}>
+    <div
+      style={{
+        maxWidth: "720px",
+        width: "100%",
+        margin: "0 auto",
+        // position: "relative",
+      }}
+    >
       <div
         className="imgContainer"
         style={{ maxWidth: "720px", width: "100%", position: "relative" }}
@@ -97,7 +107,7 @@ function Profile() {
             <div
               className="eactPosts"
               onClick={() => {
-                setModal(!true);
+                setModal(!modal);
               }}
             >
               <img src={post} alt="" width="100%" />
@@ -122,7 +132,7 @@ function Profile() {
             </div>
           </div>
         )}
-        {modal ? <ProfileModal /> : null}
+        {modal ? <ProfileModal setModal={setModal} /> : null}
       </div>
     </div>
   );
