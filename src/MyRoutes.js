@@ -6,12 +6,9 @@ import ProductListPage from "./pages/ProductListPage";
 import HomePage from "./pages/HomePage";
 import AddProductPage from "./pages/AddProductPage";
 import Login from "./components/auth/Login";
-
 import ProfilePage from "./pages/ProfilePage";
 import InstProfile from "./components/profile/InstProfile";
-
 import EditProductPage from "./pages/EditProductPage";
-import CartPage from "./pages/CartPage";
 
 function MyRoutes() {
   const PUBLIC_ROUTES = [

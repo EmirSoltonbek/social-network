@@ -7,7 +7,8 @@ const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [phone, setPhone] = useState(0);
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const { handleRegister, loading, error, setError } = useAuth();
 
@@ -19,7 +20,8 @@ const RegisterForm = () => {
       formData.append("email", email);
       formData.append("password", password);
       formData.append("password_confirm", passwordConfirm);
-      formData.append("phone", phone);
+      formData.append("name", name);
+      formData.append("last_name", lastName);
       handleRegister(formData);
     }
   }
@@ -31,59 +33,67 @@ const RegisterForm = () => {
   return (
     <div>
       <div className="body">
-          <div className="circle"></div>
-          <div className="register-form-container">
-            <form action="">
-              <h1>Register</h1>
-              {error ? <h2>{error}</h2> : null}
-              <div className="form-fields">
-                <div className="form-field">
-                  <input
-                    type="text"
-                    required
-                    pattern="[а-яА-Я]+"
-                    title="Имя может содержать только буквы."
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="email"
-                  />
-                </div>
-                <div className="form-field">
-                  <input
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="password"
-                    required
-                  />
-                </div>
-                <div className="form-field">
-                  <input
-                    type="password"
-                    onChange={(e) => setPasswordConfirm(e.target.value)}
-                    placeholder="password confirm"
-                    required
-                    minlength="8"
-                    maxlength="128"
-                  />
-                </div>
-                <div className="form-field">
-                  <input
-                    type="number"
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="phone"
-                    required
-                  />
-                </div>
+        <div className="circle"></div>
+        <div className="register-form-container">
+          <form action="">
+            <h1>Register</h1>
+            {error ? <h2>{error}</h2> : null}
+            <div className="form-fields">
+              <div className="form-field">
+                <input
+                  type="text"
+                  required
+                  pattern="[а-яА-Я]+"
+                  title="Имя может содержать только буквы."
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="email"
+                />
               </div>
-              <div className="form-buttons">
-                <button onClick={handleSave} className="button">
-                  register
-                </button>
-                <div className="divider">или</div>
-                <a href="#" className="button button-google">
-                  Google
-                </a>
+              <div className="form-field">
+                <input
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="password"
+                  required
+                />
               </div>
-            </form>
-          </div>
+              <div className="form-field">
+                <input
+                  type="password"
+                  onChange={(e) => setPasswordConfirm(e.target.value)}
+                  placeholder="password confirm"
+                  required
+                  minlength="8"
+                  maxlength="128"
+                />
+              </div>
+              <div className="form-field">
+                <input
+                  type="text"
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="first name"
+                  required
+                />
+              </div>
+              <div className="form-field">
+                <input
+                  type="text"
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="last name"
+                  required
+                />
+              </div>
+            </div>
+            <div className="form-buttons">
+              <button onClick={handleSave} className="button">
+                register
+              </button>
+              <div className="divider">или</div>
+              <a href="#" className="button button-google">
+                Google
+              </a>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,67 @@
+.profileModalContainer {
+  background-color: rgba(0, 0, 0, 0.527);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.profileInnerContainer {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  justify-content: center;
+  max-width: 950px;
+  width: 80%;
+  margin: 0 20px;
+  position: relative;
+}
+
+.profileInnerContainer > div {
+  width: 50%;
+  min-width: 230px;
+}
+
+.profileInnerContainer > div:last-child {
+  padding: 1em;
+}
+
+.profileModalCloseBtn {
+  position: absolute;
+  right: 5em;
+  top: 5em;
+}
+.profileModalCloseBtn button {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+}
+
+.avatarImage {
+  min-width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.avatarImage1 {
+  max-width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.profileInnerContainer_text_imgnick {
+  align-items: center;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+
+.profileInnerContainer_text_body {
+  border-top: 1px solid rgba(128, 128, 128, 0.688);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.688);
+}
