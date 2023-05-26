@@ -15,8 +15,19 @@
   font-size: 1.5rem;
 }
 
+.sub_price button {
+  border: none;
+  background-color: inherit;
+  padding: 10px;
+}
+
 .image_wrap img {
   max-width: 300px;
   width: 100%;
   border-radius: 10px;
+}
+
+.bi {
+  font-size: 2rem;
+  color: gray;
 }

@@ -29,7 +29,11 @@ const CartPage = () => {
                 images={elem.item.images}
                 price={elem.item.price}
                 subPrice={elem.subPrice}
+                deleteCartProduct={deleteCartProduct}
+                id={elem.item.id}
                 key={elem.item.id}
+                changeProductCount={changeProductCount}
+                count={elem.count}
               />
             );
           })}
