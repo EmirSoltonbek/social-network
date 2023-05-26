@@ -13,16 +13,16 @@ import ProfileContextProvider from "./contexts/ProfileContextProvider";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <ProfileContextProvider>
-      <ProductContextProvider>
-        <AuthContextProvider>
-          <CartContextProvider>
-            <ProSidebarProvider>
+    <ProSidebarProvider>
+      <ProfileContextProvider>
+        <ProductContextProvider>
+          <AuthContextProvider>
+            <CartContextProvider>
               <App />
-            </ProSidebarProvider>
-          </CartContextProvider>
-        </AuthContextProvider>
-      </ProductContextProvider>
-    </ProfileContextProvider>
+            </CartContextProvider>
+          </AuthContextProvider>
+        </ProductContextProvider>
+      </ProfileContextProvider>
+    </ProSidebarProvider>
   </BrowserRouter>
 );

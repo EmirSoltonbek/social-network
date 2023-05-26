@@ -67,21 +67,19 @@ const ProductCard = ({ item }) => {
 //         </div>
 //       </div> */}
       <div className="card" style={{ width: "280px" }}>
-        <Carousel>
-          {item.images.map(
-            (image, index) => (
-              console.log(image),
-              (
-                <Carousel.Item key={index}>
+        <Carousel key={item.id}>
+                <Carousel.Item>
                   <img
                     className="d-block w-100"
-                    src={image.image}
-                    alt={`Image ${index}`}
+                    src={item.image1}
                   />
                 </Carousel.Item>
-              )
-            )
-          )}
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src={item.image2}
+                  />
+                </Carousel.Item>
         </Carousel>
         <div className="card-body">
           <h5 className="card-title">{item.title}</h5>
