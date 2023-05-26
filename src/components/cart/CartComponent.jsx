@@ -5,7 +5,7 @@ import "../../assets/bootstrap-icons/font/bootstrap-icons.css";
 const CartComponent = ({
   title,
   description,
-  images,
+  image,
   price,
   subPrice,
   deleteCartProduct,
@@ -17,7 +17,7 @@ const CartComponent = ({
     <div>
       <div className="product">
         <div className="image_wrap">
-          <img src={images[0].image} alt="" />
+          <img src={image} alt="" />
         </div>
         <div className="text_wrap">
           <h3>{title}</h3>
