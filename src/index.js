@@ -9,6 +9,7 @@ import AuthContextProvider from "./contexts/AuthContextProvider";
 import CartContextProvider from "./contexts/CartContextProvider";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProfileContextProvider from "./contexts/ProfileContextProvider";
+import FavoriteContextProvider from "./contexts/FavoriteContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,9 +18,11 @@ root.render(
       <ProductContextProvider>
         <AuthContextProvider>
           <CartContextProvider>
-            <ProSidebarProvider>
-              <App />
-            </ProSidebarProvider>
+            <FavoriteContextProvider>
+              <ProSidebarProvider>
+                <App />
+              </ProSidebarProvider>
+            </FavoriteContextProvider>
           </CartContextProvider>
         </AuthContextProvider>
       </ProductContextProvider>

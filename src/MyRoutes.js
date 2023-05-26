@@ -10,6 +10,7 @@ import ProfilePage from "./pages/ProfilePage";
 import InstProfile from "./components/profile/InstProfile";
 import EditProductPage from "./pages/EditProductPage";
 import CartPage from "./pages/CartPage";
+import FavoritePage from "./pages/FavoritePage";
 
 function MyRoutes() {
   const PUBLIC_ROUTES = [
@@ -23,6 +24,7 @@ function MyRoutes() {
     { link: "/inst-profile", element: <InstProfile />, id: 8 },
     { link: "/edit/:id", element: <EditProductPage />, id: 7 },
     { link: "cart", element: <CartPage />, id: 8 },
+    { link: "favorite", element: <FavoritePage />, id: 9 },
   ];
   return (
     <div>
