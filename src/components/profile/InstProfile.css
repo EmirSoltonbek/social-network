@@ -5,29 +5,48 @@
   border: 1px solid #dbdbdb;
   border-radius: 6px;
   padding: 20px;
-  max-width: 600px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .profile-header {
   display: flex;
   align-items: center;
+  padding: 0 3em;
 }
 
 .profile-image-container {
   flex-shrink: 0;
   margin-right: 20px;
 }
-
 .profile-image {
   width: 120px;
   height: 120px;
-  border-radius: 50%;
   object-fit: cover;
 }
 
-.profile-info {
-  flex-grow: 1;
+.post-image-container {
+  flex-shrink: 0;
+}
+.post-image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.profile-username-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.profile-username-container button {
+  font-size: 1em;
+  color: blue;
+  border: 1px solid blue;
+  border-radius: 5px;
+  background-color: white;
+  padding: 0.2em 0.3em;
+  margin: 0 0.3em;
 }
 
 .profile-username {
@@ -55,8 +74,8 @@
 
 .profile-bio {
   font-size: 14px;
-  margin-top: 10px;
   color: #333;
+  margin: 0;
 }
 
 .profile-content {
@@ -71,13 +90,6 @@
 
 .post {
   margin-bottom: 20px;
-}
-
-.post-image {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  object-fit: cover;
 }
 
 .post-caption {
@@ -129,13 +141,6 @@
   margin-bottom: 0;
 }
 
-.post-image {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  object-fit: cover;
-}
-
 .post-caption {
   margin-top: 10px;
   font-size: 14px;
@@ -168,6 +173,20 @@
     font-size: 12px;
     margin-top: 5px;
   }
+
+  .profile-username-container button {
+    font-size: 0.8em;
+  }
+
+  .profile-header * {
+    margin: 0 auto;
+  }
+
+  .post-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
 }
 
 /* Styles for screens up to 400px width */
@@ -182,12 +201,6 @@
   .profile-header {
     flex-direction: column;
     align-items: flex-start;
-    padding: 20px;
-  }
-
-  .profile-image-container {
-    margin-right: 0;
-    margin-bottom: 10px;
   }
 
   .profile-info {
@@ -213,17 +226,6 @@
     margin-top: 10px;
     padding: 0 10px;
   }
-}
-
-.message-button {
-  background-color: #3897f0;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 12px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
 }
 
 .message-button:hover {

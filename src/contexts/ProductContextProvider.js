@@ -52,7 +52,11 @@ const ProductContextProvider = ({ children }) => {
   }
   async function createProduct(newProduct) {
     try {
-      const res = await axios.post(`${API}/products/listing/`, newProduct, getConfig());
+      const res = await axios.post(
+        `${API}/products/listing`,
+        newProduct,
+        getConfig()
+      );
       console.log(res);
       // navigate("/products");
     } catch (error) {
@@ -89,6 +93,7 @@ const ProductContextProvider = ({ children }) => {
     try {
       await axios.patch(`${API}/products/${id}/`, editedProduct, getConfig());
       // navigate("/products");
+      getProducts();
     } catch (error) {
       console.log(error);
     }
