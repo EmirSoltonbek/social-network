@@ -52,7 +52,11 @@ const ProductContextProvider = ({ children }) => {
   }
   async function createProduct(newProduct) {
     try {
-      const res = await axios.post(`${API}/products/`, newProduct, getConfig());
+      const res = await axios.post(
+        `${API}/products/listing`,
+        newProduct,
+        getConfig()
+      );
       console.log(res);
       // navigate("/products");
     } catch (error) {
@@ -63,7 +67,7 @@ const ProductContextProvider = ({ children }) => {
   async function getProducts() {
     try {
       const res = await axios(
-        `${API}/products/${window.location.search}`,
+        `${API}/products/listing/${window.location.search}`,
         getConfig()
       );
       dispatch({ type: "GET_PRODUCTS", payload: res.data });
@@ -80,7 +84,7 @@ const ProductContextProvider = ({ children }) => {
     }
   }
   async function getOneProduct(id) {
-    const res = await axios(`${API}/products/${id}/`, getConfig());
+    const res = await axios(`${API}/products/listing/${id}/`, getConfig());
 
     dispatch({ type: "GET_ONE_PRODUCT", payload: res.data });
   }
@@ -89,6 +93,7 @@ const ProductContextProvider = ({ children }) => {
     try {
       await axios.patch(`${API}/products/${id}/`, editedProduct, getConfig());
       // navigate("/products");
+      getProducts();
     } catch (error) {
       console.log(error);
     }
