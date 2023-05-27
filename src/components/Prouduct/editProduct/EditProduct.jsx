@@ -1,17 +1,18 @@
 import "./EditProduct.css";
-import React, { useEffect, useState } from 'react'
-import { useProduct } from '../../../contexts/ProductContextProvider'
+import React, { useEffect, useState } from "react";
+import { useProduct } from "../../../contexts/ProductContextProvider";
 import { useNavigate, useParams } from "react-router-dom";
 
 const EditProduct = () => {
-    const navigate = useNavigate();
-  const { 
-    getCategories, 
-    categories, 
-    createProduct, 
+  const navigate = useNavigate();
+  const {
+    getCategories,
+    categories,
+    createProduct,
     oneProduct,
     getOneProduct,
-    updateProduct, } = useProduct();
+    updateProduct,
+  } = useProduct();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -24,7 +25,6 @@ const EditProduct = () => {
   const [quantity, setQuantity] = useState(0);
   const [category, setCategory] = useState("");
 
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -32,20 +32,20 @@ const EditProduct = () => {
     getOneProduct(id);
   }, []);
 
-  useEffect(()=>{
-  if(oneProduct){
-    setImage1(oneProduct.image1);
-    setImage2(oneProduct.image2);
-    setTitle(oneProduct.title);
-    setDescription(oneProduct.description);
-    setPrice(oneProduct.price);
-    setSize(oneProduct.size);
-    setColor(oneProduct.color);
-    setGender(oneProduct.gender);
-    setQuantity(oneProduct.quantity);
-    setCategory(oneProduct.category.id);
-  }
-  },[])
+  useEffect(() => {
+    if (oneProduct) {
+      setImage1(oneProduct.image1);
+      setImage2(oneProduct.image2);
+      setTitle(oneProduct.title);
+      setDescription(oneProduct.description);
+      setPrice(oneProduct.price);
+      setSize(oneProduct.size);
+      setColor(oneProduct.color);
+      setGender(oneProduct.gender);
+      setQuantity(oneProduct.quantity);
+      setCategory(oneProduct.category.id);
+    }
+  }, []);
 
   function handleSave() {
     const newProduct = new FormData();
@@ -59,7 +59,7 @@ const EditProduct = () => {
     newProduct.append("category", category);
     newProduct.append("image1", image1);
     newProduct.append("image2", image2);
-    updateProduct(id, newProduct); 
+    updateProduct(id, newProduct);
   }
 
   return (
@@ -70,7 +70,7 @@ const EditProduct = () => {
         type="file"
         accept="image/*"
       />
-        <input
+      <input
         onChange={(e) => setImage2(e.target.files[0])}
         type="file"
         accept="image/*"
@@ -90,60 +90,34 @@ const EditProduct = () => {
         placeholder="price"
         type="text"
       />
-     
-        <select onChange={(e) => setSize(e.target.value)}>
+
+      <select onChange={(e) => setSize(e.target.value)}>
         <option> Choose size</option>
-          <option>
-          s
-          </option>
-          <option>
-          m
-          </option>
-          <option>
-          l
-          </option>
+        <option>s</option>
+        <option>m</option>
+        <option>l</option>
       </select>
       <select onChange={(e) => setColor(e.target.value)}>
         <option> Choose color</option>
-          <option>
-          red
-          </option>
-          <option>
-          blue
-          </option>
-          <option>
-          green
-          </option>
-          <option>
-          yellow
-          </option>
-          <option>
-          brown
-          </option>
-          <option>
-          black
-          </option>
-          <option>
-          white
-          </option>
-          <option>
-          gray
-          </option>
+        <option>red</option>
+        <option>blue</option>
+        <option>green</option>
+        <option>yellow</option>
+        <option>brown</option>
+        <option>black</option>
+        <option>white</option>
+        <option>gray</option>
       </select>
       <select onChange={(e) => setGender(e.target.value)}>
         <option> Choose gender</option>
-          <option>
-          male
-          </option>
-          <option>
-          female
-          </option>
+        <option>male</option>
+        <option>female</option>
       </select>
       <input
-      onChange={(e)=>setQuantity(e.target.value)}
-      placeholder='quantity'
-      type="number"
-       />
+        onChange={(e) => setQuantity(e.target.value)}
+        placeholder="quantity"
+        type="number"
+      />
       <select onChange={(e) => setCategory(e.target.value)}>
         <option> Choose category</option>
         {categories.map((item) => (
@@ -152,14 +126,18 @@ const EditProduct = () => {
           </option>
         ))}
       </select>
-     
+
       <br />
-      <button onClick={() => {
-        handleSave();
-        navigate('/product-list')
-        }}>Save Changes</button>
+      <button
+        onClick={() => {
+          handleSave();
+          navigate("/product-list");
+        }}
+      >
+        Save Changes
+      </button>
     </div>
   );
-}
+};
 
-export default EditProduct
+export default EditProduct;

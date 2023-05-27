@@ -1,7 +1,15 @@
+* {
+  box-sizing: border-box;
+}
 .product {
   display: flex;
   padding: 10px;
   width: 100%;
+}
+
+.image_wrap {
+  width: 280px;
+  margin: 0;
 }
 
 .text_wrap {
@@ -23,8 +31,8 @@
 
 .image_wrap img {
   max-width: 300px;
-  width: 100%;
-  border-radius: 10px;
+  /* width: 100%; */
+  /* border-radius: 10px; */
 }
 
 .bi {
