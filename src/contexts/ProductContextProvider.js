@@ -77,7 +77,7 @@ const ProductContextProvider = ({ children }) => {
   }
   async function deleteProduct(id) {
     try {
-      await axios.delete(`${API}/products/listing/${id}/`, getConfig());
+      await axios.delete(`${API}/products/${id}/`, getConfig());
       getProducts();
     } catch (error) {
       console.log(error);

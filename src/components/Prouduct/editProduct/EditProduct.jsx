@@ -8,14 +8,15 @@ const EditProduct = () => {
   const { oneProduct, getOneProduct, updateProduct } = useProduct();
   const [product, setProduct] = useState(oneProduct);
 
-  const [title, setTitle] = useState(product.title);
-  const [description, setDescription] = useState(product.description);
-  const [price, setPrice] = useState(product.price);
-  const [size, setSize] = useState(product.size);
-  const [color, setColor] = useState(product.color);
-  const [gender, setGender] = useState(product.gender);
-  const [image1, setImage1] = useState(null);
-  const [quantity, setQuantity] = useState(product.quantity);
+  const [title, setTitle] = useState(product?.title);
+  const [description, setDescription] = useState(product?.description);
+  const [price, setPrice] = useState(product?.price);
+  const [size, setSize] = useState(product?.size);
+  const [color, setColor] = useState(product?.color);
+  const [gender, setGender] = useState(product?.gender);
+  const [image1, setImage1] = useState(product?.image1);
+  const [image2, setImage2] = useState(product?.image2);
+  const [quantity, setQuantity] = useState(product?.quantity);
 
   const { id } = useParams();
 
@@ -25,15 +26,15 @@ const EditProduct = () => {
 
   useEffect(() => {
     if (oneProduct) {
-      setImage1(oneProduct?.image1);
-      // setImage2(oneProduct.image2);
-      setTitle(oneProduct?.title);
-      setDescription(oneProduct?.description);
-      setPrice(oneProduct?.price);
-      setSize(oneProduct?.size);
-      setColor(oneProduct?.color);
-      setGender(oneProduct?.gender);
-      setQuantity(oneProduct?.quantity);
+      setImage1(oneProduct.image1);
+      setImage2(oneProduct.image2);
+      setTitle(oneProduct.title);
+      setDescription(oneProduct.description);
+      setPrice(oneProduct.price);
+      setSize(oneProduct.size);
+      setColor(oneProduct.color);
+      setGender(oneProduct.gender);
+      setQuantity(oneProduct.quantity);
     }
   }, [oneProduct]);
 
@@ -49,6 +50,9 @@ const EditProduct = () => {
     if (image1) {
       newProduct.append("image1", image1);
     }
+    if (image2) {
+      newProduct.append("image2", image2);
+    }
 
     updateProduct(id, newProduct);
   }
@@ -61,12 +65,14 @@ const EditProduct = () => {
         onChange={(e) => setImage1(e.target.files[0])}
         type="file"
         accept="image/*"
+        placeholder="aaa"
       />
-      {/* <input
+      <input
         onChange={(e) => setImage2(e.target.files[0])}
         type="file"
         accept="image/*"
-      /> */}
+        placeholder="bbb"
+      />
       <input
         onChange={(e) => setTitle(e.target.value)}
         placeholder="title"
@@ -113,6 +119,7 @@ const EditProduct = () => {
         placeholder="quantity"
         type="number"
         value={quantity}
+
         />
         <br />
         <button onClick={() => {
