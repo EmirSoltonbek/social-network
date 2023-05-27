@@ -8,13 +8,28 @@ import post from "../../assets/Image 01.jpg";
 import GridOnIcon from "@mui/icons-material/GridOn";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import ProfileModal from "./ProfileModal";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useProfile } from "../../contexts/ProfileContextProvider";
+import { Button } from "react-bootstrap";
 
 function Profile() {
+  const { getProfileInfo, profileMe } = useProfile();
   const [grid, setGrid] = useState(true);
   const [modal, setModal] = useState(false);
+  const [profile, setProfile] = useState(profileMe);
   const { id } = useParams();
+  const navigate = useNavigate();
   console.log(id);
+
+  useEffect(() => {
+    getProfileInfo();
+  }, []);
+
+  useEffect(() => {
+    setProfile(profileMe);
+  }, [profileMe]);
+
+  console.log(profile);
 
   return (
     <div
@@ -31,7 +46,7 @@ function Profile() {
       >
         <img src={background} alt="" width="100%" height="80%" />
         <img
-          src={profileImage}
+          src={profile.avatar}
           alt=""
           style={{
             position: "absolute",
@@ -45,7 +60,16 @@ function Profile() {
       </div>
       <div className="profileBody">
         <div style={{ textAlign: "center" }}>
-          <h2 style={{ fontWeight: "600", color: "#353535" }}>Ana Souza</h2>
+          <Button
+            onClick={() => {
+              navigate(`/profile/edit/${profile.id}`);
+            }}
+          >
+            edit profile
+          </Button>
+          <h2 style={{ fontWeight: "600", color: "#353535" }}>
+            {profile.name} {profile.last_name}
+          </h2>
           <span
             style={{
               display: "flex",
@@ -61,9 +85,7 @@ function Profile() {
             </p>
             <p>Sao Paulo,</p> <p>Brazil</p>
           </span>
-          <p>
-            A true lover of animals, photography, travel, restaurants and clubs!
-          </p>
+          <p>{profile.bio}</p>
         </div>
         <button
           style={{

@@ -9,6 +9,7 @@ import Login from "./components/auth/Login";
 import ProfilePage from "./pages/ProfilePage";
 import InstProfile from "./components/profile/InstProfile";
 import EditProductPage from "./pages/EditProductPage";
+import EditProfile from "./components/profile/EditProfile";
 import CartPage from "./pages/CartPage";
 import FavoritePage from "./pages/FavoritePage";
 
@@ -22,9 +23,10 @@ function MyRoutes() {
     { link: "/login", element: <Login />, id: 6 },
     { link: "/profile", element: <ProfilePage />, id: 7 },
     { link: "/inst-profile", element: <InstProfile />, id: 8 },
-    { link: "/edit/:id", element: <EditProductPage />, id: 7 },
-    { link: "cart", element: <CartPage />, id: 8 },
-    { link: "favorite", element: <FavoritePage />, id: 9 },
+    { link: "/edit/:id", element: <EditProductPage />, id: 9 },
+    { link: "/profile/edit/:id", element: <EditProfile />, id: 10 },
+    { link: "cart", element: <CartPage />, id: 11 },
+    { link: "favorite", element: <FavoritePage />, id: 12 },
   ];
   return (
     <div>
