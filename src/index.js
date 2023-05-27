@@ -9,20 +9,23 @@ import AuthContextProvider from "./contexts/AuthContextProvider";
 import CartContextProvider from "./contexts/CartContextProvider";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProfileContextProvider from "./contexts/ProfileContextProvider";
+import FavoriteContextProvider from "./contexts/FavoriteContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <ProSidebarProvider>
-      <ProfileContextProvider>
-        <ProductContextProvider>
-          <AuthContextProvider>
-            <CartContextProvider>
-              <App />
-            </CartContextProvider>
-          </AuthContextProvider>
-        </ProductContextProvider>
-      </ProfileContextProvider>
-    </ProSidebarProvider>
+    <ProfileContextProvider>
+      <ProductContextProvider>
+        <AuthContextProvider>
+          <CartContextProvider>
+            <FavoriteContextProvider>
+              <ProSidebarProvider>
+                <App />
+              </ProSidebarProvider>
+            </FavoriteContextProvider>
+          </CartContextProvider>
+        </AuthContextProvider>
+      </ProductContextProvider>
+    </ProfileContextProvider>
   </BrowserRouter>
 );
