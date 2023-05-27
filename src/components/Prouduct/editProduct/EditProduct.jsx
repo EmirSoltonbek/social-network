@@ -1,5 +1,5 @@
 import "./EditProduct.css";
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useProduct } from "../../../contexts/ProductContextProvider";
 
@@ -119,15 +119,18 @@ const EditProduct = () => {
         placeholder="quantity"
         type="number"
         value={quantity}
-
-        />
-        <br />
-        <button onClick={() => {
+      />
+      <br />
+      <button
+        onClick={() => {
           handleSave();
-          navigate('/product-list');
-        }}>Save Changes</button>
-      </div>
-      );
-      }
-      
-      export default EditProduct;
+          navigate("/product-list");
+        }}
+      >
+        Save Changes
+      </button>
+    </div>
+  );
+};
+
+export default EditProduct;

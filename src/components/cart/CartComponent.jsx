@@ -1,11 +1,14 @@
 import React from "react";
 import "./CartComponent.css";
 import "../../assets/bootstrap-icons/font/bootstrap-icons.css";
+import { Carousel } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const CartComponent = ({
   title,
   description,
-  image,
+  image1,
+  image2,
   price,
   subPrice,
   deleteCartProduct,
@@ -13,11 +16,26 @@ const CartComponent = ({
   changeProductCount,
   count,
 }) => {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="product">
         <div className="image_wrap">
-          <img src={image} alt="" />
+          <Carousel
+            onClick={(e) => {
+              e.stopPropagation();
+              if (e.target.className == "d-block w-100") {
+                navigate(`/details/${id}`);
+              }
+            }}
+          >
+            <Carousel.Item>
+              <img className="d-block w-100" src={image1} />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img className="d-block w-100" src={image2} />
+            </Carousel.Item>
+          </Carousel>
         </div>
         <div className="text_wrap">
           <h3>{title}</h3>

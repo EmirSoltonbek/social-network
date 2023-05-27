@@ -8,9 +8,11 @@ import { Carousel, Button } from "react-bootstrap";
 import { useCart } from "../../../contexts/CartContextProvider";
 import { useProduct } from "../../../contexts/ProductContextProvider";
 import { useNavigate } from "react-router-dom";
+import { useFavorite } from "../../../contexts/FavoriteContextProvider";
 
 const ProductCard = ({ item }) => {
-  const { addProductToCart } = useCart();
+  const { addProductToCart, checkProductInCart } = useCart();
+  const { addProductToFavorite, checkProductInFavorite } = useFavorite();
   const navigate = useNavigate();
   const { deleteProduct } = useProduct();
   return (
@@ -67,26 +69,47 @@ const ProductCard = ({ item }) => {
 //         </div>
 //       </div> */}
       <div className="card" style={{ width: "280px" }}>
-        <Carousel key={item.id}>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src={item.image1}
-                  />
-                </Carousel.Item>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src={item.image2}
-                  />
-                </Carousel.Item>
+        <Carousel
+          key={item.id}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (e.target.className === "d-block w-100") {
+              navigate(`/details/${item.id}`);
+            }
+          }}
+        >
+          <Carousel.Item>
+            <img className="d-block w-100" src={item.image1} />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img className="d-block w-100" src={item.image2} />
+          </Carousel.Item>
         </Carousel>
         <div className="card-body">
           <h5 className="card-title">{item.title}</h5>
           <p className="card-text">{item.description}</p>
           <p className="card-text">Price: {item.price}</p>
-          <Button variant="primary" onClick={() => addProductToCart(item)}>
-            Add to Cart
+
+          {/* cart button start */}
+          {checkProductInCart(item.id) ? (
+            <Button variant="danger" onClick={() => addProductToCart(item)}>
+              In Cart
+            </Button>
+          ) : (
+            <Button variant="primary" onClick={() => addProductToCart(item)}>
+              Add to Cart
+            </Button>
+          )}
+          {/* cart button end */}
+
+          <Button variant="light" onClick={() => addProductToFavorite(item)}>
+            <i
+              className={
+                checkProductInFavorite(item.id)
+                  ? "bi bi-heart-fill"
+                  : "bi bi-heart"
+              }
+            ></i>
           </Button>
           <Button
             variant="danger"

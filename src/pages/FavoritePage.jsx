@@ -11,10 +11,11 @@ const FavoritePage = () => {
     addProductToFavorite,
     favorite,
   } = useFavorite();
+
   useEffect(() => {
     getFavorite();
   }, []);
-  console.log(favorite);
+  //   console.log(favorite.products[0].item);
   return (
     <div>
       <div className="container">
@@ -22,10 +23,15 @@ const FavoritePage = () => {
           favorite.products.map((elem) => {
             return (
               <FavoriteComponent
-                image={favorite.products.item.images}
-                title={favorite.products.item.title}
-                description={favorite.products.item.description}
-                price={favorite.products.item.price}
+                image1={elem.item.image1}
+                image2={elem.item.image2}
+                title={elem.item.title}
+                description={elem.item.description}
+                price={elem.item.price}
+                id={elem.item.id}
+                deleteFavoriteProduct={deleteFavoriteProduct}
+                elem={elem}
+                key={elem.item.id}
               />
             );
           })
