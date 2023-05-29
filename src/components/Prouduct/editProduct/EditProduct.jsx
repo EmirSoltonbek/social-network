@@ -5,29 +5,33 @@ import { useProduct } from "../../../contexts/ProductContextProvider";
 
 const EditProduct = () => {
   const navigate = useNavigate();
-  const { oneProduct, getOneProduct, updateProduct } = useProduct();
-  const [product, setProduct] = useState(oneProduct);
 
+  const { oneProduct, getOneProduct, updateProduct } = useProduct();
+  useEffect(() => {
+    getOneProduct(id);
+  }, []);
+
+  useEffect(()=>{
+    setProduct(oneProduct)
+  },[oneProduct])
+
+  const [product, setProduct] = useState(oneProduct);
+console.log(product);
   const [title, setTitle] = useState(product?.title);
   const [description, setDescription] = useState(product?.description);
   const [price, setPrice] = useState(product?.price);
   const [size, setSize] = useState(product?.size);
   const [color, setColor] = useState(product?.color);
   const [gender, setGender] = useState(product?.gender);
-  const [image1, setImage1] = useState(product?.image1);
-  const [image2, setImage2] = useState(product?.image2);
+  const [image1, setImage1] = useState(null);
+  const [image2, setImage2] = useState(null);
   const [quantity, setQuantity] = useState(product?.quantity);
 
   const { id } = useParams();
-
-  useEffect(() => {
-    getOneProduct(id);
-  }, []);
-
   useEffect(() => {
     if (oneProduct) {
-      setImage1(oneProduct.image1);
-      setImage2(oneProduct.image2);
+      // setImage1(oneProduct.image1);
+      // setImage2(oneProduct.image2);
       setTitle(oneProduct.title);
       setDescription(oneProduct.description);
       setPrice(oneProduct.price);
@@ -38,6 +42,7 @@ const EditProduct = () => {
     }
   }, [oneProduct]);
 
+
   function handleSave() {
     const newProduct = new FormData();
     newProduct.append("title", title);
@@ -47,9 +52,11 @@ const EditProduct = () => {
     newProduct.append("color", color);
     newProduct.append("gender", gender);
     newProduct.append("quantity", quantity);
+    console.log("image1",image1);
     if (image1) {
       newProduct.append("image1", image1);
     }
+    console.log("image2", image2);
     if (image2) {
       newProduct.append("image2", image2);
     }
@@ -65,13 +72,14 @@ const EditProduct = () => {
         onChange={(e) => setImage1(e.target.files[0])}
         type="file"
         accept="image/*"
-        placeholder="aaa"
+        encType="multipart/form-data"
       />
       <input
         onChange={(e) => setImage2(e.target.files[0])}
         type="file"
         accept="image/*"
-        placeholder="bbb"
+        encType="multipart/form-data"
+
       />
       <input
         onChange={(e) => setTitle(e.target.value)}
