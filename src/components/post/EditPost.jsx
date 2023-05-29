@@ -12,6 +12,9 @@ function EditPost() {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  console.log(profileMe, "ProfileMe");
+  console.log(onePost, "onePost");
+
   //!edit post state
   const [editingPost, setEditingPost] = useState(onePost);
   //!edit post state
@@ -19,19 +22,25 @@ function EditPost() {
   useEffect(() => {
     getOnePost(id);
   }, []);
-  useEffect(() => {
-    setEditingPost(onePost);
-  }, [onePost]);
+  //   useEffect(() => {
+  //     setEditingPost(onePost);
+  //   }, [onePost]);
+  console.log(editingPost, "editingPost");
 
   //! input states
   const [title, setTitle] = useState(editingPost?.title);
-  const [image, setImage] = useState(editingPost?.image);
+  const [image, setImage] = useState(null);
   const [postText, setPostText] = useState(editingPost?.body);
   //! input states
 
-  console.log(editingPost, "editingPost");
+  useEffect(() => {
+    if (onePost) {
+      setTitle(onePost.title);
+      setPostText(onePost.body);
+    }
+  }, [onePost]);
 
-  const handleMakePost = () => {
+  const handleEditPost = () => {
     const editedPost = new FormData();
     editedPost.append("title", title);
     editedPost.append("body", postText);
@@ -40,7 +49,7 @@ function EditPost() {
     if (image) {
       editedPost.append("image", image);
     }
-    editPost(editedPost);
+    editPost(id, editedPost);
   };
   return (
     <div>
@@ -73,7 +82,6 @@ function EditPost() {
               type="file"
               accept="image/*"
               placeholder="post image"
-              value={image}
             />
           </ListGroup.Item>
           <ListGroup.Item>
@@ -88,7 +96,7 @@ function EditPost() {
         </ListGroup>
         <Button
           onClick={() => {
-            handleMakePost();
+            handleEditPost();
             navigate("/inst-profile");
           }}
         >

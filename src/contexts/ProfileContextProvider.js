@@ -134,13 +134,9 @@ function ProfileContextProvider({ children }) {
     }
   };
 
-  const editPost = async (editedPost) => {
+  const editPost = async (id, editedPost) => {
     try {
-      await axios.patch(
-        `${API}/post/${editedPost.id}`,
-        editedPost,
-        getConfig()
-      );
+      await axios.patch(`${API}/post/${id}`, editedPost, getConfig());
       getPosts();
     } catch (error) {
       console.log(error);

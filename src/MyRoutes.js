@@ -12,6 +12,7 @@ import EditProductPage from "./pages/EditProductPage";
 import EditProfile from "./components/profile/EditProfile";
 import CartPage from "./pages/CartPage";
 import FavoritePage from "./pages/FavoritePage";
+import DetailsPage from "./pages/DetailsPage";
 import ProfileListPage from "./pages/ProfileListPage";
 import OneProfilePage from "./pages/OneProfilePage";
 import AddPostPage from "./pages/AddPostPage";
@@ -39,6 +40,7 @@ function MyRoutes() {
     },
     { link: "/add-post", element: <AddPostPage />, id: 14 },
     { link: "/edit-post/:id", element: <EditPostPage />, id: 15 },
+    { link: "/details/:id", element: <DetailsPage />, id: 10 },
   ];
   return (
     <div>

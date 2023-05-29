@@ -54,7 +54,7 @@ const ProductContextProvider = ({ children }) => {
     try {
       const res = await axios.post(`${API}/products/`, newProduct, getConfig());
       console.log(res);
-      // navigate("/products");
+      navigate("/product-list");
     } catch (error) {
       console.log(error);
     }
@@ -63,7 +63,7 @@ const ProductContextProvider = ({ children }) => {
   async function getProducts() {
     try {
       const res = await axios(
-        `${API}/products/${window.location.search}`,
+        `${API}/products/listing/${window.location.search}`,
         getConfig()
       );
       dispatch({ type: "GET_PRODUCTS", payload: res.data });
@@ -73,22 +73,22 @@ const ProductContextProvider = ({ children }) => {
   }
   async function deleteProduct(id) {
     try {
-      await axios.delete(`${API}/products/${id}/`, getConfig());
+      await axios.delete(`${API}/products/listing/${id}/`, getConfig());
       getProducts();
     } catch (error) {
       console.log(error);
     }
   }
   async function getOneProduct(id) {
-    const res = await axios(`${API}/products/${id}/`, getConfig());
-
+    const res = await axios(`${API}/products/listing/${id}/`, getConfig());
     dispatch({ type: "GET_ONE_PRODUCT", payload: res.data });
   }
 
   async function updateProduct(id, editedProduct) {
     try {
       await axios.patch(`${API}/products/${id}/`, editedProduct, getConfig());
-      // navigate("/products");
+      getProducts();
+      navigate("/product-list");
     } catch (error) {
       console.log(error);
     }
@@ -107,6 +107,7 @@ const ProductContextProvider = ({ children }) => {
     getOneProduct,
     oneProduct: state.oneProduct,
     updateProduct,
+    getConfig
   };
 
   return (

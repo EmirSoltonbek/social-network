@@ -3,9 +3,7 @@ import { useProduct } from '../../../contexts/ProductContextProvider'
 
 const AddProduct = () => {
   const { getCategories, categories, createProduct } = useProduct();
-useEffect(()=>{
-  console.log(getCategories().then())
-},[])
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -16,9 +14,6 @@ useEffect(()=>{
   const [image2, setImage2] = useState(null);
   const [quantity, setQuantity] = useState(0);
   const [category, setCategory] = useState("");
-
-
-  console.log(category);
 
   useEffect(() => {
     getCategories();

@@ -26,7 +26,8 @@ const CartPage = () => {
               <CartComponent
                 title={elem.item.title}
                 description={elem.item.description}
-                image={elem.item.image1}
+                image1={elem.item.image1}
+                image2={elem.item.image2}
                 price={elem.item.price}
                 subPrice={elem.subPrice}
                 deleteCartProduct={deleteCartProduct}
