@@ -12,6 +12,10 @@ import EditProductPage from "./pages/EditProductPage";
 import EditProfile from "./components/profile/EditProfile";
 import CartPage from "./pages/CartPage";
 import FavoritePage from "./pages/FavoritePage";
+import ProfileListPage from "./pages/ProfileListPage";
+import OneProfilePage from "./pages/OneProfilePage";
+import AddPostPage from "./pages/AddPostPage";
+import EditPostPage from "./pages/EditPostPage";
 
 function MyRoutes() {
   const PUBLIC_ROUTES = [
@@ -25,8 +29,16 @@ function MyRoutes() {
     { link: "/inst-profile", element: <InstProfile />, id: 8 },
     { link: "/edit/:id", element: <EditProductPage />, id: 9 },
     { link: "/profile/edit/:id", element: <EditProfile />, id: 10 },
-    { link: "cart", element: <CartPage />, id: 11 },
-    { link: "favorite", element: <FavoritePage />, id: 12 },
+    { link: "/cart", element: <CartPage />, id: 11 },
+    { link: "/favorite", element: <FavoritePage />, id: 12 },
+    { link: "/profile-list", element: <ProfileListPage />, id: 13 },
+    {
+      link: "/profile-list/one-profile/:id",
+      element: <OneProfilePage />,
+      id: 14,
+    },
+    { link: "/add-post", element: <AddPostPage />, id: 14 },
+    { link: "/edit-post/:id", element: <EditPostPage />, id: 15 },
   ];
   return (
     <div>

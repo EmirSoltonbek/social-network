@@ -49,3 +49,11 @@
   border: none;
   background-color: transparent;
 }
+
+/* !ProfileList */
+.profile-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 0.5em;
+}

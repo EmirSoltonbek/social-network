@@ -1,18 +1,39 @@
 import axios from "axios";
 import { createContext, useContext, useReducer } from "react";
 import { API } from "../helpers/consts";
+import { useEffect } from "react";
 
 export const profileContext = createContext();
 export const useProfile = () => useContext(profileContext);
 
 const INIT_STATE = {
   profileMe: "",
+  profiles: [],
+  oneProfile: "",
+  posts: [],
+  myPosts: [],
+  onePost: [],
 };
 
 const reducer = (state = INIT_STATE, action) => {
   switch (action.type) {
     case "GET_ME_PROFILE":
       return { ...state, profileMe: action.payload };
+
+    case "GET_PROFILES":
+      return { ...state, profiles: action.payload };
+
+    case "GET_ONE_PROFILE":
+      return { ...state, oneProfile: action.payload };
+
+    case "GET_POSTS":
+      return { ...state, posts: action.payload };
+
+    case "MY_POSTS":
+      return { ...state, myPosts: action.payload };
+
+    case "ONE_POST":
+      return { ...state, onePost: action.payload };
 
     default:
       return state;
@@ -57,10 +78,92 @@ function ProfileContextProvider({ children }) {
     }
   };
 
+  const getProfiles = async () => {
+    let { data } = await axios(`${API}/account/profiles/`, getConfig());
+    dispatch({
+      type: "GET_PROFILES",
+      payload: data,
+    });
+  };
+
+  const getOneProfile = async (id) => {
+    let { data } = await axios(`${API}/account/${id}/profile/`, getConfig());
+    dispatch({
+      type: "GET_ONE_PROFILE",
+      payload: data,
+    });
+  };
+
+  const getPosts = async () => {
+    let { data } = await axios(`${API}/posts/list/`, getConfig());
+    dispatch({
+      type: "GET_POSTS",
+      payload: data,
+    });
+    console.log(data);
+  };
+
+  const getMyPosts = async () => {
+    let res = state.posts.results;
+    console.log(state.posts.results);
+    let ans = res?.filter((item) => item.user === state.profileMe.id);
+    dispatch({
+      type: "MY_POSTS",
+      payload: ans,
+    });
+  };
+
+  const makePost = async (newPost) => {
+    await axios.post(`${API}/post/`, newPost, getConfig());
+    getPosts();
+  };
+
+  const deletePost = async (id) => {
+    await axios.delete(`${API}/post/${id}/`, getConfig());
+    getPosts();
+  };
+  const getOnePost = async (id) => {
+    try {
+      let { data } = await axios(`${API}/posts/list/${id}`, getConfig());
+      dispatch({
+        type: "ONE_POST",
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const editPost = async (editedPost) => {
+    try {
+      await axios.patch(
+        `${API}/post/${editedPost.id}`,
+        editedPost,
+        getConfig()
+      );
+      getPosts();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const values = {
     getProfileInfo,
     profileMe: state.profileMe,
     editProfileInfo,
+    getProfiles,
+    profiles: state.profiles,
+    getOneProfile,
+    oneProfile: state.oneProfile,
+    getPosts,
+    posts: state.posts,
+    getMyPosts,
+    myPosts: state.myPosts,
+    makePost,
+    deletePost,
+    getOnePost,
+    onePost: state.onePost,
+    editPost,
   };
   return (
     <profileContext.Provider value={values}>{children}</profileContext.Provider>
