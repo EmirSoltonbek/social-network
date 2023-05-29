@@ -11,7 +11,8 @@ const INIT_STATE = {
   categories: [],
   category: JSON.parse(localStorage.getItem("category")) || null ,
   oneProduct: null,
-  genderCategory:  JSON.parse(localStorage.getItem("genderCategory")) || "all",
+  genderCategory:  (localStorage.getItem("genderCategory")) || "all",
+
 };
 
 const reducer = (state = INIT_STATE, action) => {
