@@ -5,39 +5,40 @@ import back from "../../assets/Background of Profile Image.jpg";
 import { Button } from "react-bootstrap";
 import { useProfile } from "../../contexts/ProfileContextProvider";
 import { useNavigate, useParams } from "react-router-dom";
+import ProfileModal from "./ProfileModal";
 
 const InstProfile = () => {
-  const { getProfileInfo, profileMe } = useProfile();
+  const {
+    getProfileInfo,
+    profileMe,
+    getPosts,
+    myPosts,
+    getMyPosts,
+    posts,
+    deletePost,
+    getOnePost,
+    onePost,
+  } = useProfile();
   const [profile, setProfile] = useState(profileMe);
   const { id } = useParams();
+  const [grid, setGrid] = useState(true);
+  const [modal, setModal] = useState(false);
 
   const navigate = useNavigate();
   useEffect(() => {
     getProfileInfo();
+    getPosts();
   }, []);
+
+  useEffect(() => {
+    getMyPosts();
+  }, [posts]);
 
   useEffect(() => {
     setProfile(profileMe);
   }, [profileMe]);
 
-  const posts = [
-    {
-      id: 1,
-      image: "post1.jpg",
-      caption: "Beautiful sunset",
-    },
-    {
-      id: 2,
-      image: "post2.jpg",
-      caption: "Delicious food",
-    },
-    {
-      id: 2,
-      image: "post2.jpg",
-      caption: "Delicious food",
-    },
-    // Add more post objects as needed
-  ];
+  const [posts1, setPost1] = useState(myPosts);
 
   return (
     <div className="profile">
@@ -62,6 +63,14 @@ const InstProfile = () => {
               >
                 Edit
               </button>
+              <button
+                onClick={() => {
+                  navigate(`/add-post`);
+                }}
+                className="makePost-button"
+              >
+                Make Post
+              </button>
             </span>
           </div>
           <div>
@@ -75,13 +84,68 @@ const InstProfile = () => {
           </div>
         </div>
       </div>
+      <div className="upperPostsContainer">
+        <h1>Activity</h1>
+        <span>
+          <button onClick={() => setGrid(true)}>
+            <i class="bi bi-grid-3x3"></i>
+          </button>
+          <button onClick={() => setGrid(false)}>
+            <i style={{ fontSize: "2.7rem" }} class="bi bi-list"></i>
+          </button>
+        </span>
+      </div>
       <div className="profile-content">
-        {posts.map((post) => (
-          <div key={post.id} className="post">
-            <div className="post-image-container">
-              <img src={back} alt="Post" className="post-image" />
-            </div>
-            <p className="post-caption">{post.caption}</p>
+        {myPosts?.map((post) => (
+          <div key={post.id}>
+            {grid ? (
+              <div className="post">
+                <div className="post-image-container">
+                  <img src={post.image} alt="Post" className="post-image" />
+                </div>
+                <p className="post-caption">{post.title}</p>
+                <Button
+                  onClick={() => {
+                    deletePost(post.id);
+                  }}
+                >
+                  delete
+                </Button>
+                <Button
+                  onClick={() => {
+                    navigate(`/edit-post/${post.id}`);
+                  }}
+                >
+                  edit
+                </Button>
+                <Button
+                  onClick={() => {
+                    getOnePost(post.id);
+                    setModal(!modal);
+                  }}
+                >
+                  details
+                </Button>
+                {modal ? (
+                  <ProfileModal
+                    setModal={setModal}
+                    onePost={onePost}
+                    profileMe={profile}
+                  />
+                ) : null}
+              </div>
+            ) : (
+              <div className="post-big">
+                <div className="post-image-container-big">
+                  <img
+                    src={`${post.image}`}
+                    alt="Post"
+                    className="post-image-big"
+                  />
+                </div>
+                <p className="post-caption-big">{post.title}</p>
+              </div>
+            )}
           </div>
         ))}
       </div>

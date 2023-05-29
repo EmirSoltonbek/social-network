@@ -1,0 +1,12 @@
+input {
+  border: 2px solid lightblue !important;
+}
+input[type="file"]::file-selector-button {
+  border: 2px solid lightblue;
+  border-radius: 0.2em;
+  background-color: lightblue;
+  transition: 1s;
+}
+.imageInput {
+  border: none !important;
+}
