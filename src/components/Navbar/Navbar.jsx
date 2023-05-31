@@ -121,6 +121,7 @@ function Navbar() {
           >
             LogIn
           </MenuItem>
+          
         </Menu>
       </Sidebar>
     </div>

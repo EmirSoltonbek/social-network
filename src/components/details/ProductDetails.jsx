@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Carousel } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useProduct } from "../../contexts/ProductContextProvider";
 import "./ProductDetails.css";
@@ -28,15 +28,22 @@ const ProductDetails = ({ oneProduct }) => {
   useEffect(() => {}, [oneProduct.user_rating]);
   return (
     <div>
-      <div className="image_wrap">
-        <img src={oneProduct.image1} alt="" />
-      </div>
+         <Carousel
+         style={{width:"300px"}}
+          key={oneProduct.id}
+        >
+          <Carousel.Item style={{ height: "350px"}}>
+            <img className="d-block w-100 h-100" src={oneProduct.image1} />
+          </Carousel.Item>
+          <Carousel.Item style={{ height: "350px" }}>
+            <img className="d-block w-100 h-100" src={oneProduct.image2}  />
+          </Carousel.Item>
+        </Carousel>
       <div className="context_wrap">
-        <h2>{oneProduct.title}</h2>
-        <p>{oneProduct.description}</p>
-        <p>{oneProduct.price}</p>
-        <p>{oneProduct.size}</p>
-        <p>{oneProduct.id}</p>
+        <h2>Title: {oneProduct.title}</h2>
+        <p>Description: {oneProduct.description}</p>
+        <p>Price: {oneProduct.price}</p>
+        <p>Size: {oneProduct.size}</p>
         {oneProduct.product_comments.map((elem, index) => (
           <p>
             <span
