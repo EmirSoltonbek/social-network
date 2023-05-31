@@ -9,11 +9,10 @@ const INIT_STATE = {
   products: [],
   pages: 1,
   categories: [],
-  category: JSON.parse(localStorage.getItem("category")) || null ,
+  category: JSON.parse(localStorage.getItem("category")) || null,
   oneProduct: null,
   rating: 0,
-  genderCategory:  (localStorage.getItem("genderCategory")) || "all",
-
+  genderCategory: localStorage.getItem("genderCategory") || "all",
 };
 
 const reducer = (state = INIT_STATE, action) => {
@@ -54,7 +53,6 @@ const ProductContextProvider = ({ children }) => {
     };
     return config;
   }
-
 
   async function createProduct(newProduct) {
     try {
@@ -100,7 +98,6 @@ const ProductContextProvider = ({ children }) => {
     }
   }
 
-
   async function addRating(value, id) {
     try {
       await axios.post(
@@ -108,7 +105,10 @@ const ProductContextProvider = ({ children }) => {
         { value, product: id },
         getConfig()
       );
-
+    } catch (error) {
+      console.log(error);
+    }
+  }
   // ! get categories
 
   async function getCategories() {
@@ -116,12 +116,10 @@ const ProductContextProvider = ({ children }) => {
       const res = await axios(`${API}/products/categories/`, getConfig());
       dispatch({ type: "GET_CATEGORIES", payload: res.data.results });
       console.log(res.data);
-
     } catch (error) {
       console.log(error);
     }
   }
-
 
   async function addComment(body, id) {
     try {
@@ -148,12 +146,12 @@ const ProductContextProvider = ({ children }) => {
   // ! select category
 
   function selectCategory(id) {
-    dispatch({type: "GET_SELECT_ONE_CATEGORY", payload: id});
+    dispatch({ type: "GET_SELECT_ONE_CATEGORY", payload: id });
     localStorage.setItem("category", id);
   }
 
   function selectGenderCategory(select) {
-    dispatch({type: "GET_SELECT_ONE_GENDER_CATEGORY", payload: select});
+    dispatch({ type: "GET_SELECT_ONE_GENDER_CATEGORY", payload: select });
     localStorage.setItem("genderCategory", select);
   }
   // ! select category end
@@ -175,11 +173,11 @@ const ProductContextProvider = ({ children }) => {
 
     addRating,
     addComment,
-    getConfig, 
+    getConfig,
     selectCategory,
     category: state.category,
     genderCategory: state.genderCategory,
-    selectGenderCategory
+    selectGenderCategory,
   };
 
   return (
