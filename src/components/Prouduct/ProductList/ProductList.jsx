@@ -8,6 +8,7 @@ import { useSearchParams } from "react-router-dom";
 const ProductList = () => {
   const { getProducts, products, pages, category, genderCategory } =
     useProduct();
+
   const [searchParams, setSearchParams] = useSearchParams();
   // console.log(products);
 
@@ -26,33 +27,32 @@ const ProductList = () => {
 
   useEffect(() => {
     getProducts();
-  }, [searchParams, category]);
+  }, [searchParams]);
 
   if (currentPage < 1) setCurrentPage(1);
   if (currentPage > pages) setCurrentPage(pages);
-  console.log("products", products);
-  console.log("category", category);
 
   return (
     <div>
       <h1>PRODUCT LIST</h1>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {products.map((item) => {
+        {products?.map((item) => {
           // return (genderCategory === item.gender || category === item.category) ? (
           //   <ProductCard key={item.id} item={item} />
           // ) : null;
 
-          if (genderCategory === "all") {
-            return genderCategory === item.gender ||
-              category === item.category ? (
-              <ProductCard key={item.id} item={item} />
-            ) : null;
-          } else {
-            return genderCategory === item.gender &&
-              category === item.category ? (
-              <ProductCard key={item.id} item={item} />
-            ) : null;
-          }
+          // if (genderCategory === "all") {
+          //   return genderCategory === item.gender ||
+          //     category === item.category ? (
+          //     <ProductCard key={item.id} item={item} />
+          //   ) : null;
+          // } else {
+          //   return genderCategory === item.gender &&
+          //     category === item.category ? (
+          //     <ProductCard key={item.id} item={item} />
+          //   ) : null;
+          // }
+          return <ProductCard key={item.id} item={item} />;
         })}
       </div>
       <Pagination>

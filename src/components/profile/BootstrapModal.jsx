@@ -4,16 +4,8 @@ import Modal from "react-bootstrap/Modal";
 import "./BootstrapModal.css";
 import { useProfile } from "../../contexts/ProfileContextProvider";
 
-function ProfileModal({
-  lgShow,
-  setLgShow,
-  myPosts,
-  profileMe,
-  onePost,
-  getOnePost,
-}) {
-  console.log(onePost);
-  const { commentPost } = useProfile();
+function BootstrapModal({ lgShow, setLgShow, onePost, oneProfile }) {
+  const { commentPost, getOnePost, likePost } = useProfile();
   const [modalInput, setModalInput] = useState(false);
   const [commentState, setCommentState] = useState("");
   const handleCommentPost = () => {
@@ -21,6 +13,11 @@ function ProfileModal({
     getOnePost(onePost.id);
     setCommentState("");
   };
+  const handleLike = (id) => {
+    likePost(id);
+    getOnePost(onePost.id);
+  };
+  console.log(onePost);
   return (
     <>
       <Button>Large modal</Button>
@@ -41,7 +38,6 @@ function ProfileModal({
               <div class="row">
                 <div class="col-md-6">
                   <div class="card-img-bottom">
-                    {" "}
                     <img src={onePost.image} alt="" />{" "}
                   </div>
                 </div>
@@ -50,7 +46,7 @@ function ProfileModal({
                     <div className="card-title">
                       <span>
                         <img
-                          src={profileMe.avatar}
+                          src={oneProfile.avatar}
                           alt=""
                           width="50px"
                           style={{ borderRadius: "50%" }}
@@ -59,28 +55,42 @@ function ProfileModal({
                       <h3>{onePost.body}</h3>
                     </div>
                     <div className="my-modal">
-                      {onePost?.post_comments?.map((elem) => (
-                        <div style={{ display: "flex", gap: "0.5em" }}>
-                          <p>{elem?.user}</p>
-                          <p class="card-text">{elem?.body}</p>
-                        </div>
-                      ))}
+                      <div>
+                        {onePost?.post_comments?.map((elem, index) => (
+                          <div
+                            key={index}
+                            style={{ display: "flex", gap: "0.5em" }}
+                          >
+                            <p>{elem.user}:</p>
+                            <p class="card-text">{elem.body}</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <Button
-                      href="#"
-                      className="btn btn-primary"
-                      style={{ margin: "10px" }}
-                    >
-                      like
-                    </Button>
-                    <Button
-                      href="#"
-                      className="btn btn-primary"
-                      style={{ margin: "10px" }}
-                      onClick={() => setModalInput(!modalInput)}
-                    >
-                      comment
-                    </Button>
+                    <div style={{ display: "flex" }}>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <Button
+                          href="#"
+                          className="btn btn-primary"
+                          style={{ margin: "10px" }}
+                          onClick={() => {
+                            likePost(onePost.id);
+                            getOnePost(onePost.id);
+                          }}
+                        >
+                          like
+                        </Button>
+                        <p>{onePost.likes}</p>
+                      </div>
+                      <Button
+                        href="#"
+                        className="btn btn-primary"
+                        style={{ margin: "10px" }}
+                        onClick={() => setModalInput(!modalInput)}
+                      >
+                        comment
+                      </Button>
+                    </div>
                     {modalInput ? (
                       <div>
                         <input
@@ -108,4 +118,4 @@ function ProfileModal({
   );
 }
 
-export default ProfileModal;
+export default BootstrapModal;
