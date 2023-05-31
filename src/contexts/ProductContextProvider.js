@@ -11,6 +11,7 @@ const INIT_STATE = {
   categories: [],
   category: JSON.parse(localStorage.getItem("category")) || null ,
   oneProduct: null,
+  rating: 0,
   genderCategory:  (localStorage.getItem("genderCategory")) || "all",
 
 };
@@ -27,10 +28,15 @@ const reducer = (state = INIT_STATE, action) => {
       };
     case "GET_ONE_PRODUCT":
       return { ...state, oneProduct: action.payload };
+
+    case "ADD_RATING":
+      return { ...state, rating: action.payload };
+
     case "GET_SELECT_ONE_CATEGORY":
       return { ...state, category: action.payload };
     case "GET_SELECT_ONE_GENDER_CATEGORY":
       return { ...state, genderCategory: action.payload };
+
     default:
       return state;
   }
@@ -94,6 +100,15 @@ const ProductContextProvider = ({ children }) => {
     }
   }
 
+
+  async function addRating(value, id) {
+    try {
+      await axios.post(
+        `${API}/products/add_rating/`,
+        { value, product: id },
+        getConfig()
+      );
+
   // ! get categories
 
   async function getCategories() {
@@ -101,6 +116,20 @@ const ProductContextProvider = ({ children }) => {
       const res = await axios(`${API}/products/categories/`, getConfig());
       dispatch({ type: "GET_CATEGORIES", payload: res.data.results });
       console.log(res.data);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+  async function addComment(body, id) {
+    try {
+      await axios.post(
+        `${API}/products/comments/`,
+        { body, product: id },
+        getConfig()
+      );
     } catch (error) {
       console.log(error);
     }
@@ -142,6 +171,10 @@ const ProductContextProvider = ({ children }) => {
     getOneProduct,
     oneProduct: state.oneProduct,
     updateProduct,
+    getConfig,
+
+    addRating,
+    addComment,
     getConfig, 
     selectCategory,
     category: state.category,
