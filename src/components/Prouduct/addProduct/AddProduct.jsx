@@ -7,7 +7,7 @@ const AddProduct = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [size, setSize] = useState("");
+  const [size, setSize] = useState(""); 
   const [color, setColor] = useState("");
   const [gender, setGender] = useState("");
   const [image1, setImage1] = useState(null);
