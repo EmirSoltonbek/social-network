@@ -99,15 +99,11 @@ const ProductContextProvider = ({ children }) => {
   }
 
   async function addRating(value, id) {
-    try {
-      await axios.post(
-        `${API}/products/add_rating/`,
-        { value, product: id },
-        getConfig()
-      );
-    } catch (error) {
-      console.log(error);
-    }
+    await axios.post(
+      `${API}/products/add_rating/`,
+      { value, product: id },
+      getConfig()
+    );
   }
   // ! get categories
 

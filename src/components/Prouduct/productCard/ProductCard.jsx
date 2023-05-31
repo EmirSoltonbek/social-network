@@ -9,12 +9,18 @@ import { useCart } from "../../../contexts/CartContextProvider";
 import { useProduct } from "../../../contexts/ProductContextProvider";
 import { useNavigate } from "react-router-dom";
 import { useFavorite } from "../../../contexts/FavoriteContextProvider";
+import { useEffect, useState } from "react";
 
 const ProductCard = ({ item }) => {
   const { addProductToCart, checkProductInCart } = useCart();
   const { addProductToFavorite, checkProductInFavorite } = useFavorite();
   const navigate = useNavigate();
   const { deleteProduct } = useProduct();
+
+  // const [val , setVal] = useState(item.ratings);
+  // useEffect(()=>{setVal(val)},[item.ratings])
+
+  const stars = Array(5).fill(0)
   return (
     <div>
       {/* <div className="instagram-card">
@@ -124,7 +130,13 @@ const ProductCard = ({ item }) => {
             onClick={() => navigate(`/edit/${item.id}`)}
           >
             Edit
-          </Button>
+          </Button> 
+          <div>
+          {stars.map((elem, index)=>(
+            <i className={`bi bi-star-fill ${index < item.ratings ? "gold" : "grey"}`}></i>
+          ))
+}
+</div>
         </div>
       </div>
     </div>

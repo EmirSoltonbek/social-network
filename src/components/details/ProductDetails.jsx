@@ -12,18 +12,23 @@ const ProductDetails = ({ oneProduct }) => {
 
   const navigate = useNavigate();
 
-  const [currentValue, setCurrentValue] = useState(oneProduct.user_rating);
+  const [currentValue, setCurrentValue] = useState();
   const [comment, setComment] = useState('');
+
   const stars = Array(5).fill(0);
  
   const handleClick = (value) =>{
     setCurrentValue(value)
   }
 
-  useEffect(()=>{
-    addRating(currentValue, oneProduct.id)
-  },[currentValue])
 
+  useEffect(() => {
+    if(oneProduct){
+      setCurrentValue(oneProduct.user_rating)
+    }
+  }, [oneProduct])
+
+  useEffect(()=>{},[oneProduct.user_rating])
   return (
     <div>
       <div className="image_wrap">
