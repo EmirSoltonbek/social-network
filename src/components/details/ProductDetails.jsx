@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const ProductDetails = ({ oneProduct }) => {
   const navigate = useNavigate();
+
   return (
     <div>
       <div className="image_wrap">

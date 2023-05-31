@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { createContext, useContext, useReducer } from "react";
 import { API, API2 } from "../helpers/consts";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 export const productContext = createContext();
 export const useProduct = () => useContext(productContext);
 
@@ -127,7 +127,25 @@ const ProductContextProvider = ({ children }) => {
     dispatch({type: "GET_SELECT_ONE_GENDER_CATEGORY", payload: select});
     localStorage.setItem("genderCategory", select);
   }
+  console.log(window.location.search)
   // ! select category end
+
+  const location = useLocation();
+
+  async function fetchByParams(query, value) {
+    const search = new URLSearchParams(window.location.search);
+
+    if (value === "all") {
+      search.delete(query);
+    } else {
+      search.set(query, value);
+    }
+
+    console.log('fetchbyparams');
+
+    const url = `${location.pathname}?${search.toString()}`;
+    navigate(url);
+  }
 
   const values = {
     getCategories,
@@ -146,7 +164,8 @@ const ProductContextProvider = ({ children }) => {
     selectCategory,
     category: state.category,
     genderCategory: state.genderCategory,
-    selectGenderCategory
+    selectGenderCategory,
+    fetchByParams
   };
 
   return (
