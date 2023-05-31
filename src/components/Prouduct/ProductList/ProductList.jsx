@@ -6,9 +6,10 @@ import { useProduct } from "../../../contexts/ProductContextProvider";
 import { useSearchParams } from "react-router-dom";
 
 const ProductList = () => {
-  const { getProducts, products, pages } = useProduct();
+  const { getProducts, products, pages, category, genderCategory } =
+    useProduct();
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(products);
+  // console.log(products);
 
   const [currentPage, setCurrentPage] = useState(1);
   function getPagesCount() {
@@ -25,18 +26,34 @@ const ProductList = () => {
 
   useEffect(() => {
     getProducts();
-  }, [searchParams]);
+  }, [searchParams, category]);
 
   if (currentPage < 1) setCurrentPage(1);
   if (currentPage > pages) setCurrentPage(pages);
+  console.log("products", products);
+  console.log("category", category);
 
   return (
     <div>
       <h1>PRODUCT LIST</h1>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {products.map((item) => (
-          <ProductCard key={item.id} item={item} />
-        ))}
+        {products.map((item) => {
+          // return (genderCategory === item.gender || category === item.category) ? (
+          //   <ProductCard key={item.id} item={item} />
+          // ) : null;
+
+          if (genderCategory === "all") {
+            return genderCategory === item.gender ||
+              category === item.category ? (
+              <ProductCard key={item.id} item={item} />
+            ) : null;
+          } else {
+            return genderCategory === item.gender &&
+              category === item.category ? (
+              <ProductCard key={item.id} item={item} />
+            ) : null;
+          }
+        })}
       </div>
       <Pagination>
         <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} />

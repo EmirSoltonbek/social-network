@@ -39,9 +39,10 @@ function MyRoutes() {
       element: <OneProfilePage />,
       id: 14,
     },
-    { link: "/add-post", element: <AddPostPage />, id: 16 },
-    { link: "/edit-post/:id", element: <EditPostPage />, id: 17 },
-    { link: "/details/:id", element: <DetailsPage />, id: 18 },
+    { link: "/add-post", element: <AddPostPage />, id: 15 },
+    { link: "/edit-post/:id", element: <EditPostPage />, id: 16 },
+    { link: "/details/:id", element: <DetailsPage />, id: 17 },
+    { link: "/edit/:id", element: <EditProductPage />, id: 18 },
     { link: "/all-posts", element: <AllPostsPage />, id: 19 },
   ];
   return (
