@@ -100,12 +100,10 @@ function ProfileContextProvider({ children }) {
       type: "GET_POSTS",
       payload: data,
     });
-    console.log(data);
   };
 
   const getMyPosts = async () => {
     let res = state.posts.results;
-    console.log(state.posts.results);
     let ans = res?.filter((item) => item.user === state.profileMe.id);
     dispatch({
       type: "MY_POSTS",
@@ -115,12 +113,12 @@ function ProfileContextProvider({ children }) {
 
   const makePost = async (newPost) => {
     await axios.post(`${API}/post/`, newPost, getConfig());
-    getPosts();
+    getProfileInfo();
   };
 
   const deletePost = async (id) => {
     await axios.delete(`${API}/post/${id}/`, getConfig());
-    getPosts();
+    getProfileInfo();
   };
   const getOnePost = async (id) => {
     try {
@@ -136,8 +134,26 @@ function ProfileContextProvider({ children }) {
 
   const editPost = async (id, editedPost) => {
     try {
-      await axios.patch(`${API}/post/${id}`, editedPost, getConfig());
-      getPosts();
+      await axios.patch(`${API}/post/${id}/`, editedPost, getConfig());
+      getProfileInfo();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const commentPost = async (commentToPost) => {
+    try {
+      await axios.post(`${API}/posts/comment/`, commentToPost, getConfig());
+      // getProfiles();
+      // getProfileInfo();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const likePost = async (id) => {
+    try {
+      await axios(`${API}/post/toggle_like/${id}/`, getConfig());
     } catch (error) {
       console.log(error);
     }
@@ -160,6 +176,8 @@ function ProfileContextProvider({ children }) {
     getOnePost,
     onePost: state.onePost,
     editPost,
+    commentPost,
+    likePost,
   };
   return (
     <profileContext.Provider value={values}>{children}</profileContext.Provider>

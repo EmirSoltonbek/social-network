@@ -12,8 +12,8 @@ function EditPost() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  console.log(profileMe, "ProfileMe");
-  console.log(onePost, "onePost");
+  //   console.log(profileMe, "ProfileMe");
+  //   console.log(onePost, "onePost");
 
   //!edit post state
   const [editingPost, setEditingPost] = useState(onePost);

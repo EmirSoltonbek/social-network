@@ -4,34 +4,20 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import back from "../../assets/Background of Profile Image.jpg";
+import { Button } from "react-bootstrap";
+import ProfileModal from "./ProfileModal";
+import BootstrapModal from "./BootstrapModal";
 
 function OneProfile() {
-  const { oneProfile, getOneProfile } = useProfile();
+  const { oneProfile, getOneProfile, getOnePost, onePost } = useProfile();
   const { id } = useParams();
   const [grid, setGrid] = useState(true);
+  const [modal, setModal] = useState(false);
+  const [lgShow, setLgShow] = useState(false);
   useEffect(() => {
     getOneProfile(id);
   }, []);
-  console.log(oneProfile);
 
-  const posts = [
-    {
-      id: 1,
-      image: "post1.jpg",
-      caption: "Beautiful sunset",
-    },
-    {
-      id: 2,
-      image: "post2.jpg",
-      caption: "Delicious food",
-    },
-    {
-      id: 2,
-      image: "post2.jpg",
-      caption: "Delicious food",
-    },
-    // Add more post objects as needed
-  ];
   return (
     <div className="profile">
       <div className="profile-header">
@@ -86,14 +72,37 @@ function OneProfile() {
         </span>
       </div>
       <div className="profile-content">
-        {posts.map((post) => (
+        {oneProfile?.posts?.map((post) => (
           <div>
             {grid ? (
-              <div key={post.id} className="post">
-                <div className="post-image-container">
-                  <img src={back} alt="Post" className="post-image" />
+              <div>
+                <div key={post.id} className="post">
+                  <div className="post-image-container">
+                    <img
+                      src={`http://34.125.13.20/${post.image}`}
+                      alt="Post"
+                      className="post-image"
+                    />
+                  </div>
+                  <p className="post-caption">{post.title}</p>
+
+                  <Button
+                    onClick={() => {
+                      getOnePost(post.id);
+                      setLgShow(true);
+                    }}
+                  >
+                    details
+                  </Button>
+                  {lgShow ? (
+                    <BootstrapModal
+                      setLgShow={setLgShow}
+                      onePost={onePost}
+                      oneProfile={oneProfile}
+                      lgShow={lgShow}
+                    />
+                  ) : null}
                 </div>
-                <p className="post-caption">{post.caption}</p>
               </div>
             ) : (
               <div key={post.id} className="post-big">
