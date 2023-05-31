@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 import { useProfile } from "../../contexts/ProfileContextProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import ProfileModal from "./ProfileModal";
+import BootstrapModal from "./BootstrapModal";
 
 const InstProfile = () => {
   const {
@@ -22,7 +23,7 @@ const InstProfile = () => {
   const [profile, setProfile] = useState(profileMe);
   const { id } = useParams();
   const [grid, setGrid] = useState(true);
-  const [modal, setModal] = useState(false);
+  const [lgShow, setLgShow] = useState(false);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -96,12 +97,16 @@ const InstProfile = () => {
         </span>
       </div>
       <div className="profile-content">
-        {myPosts?.map((post) => (
+        {profileMe?.posts?.map((post) => (
           <div key={post.id}>
             {grid ? (
               <div className="post">
                 <div className="post-image-container">
-                  <img src={post.image} alt="Post" className="post-image" />
+                  <img
+                    src={`http://34.125.13.20/${post.image}`}
+                    alt="Post"
+                    className="post-image"
+                  />
                 </div>
                 <p className="post-caption">{post.title}</p>
                 <Button
@@ -118,19 +123,23 @@ const InstProfile = () => {
                 >
                   edit
                 </Button>
+
                 <Button
                   onClick={() => {
                     getOnePost(post.id);
-                    setModal(!modal);
+                    setLgShow(true);
                   }}
                 >
                   details
                 </Button>
-                {modal ? (
+                {lgShow ? (
                   <ProfileModal
-                    setModal={setModal}
+                    setLgShow={setLgShow}
+                    profileMe={profileMe}
+                    myPosts={myPosts}
+                    lgShow={lgShow}
                     onePost={onePost}
-                    profileMe={profile}
+                    getOnePost={getOnePost}
                   />
                 ) : null}
               </div>

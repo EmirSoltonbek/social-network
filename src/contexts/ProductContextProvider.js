@@ -107,7 +107,7 @@ const ProductContextProvider = ({ children }) => {
     getOneProduct,
     oneProduct: state.oneProduct,
     updateProduct,
-    getConfig
+    getConfig,
   };
 
   return (

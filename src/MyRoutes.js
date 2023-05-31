@@ -17,6 +17,7 @@ import ProfileListPage from "./pages/ProfileListPage";
 import OneProfilePage from "./pages/OneProfilePage";
 import AddPostPage from "./pages/AddPostPage";
 import EditPostPage from "./pages/EditPostPage";
+import AllPostsPage from "./pages/AllPostsPage";
 
 function MyRoutes() {
   const PUBLIC_ROUTES = [
@@ -38,9 +39,10 @@ function MyRoutes() {
       element: <OneProfilePage />,
       id: 14,
     },
-    { link: "/add-post", element: <AddPostPage />, id: 14 },
-    { link: "/edit-post/:id", element: <EditPostPage />, id: 15 },
-    { link: "/details/:id", element: <DetailsPage />, id: 10 },
+    { link: "/add-post", element: <AddPostPage />, id: 16 },
+    { link: "/edit-post/:id", element: <EditPostPage />, id: 17 },
+    { link: "/details/:id", element: <DetailsPage />, id: 18 },
+    { link: "/all-posts", element: <AllPostsPage />, id: 19 },
   ];
   return (
     <div>
