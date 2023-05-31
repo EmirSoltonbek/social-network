@@ -10,6 +10,7 @@ const INIT_STATE = {
   pages: 1,
   categories: [],
   oneProduct: null,
+  rating: 0,
 };
 
 const reducer = (state = INIT_STATE, action) => {
@@ -24,6 +25,8 @@ const reducer = (state = INIT_STATE, action) => {
       };
     case "GET_ONE_PRODUCT":
       return { ...state, oneProduct: action.payload };
+    case "ADD_RATING":
+      return { ...state, rating: action.payload };
     default:
       return state;
   }
@@ -94,6 +97,30 @@ const ProductContextProvider = ({ children }) => {
     }
   }
 
+  async function addRating(value, id) {
+    try {
+      await axios.post(
+        `${API}/products/add_rating/`,
+        { value, product: id },
+        getConfig()
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function addComment(body, id) {
+    try {
+      await axios.post(
+        `${API}/products/comments/`,
+        { body, product: id },
+        getConfig()
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const values = {
     getCategories,
     categories: state.categories,
@@ -107,7 +134,10 @@ const ProductContextProvider = ({ children }) => {
     getOneProduct,
     oneProduct: state.oneProduct,
     updateProduct,
-    getConfig
+    getConfig,
+
+    addRating,
+    addComment,
   };
 
   return (
