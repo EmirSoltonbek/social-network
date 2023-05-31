@@ -34,6 +34,15 @@
   object-fit: cover;
 }
 
+.post-image-container-big {
+  flex-shrink: 0;
+}
+.post-image-big {
+  width: 550px;
+  height: 550px;
+  object-fit: cover;
+}
+
 .profile-username-container {
   display: flex;
   flex-wrap: wrap;
@@ -76,16 +85,6 @@
   font-size: 14px;
   color: #333;
   margin: 0;
-}
-
-.profile-content {
-  margin-top: 20px;
-}
-
-/* ... existing styles ... */
-
-.profile-content {
-  margin-top: 20px;
 }
 
 .post {
@@ -132,12 +131,12 @@
 
 .profile-content {
   margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-.post {
+.post-big {
   margin-bottom: 0;
 }
 
@@ -225,6 +224,12 @@
   .profile-content {
     margin-top: 10px;
     padding: 0 10px;
+  }
+
+  .post-image {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
   }
 }
 

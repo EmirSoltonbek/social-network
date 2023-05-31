@@ -9,8 +9,11 @@ const INIT_STATE = {
   products: [],
   pages: 1,
   categories: [],
+  category: JSON.parse(localStorage.getItem("category")) || null ,
   oneProduct: null,
   rating: 0,
+  genderCategory:  (localStorage.getItem("genderCategory")) || "all",
+
 };
 
 const reducer = (state = INIT_STATE, action) => {
@@ -25,8 +28,15 @@ const reducer = (state = INIT_STATE, action) => {
       };
     case "GET_ONE_PRODUCT":
       return { ...state, oneProduct: action.payload };
+
     case "ADD_RATING":
       return { ...state, rating: action.payload };
+
+    case "GET_SELECT_ONE_CATEGORY":
+      return { ...state, category: action.payload };
+    case "GET_SELECT_ONE_GENDER_CATEGORY":
+      return { ...state, genderCategory: action.payload };
+
     default:
       return state;
   }
@@ -45,14 +55,7 @@ const ProductContextProvider = ({ children }) => {
     return config;
   }
 
-  async function getCategories() {
-    try {
-      const res = await axios(`${API}/products/categories/`, getConfig());
-      dispatch({ type: "GET_CATEGORIES", payload: res.data.results });
-    } catch (error) {
-      console.log(error);
-    }
-  }
+
   async function createProduct(newProduct) {
     try {
       const res = await axios.post(`${API}/products/`, newProduct, getConfig());
@@ -97,6 +100,7 @@ const ProductContextProvider = ({ children }) => {
     }
   }
 
+
   async function addRating(value, id) {
     try {
       await axios.post(
@@ -104,10 +108,20 @@ const ProductContextProvider = ({ children }) => {
         { value, product: id },
         getConfig()
       );
+
+  // ! get categories
+
+  async function getCategories() {
+    try {
+      const res = await axios(`${API}/products/categories/`, getConfig());
+      dispatch({ type: "GET_CATEGORIES", payload: res.data.results });
+      console.log(res.data);
+
     } catch (error) {
       console.log(error);
     }
   }
+
 
   async function addComment(body, id) {
     try {
@@ -120,6 +134,29 @@ const ProductContextProvider = ({ children }) => {
       console.log(error);
     }
   }
+
+  // async function getCategories() {
+  //   try {
+  //     let res = await axios(`${API}/products/categories/`, getConfig());
+  //     console.log(res);
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+  // ! get categories end
+
+  // ! select category
+
+  function selectCategory(id) {
+    dispatch({type: "GET_SELECT_ONE_CATEGORY", payload: id});
+    localStorage.setItem("category", id);
+  }
+
+  function selectGenderCategory(select) {
+    dispatch({type: "GET_SELECT_ONE_GENDER_CATEGORY", payload: select});
+    localStorage.setItem("genderCategory", select);
+  }
+  // ! select category end
 
   const values = {
     getCategories,
@@ -138,6 +175,11 @@ const ProductContextProvider = ({ children }) => {
 
     addRating,
     addComment,
+    getConfig, 
+    selectCategory,
+    category: state.category,
+    genderCategory: state.genderCategory,
+    selectGenderCategory
   };
 
   return (
