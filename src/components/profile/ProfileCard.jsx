@@ -6,7 +6,7 @@ function ProfileCard({ item }) {
   console.log(item);
   return (
     <Card style={{ width: "10rem" }}>
-      <Card.Img variant="top" src={`http://34.125.13.20/${item.avatar}`} />
+      <Card.Img variant="top" src={item.avatar} />
       <Card.Body>
         <Card.Title style={{ fontSize: "1.1em" }}>
           {item.name} {item.last_name}
