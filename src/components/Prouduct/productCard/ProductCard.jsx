@@ -94,9 +94,9 @@ const ProductCard = ({ item }) => {
         </Carousel>
         <div className="card-body">
           <h5 className="card-title">Title: {item.title}</h5>
-          <p className="card-text">Description: {item.description}</p>
+          {/* <p className="card-text">Description: {item.description}</p> */}
           <p className="card-text">Price: {item.price}</p>
-          <p className="card-text">Category: {item.category}</p>
+          {/* <p className="card-text">Category: {item.category}</p> */}
 
           <div style={{display:"flex", justifyContent:"space-between"}}>
           {checkProductInCart(item.id) ? (
@@ -117,7 +117,7 @@ const ProductCard = ({ item }) => {
           <div style={{textAlign:"right", marginTop:"8px"}}>
           {stars.map((elem, index)=>(
             <i className={`bi bi-star-fill ${index < item.ratings ? "gold" : "grey"}`} style={{fontSize:"1rem"}}></i>
-          ))
+          ))  
 }
 </div>
         </div>

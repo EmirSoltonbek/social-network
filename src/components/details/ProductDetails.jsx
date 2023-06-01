@@ -28,23 +28,25 @@ const ProductDetails = ({ oneProduct }) => {
   useEffect(() => {}, [oneProduct.user_rating]);
   return (
     <div>
+    <div style={{display:"flex", flexWrap:"wrap", justifyContent:"center", gap:"40px"}}>
+      <div style={{display:"flex", gap:"25px", flexWrap:"wrap", justifyContent:"center"}}>
          <Carousel
-         style={{width:"300px"}}
+         style={{width:"270px", height:"350px"}}
           key={oneProduct.id}
         >
-          <Carousel.Item style={{ height: "350px"}}>
+          <Carousel.Item style={{ height: "350px", width:"270px"}}>
             <img className="d-block w-100 h-100" src={oneProduct.image1} />
           </Carousel.Item>
-          <Carousel.Item style={{ height: "350px" }}>
+          <Carousel.Item style={{ height: "350px", width:"270px" }}>
             <img className="d-block w-100 h-100" src={oneProduct.image2}  />
           </Carousel.Item>
         </Carousel>
-      <div className="context_wrap">
-        <h2>Title: {oneProduct.title}</h2>
+      <div>
+        <p>Title: {oneProduct.title}</p>
         <p>Description: {oneProduct.description}</p>
         <p>Price: {oneProduct.price}</p>
         <p>Size: {oneProduct.size}</p>
-        {oneProduct.product_comments.map((elem, index) => (
+        {/* {oneProduct.product_comments.map((elem, index) => (
           <p>
             <span
               style={{
@@ -58,9 +60,21 @@ const ProductDetails = ({ oneProduct }) => {
             </span>
             {elem.body}
           </p>
-        ))}
-        <div>
-          {stars.map((elem, index) => (
+        ))} */}
+        </div>
+        </div>
+        <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center",gap:"5px"}}>
+         <div>
+          <textarea
+            placeholder="enter feedback"
+            onChange={(e) => {
+              setComment(e.target.value);
+            }}
+            cols="25"
+            rows="3"
+          ></textarea>
+          </div>
+           <div>{stars.map((elem, index) => (
             <i
               className={`bi bi-star-fill ${
                 index < currentValue ? "gold" : "grey"
@@ -70,29 +84,25 @@ const ProductDetails = ({ oneProduct }) => {
               }}
             ></i>
           ))}
-          <textarea
-            placeholder="enter feedback"
-            onChange={(e) => {
-              setComment(e.target.value);
-            }}
-            cols="30"
-            rows="3"
-            style={{ margin: "10px 20px 30px" }}
-          ></textarea>
-        </div>
+          </div>
 
         <button
           onClick={() => {
             addRating(currentValue, oneProduct.id);
             addComment(comment, oneProduct.id);
           }}
+          className="feedback-button"
         >
           Leave Feedback
         </button>
-      </div>
-      <Button variant="primary" onClick={() => navigate(-1)}>
+        <div style={{marginTop:"30px"}}>
+        <button onClick={() => navigate(-1)} className="goback">
         Go Back
-      </Button>
+      </button>
+      </div>
+      </div>
+</div>
+     
     </div>
   );
 };
