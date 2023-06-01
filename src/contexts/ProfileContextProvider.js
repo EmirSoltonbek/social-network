@@ -144,11 +144,10 @@ function ProfileContextProvider({ children }) {
   const commentPost = async (commentToPost) => {
     try {
       await axios.post(`${API}/posts/comment/`, commentToPost, getConfig());
-      // getProfiles();
-      // getProfileInfo();
     } catch (error) {
       console.log(error);
     }
+    getPosts();
   };
 
   const likePost = async (id) => {
@@ -157,6 +156,7 @@ function ProfileContextProvider({ children }) {
     } catch (error) {
       console.log(error);
     }
+    getPosts();
   };
 
   const values = {
