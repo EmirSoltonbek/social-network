@@ -7,15 +7,17 @@ import { useNavigate } from "react-router-dom";
 
 function ProfileList() {
   const { profiles, getProfiles } = useProfile();
+
   const navigate = useNavigate();
   useEffect(() => {
     getProfiles();
   }, []);
+  console.log(profiles);
   return (
     <>
       <h1>All Users List</h1>
       <div className="profile-list-container">
-        {profiles?.map((item) => (
+        {profiles?.results?.map((item) => (
           <div
             style={{ cursor: "pointer" }}
             onClick={() => navigate(`one-profile/${item.id}`)}
