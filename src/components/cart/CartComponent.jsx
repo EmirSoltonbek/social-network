@@ -37,23 +37,25 @@ const CartComponent = ({
             </Carousel.Item>
           </Carousel>
         </div>
-        <div className="text_wrap">
-          <h3>{title}</h3>
-          <p>{description}</p>
-          <p>{price}</p>
-        </div>
-        <div className="product_counter">
-          <input
-            type="number"
-            onChange={(e) => changeProductCount(e.target.value, id)}
-            value={count}
-          />
-        </div>
-        <div className="sub_price">
-          <p>{subPrice}</p>
-          <button onClick={() => deleteCartProduct(id)}>
-            <i className="bi bi-trash3"></i>
-          </button>
+        <div>
+          <div className="text_wrap">
+            <h3>{title}</h3>
+            <p>{description}</p>
+            <p>{price}</p>
+            <div className="product_counter">
+              <input
+                type="number"
+                onChange={(e) => changeProductCount(e.target.value, id)}
+                value={count}
+              />
+            </div>
+          </div>
+          <div className="sub_price">
+            <p>{subPrice}</p>
+            <button onClick={() => deleteCartProduct(id)}>
+              <i className="bi bi-trash3"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
