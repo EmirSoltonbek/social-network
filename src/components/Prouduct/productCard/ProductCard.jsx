@@ -10,6 +10,7 @@ import { useProduct } from "../../../contexts/ProductContextProvider";
 import { useNavigate } from "react-router-dom";
 import { useFavorite } from "../../../contexts/FavoriteContextProvider";
 import { useEffect, useState } from "react";
+import "./ProductCard.css"
 
 const ProductCard = ({ item }) => {
   const { addProductToCart, checkProductInCart } = useCart();
@@ -79,62 +80,44 @@ const ProductCard = ({ item }) => {
           key={item.id}
           onClick={(e) => {
             e.stopPropagation();
-            if (e.target.className === "d-block w-100") {
+            if (e.target.className === "d-block w-100 h-100") {
               navigate(`/details/${item.id}`);
             }
           }}
         >
-          <Carousel.Item>
-            <img className="d-block w-100" src={item.image1} />
+          <Carousel.Item style={{ height: "230px"}}>
+            <img className="d-block w-100 h-100" src={item.image1} />
           </Carousel.Item>
-          <Carousel.Item>
-            <img className="d-block w-100" src={item.image2} />
+          <Carousel.Item style={{ height: "230px" }}>
+            <img className="d-block w-100 h-100" src={item.image2}  />
           </Carousel.Item>
         </Carousel>
         <div className="card-body">
-          <h5 className="card-title">{item.title}</h5>
-          <p className="card-text">{item.description}</p>
+          <h5 className="card-title">Title: {item.title}</h5>
+          {/* <p className="card-text">Description: {item.description}</p> */}
           <p className="card-text">Price: {item.price}</p>
+          {/* <p className="card-text">Category: {item.category}</p> */}
 
-          {/* cart button start */}
+          <div style={{display:"flex", justifyContent:"space-between"}}>
           {checkProductInCart(item.id) ? (
-            <Button variant="danger" onClick={() => addProductToCart(item)}>
-              In Cart
-            </Button>
+            <i class="bi bi-bag-check-fill" onClick={() => addProductToCart(item)} style={{color:"blue", fontSize:"1.6rem"}}></i>
           ) : (
-            <Button variant="primary" onClick={() => addProductToCart(item)}>
-              Add to Cart
-            </Button>
+            <i class="bi bi-bag-check-fill" onClick={() => addProductToCart(item)} style={{fontSize:"1.6rem"}}></i>
           )}
-          {/* cart button end */}
 
-          <Button variant="light" onClick={() => addProductToFavorite(item)}>
-            <i
-              className={
-                checkProductInFavorite(item.id)
-                  ? "bi bi-heart-fill"
-                  : "bi bi-heart"
-              }
-            ></i>
-          </Button>
-          <Button
-            variant="danger"
-            onClick={() => {
+          {checkProductInFavorite(item.id)?(
+          <i class="bi bi-heart-fill" style={{color:"red", fontSize:"1.6rem"}} onClick={() => addProductToFavorite(item)}></i>
+          ):<i class="bi bi-heart-fill" onClick={() => addProductToFavorite(item)} style={{fontSize:"1.6rem"}}></i>}
+    
+            <i class="bi bi-trash-fill" style={{color:"red",fontSize:"1.6rem"}}  onClick={() => {
               deleteProduct(item.id);
-            }}
-          >
-            Delete
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => navigate(`/edit/${item.id}`)}
-          >
-            Edit
-          </Button> 
-          <div>
+            }}></i>
+            <i class="bi bi-pencil-square"  onClick={() => navigate(`/edit/${item.id}`)} style={{color:"orange", fontSize:"1.6rem"}}></i>
+            </div>
+          <div style={{textAlign:"right", marginTop:"8px"}}>
           {stars.map((elem, index)=>(
-            <i className={`bi bi-star-fill ${index < item.ratings ? "gold" : "grey"}`}></i>
-          ))
+            <i className={`bi bi-star-fill ${index < item.ratings ? "gold" : "grey"}`} style={{fontSize:"1rem"}}></i>
+          ))  
 }
 </div>
         </div>

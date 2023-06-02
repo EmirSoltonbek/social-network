@@ -1,0 +1,19 @@
+.filter-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.filter-container div{
+    margin: 8px 20px;
+}
+ select{
+    width: 200px;
+}
+input{
+    width: 260px;
+}
+label{
+    margin-right: 3px;
+}

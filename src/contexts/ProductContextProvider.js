@@ -164,8 +164,6 @@ const ProductContextProvider = ({ children }) => {
       search.set(query, value);
     }
 
-    console.log('fetchbyparams');
-
     const url = `${location.pathname}?${search.toString()}`;
     navigate(url);
   }
