@@ -141,16 +141,16 @@ const ProductContextProvider = ({ children }) => {
 
   // ! select category
 
-  function selectCategory(id) {
-    dispatch({ type: "GET_SELECT_ONE_CATEGORY", payload: id });
-    localStorage.setItem("category", id);
-  }
+  // function selectCategory(id) {
+  //   dispatch({ type: "GET_SELECT_ONE_CATEGORY", payload: id });
+  //   localStorage.setItem("category", id);
+  // }
 
-  function selectGenderCategory(select) {
-    dispatch({ type: "GET_SELECT_ONE_GENDER_CATEGORY", payload: select });
-    localStorage.setItem("genderCategory", select);
-  }
-  console.log(window.location.search)
+  // function selectGenderCategory(select) {
+  //   dispatch({ type: "GET_SELECT_ONE_GENDER_CATEGORY", payload: select });
+  //   localStorage.setItem("genderCategory", select);
+  // }
+  // console.log(window.location.search)
   // ! select category end
 
   const location = useLocation();
@@ -186,10 +186,9 @@ const ProductContextProvider = ({ children }) => {
     addRating,
     addComment,
     getConfig,
-    selectCategory,
+
     category: state.category,
-    genderCategory: state.genderCategory,
-    selectGenderCategory,
+
     fetchByParams
   };
 

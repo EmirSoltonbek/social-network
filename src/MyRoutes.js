@@ -18,6 +18,7 @@ import OneProfilePage from "./pages/OneProfilePage";
 import AddPostPage from "./pages/AddPostPage";
 import EditPostPage from "./pages/EditPostPage";
 import AllPostsPage from "./pages/AllPostsPage";
+import NewCart from "./components/cart/NewCart";
 
 function MyRoutes() {
   const PUBLIC_ROUTES = [
@@ -44,6 +45,7 @@ function MyRoutes() {
     { link: "/details/:id", element: <DetailsPage />, id: 17 },
     { link: "/edit/:id", element: <EditProductPage />, id: 18 },
     { link: "/post-list", element: <AllPostsPage />, id: 19 },
+    { link: "/new-cart", element: <NewCart />, id: 20 },
   ];
   return (
     <div>

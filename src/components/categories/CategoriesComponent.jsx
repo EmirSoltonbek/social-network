@@ -6,15 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import "./CategoriesComponent.css"
 
 const CategoriesComponent = () => {
-  const {
-    getCategories,
-    categories,
-    selectCategory,
-    category,
-    selectGenderCategory,
-    genderCategory,
-    fetchByParams,
-  } = useProduct();
+  const { getCategories, categories, category, fetchByParams } = useProduct();
 
   useEffect(() => {
     getCategories();

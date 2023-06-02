@@ -20,7 +20,7 @@ const CartPage = () => {
     <div>
       <h2>cart page</h2>
       <div className="container">
-        <div className="products_wrap">
+        <div className="products_wrap" style={{ display: "grid" }}>
           {cart?.products.map((elem) => {
             return (
               <CartComponent

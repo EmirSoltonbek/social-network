@@ -3,8 +3,10 @@
 }
 .product {
   display: flex;
-  padding: 10px;
-  width: 100%;
+  flex-wrap: wrap;
+  border-bottom: 1px solid black;
+  gap: 3em;
+  justify-content: center;
 }
 
 .image_wrap {
@@ -13,8 +15,21 @@
 }
 
 .text_wrap {
-  vertical-align: middle;
-  margin-left: 10px;
+  /* vertical-align: middle; */
+  /* margin-left: 10px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+  min-width: 300px;
+}
+
+.product_counter {
+  border: 1px solid black;
+  display: flex;
+  width: 20%;
+  justify-content: space-evenly;
+  margin: 0.5em 0;
 }
 
 .sub_price {
