@@ -16,13 +16,17 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import FaceIcon from "@mui/icons-material/Face";
 import { useNavigate } from "react-router";
+import { useProfile } from "../../contexts/ProfileContextProvider";
+import "./Navbar.css";
 
 function Navbar() {
   const { collapseSidebar, toggleSidebar, collapsed, toggled, broken, rtl } =
     useProSidebar();
+  const { profileMe, getProfileInfo } = useProfile();
   // Изначально закрытая боковая панель
   useEffect(() => {
     collapseSidebar();
+    getProfileInfo();
   }, []); // Вызывается только при монтировании компонента
 
   const toggle = () => {
@@ -69,59 +73,87 @@ function Navbar() {
             }}
             style={{ textAlign: "center", paddingLeft: "5px" }}
           >
-            {" "}
-            <h2>Admin</h2>
+            <div
+              className="avatarImgDiv"
+              onClick={() => {
+                navigate("/inst-profile");
+              }}
+            >
+              <img className="avatarImg" src={profileMe?.avatar} alt="avatar" />
+              <small>{profileMe?.name?.toUpperCase()}</small>
+            </div>
           </MenuItem>
 
           <MenuItem
-            onClick={() => navigate("/home")}
-            icon={<HomeOutlinedIcon />}
+            icon={
+              <img className="avatarImg" src={profileMe?.avatar} alt="avatar" />
+            }
             style={{ paddingLeft: "5px" }}
+            onClick={() => navigate("/inst-profile")}
           >
             Home
           </MenuItem>
+
           <MenuItem
-            icon={<PeopleOutlinedIcon />}
+            icon={<i style={{ fontSize: "1.5rem" }} class="bi bi-people"></i>}
+            style={{ paddingLeft: "5px" }}
+            onClick={() => navigate("/profile-list")}
+          >
+            Profiles
+          </MenuItem>
+
+          <MenuItem
+            onClick={() => navigate("/post-list")}
+            icon={
+              <i style={{ fontSize: "1.5rem" }} class="bi bi-file-post"></i>
+            }
             style={{ paddingLeft: "5px" }}
           >
-            Team
+            Posts
           </MenuItem>
-          <MenuItem
+
+          {/* <MenuItem
             icon={<ContactsOutlinedIcon />}
             style={{ paddingLeft: "5px" }}
           >
             Contacts
-          </MenuItem>
+          </MenuItem> */}
           <MenuItem
             onClick={() => {
               navigate("product-list");
             }}
             style={{ paddingLeft: "5px" }}
-            icon={<ReceiptOutlinedIcon />}
+            icon={
+              <i style={{ fontSize: "1.5rem" }} class="bi bi-view-list"></i>
+            }
           >
-            Profile
+            Products
           </MenuItem>
           <MenuItem
-            icon={<HelpOutlineOutlinedIcon />}
+            icon={<i style={{ fontSize: "1.5rem" }} class="bi bi-bag"></i>}
             style={{ paddingLeft: "5px" }}
+            onClick={() => {
+              navigate("/new-cart");
+            }}
           >
-            FAQ
+            Cart
           </MenuItem>
           <MenuItem
             onClick={() => navigate("/register")}
-            icon={<FaceIcon />}
+            icon={<i style={{ fontSize: "1.5rem" }} class="bi bi-r-square"></i>}
             style={{ paddingLeft: "5px" }}
           >
             Register
           </MenuItem>
           <MenuItem
             onClick={() => navigate("/login")}
-            icon={<FaceIcon />}
+            icon={
+              <i style={{ fontSize: "1.5rem" }} class="bi bi-door-open"></i>
+            }
             style={{ paddingLeft: "5px" }}
           >
             LogIn
           </MenuItem>
-          
         </Menu>
       </Sidebar>
     </div>
