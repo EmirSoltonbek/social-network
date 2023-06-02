@@ -12,7 +12,7 @@ const DetailsPage = () => {
   console.log("oneProduct", oneProduct);
   return (
     <div>
-      {oneProduct ? <ProductDetails oneProduct={oneProduct} /> : <h2>hui</h2>}
+      {oneProduct ? <ProductDetails oneProduct={oneProduct} /> : <h2>Register or Login</h2>}
     </div>
   );
 };

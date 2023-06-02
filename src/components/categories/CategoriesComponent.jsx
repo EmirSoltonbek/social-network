@@ -3,6 +3,7 @@ import { useProduct } from "../../contexts/ProductContextProvider";
 import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
+import "./CategoriesComponent.css"
 
 const CategoriesComponent = () => {
   const { getCategories, categories, category, fetchByParams } = useProduct();
@@ -65,48 +66,64 @@ const CategoriesComponent = () => {
             );
           })
         : null} */}
-
-      <div className="search_wrap">
+<div className="filter-container">
+     
+      <div>
+        <label>Category:</label>
+        <select name="" id="" onChange={(e)=>fetchByParams("category", e.target.value)}>
+          <option value="all">
+          All
+          </option>
+        {
+        categories.length
+          ? categories.map((elem) => {
+              return (
+                <option
+                  value={elem.id}
+                  // key={elem.id}
+                >
+                  {elem.title}
+                </option>
+              );
+            })
+          : null}
+        </select>
+       
+      </div>
+      <div>
+      <label>Gender:</label>
+        <select name="" id="" onChange={(e) => fetchByParams("gender", e.target.value)}>
+          <option value="all" >All</option>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+        </select>
+      </div>
+      <div>
+      <label>Size:</label>
+        <select name="" id="" onChange={(e) => fetchByParams("size", e.target.value)}>
+          <option value="all">All</option>
+          <option value="s">S</option>
+          <option value="m">M</option>
+          <option value="l">L</option>
+        </select>
+      </div>
+      <div>
+        <label>Color:</label>
+        <select name="" id="" onChange={(e)=> fetchByParams("color", e.target.value)}>
+          <option value="all">All</option>
+          <option value="white">While</option>
+          <option value="black">Black</option>
+          <option value="gray">Gray</option>
+          <option value="red">Red</option>
+        </select>
+      </div>
+      <div>
         <input
+        placeholder="Search"
           type="text"
           onChange={(e) => fetchByParams("search", e.target.value)}
         />
       </div>
-      <div className="categoryes_wrap">
-        <Button onClick={() => fetchByParams("category", "all")}>All</Button>
-        {categories.length
-          ? categories.map((elem) => {
-              return (
-                <Button
-                  variant={category === elem.id ? "primary" : "light"}
-                  onClick={() => fetchByParams("category", +elem.id)}
-                  key={elem.id}
-                >
-                  {elem.title}
-                </Button>
-              );
-            })
-          : null}
-      </div>
-      <div className="gender_category_wrap">
-        <Button onClick={() => fetchByParams("gender", "all")}>All</Button>
-        <Button onClick={() => fetchByParams("gender", "female")}>
-          Female
-        </Button>
-        <Button onClick={() => fetchByParams("gender", "male")}>Male</Button>
-      </div>
-      <div className="size_category_wrap">
-        <Button onClick={() => fetchByParams("size", "all")}>All</Button>
-        <Button onClick={() => fetchByParams("size", "s")}>S</Button>
-        <Button onClick={() => fetchByParams("size", "m")}>M</Button>
-        <Button onClick={() => fetchByParams("size", "l")}>L</Button>
-      </div>
-      <div className="color_category_wrap">
-        <Button onClick={() => fetchByParams("color", "all")}>All</Button>
-        <Button onClick={() => fetchByParams("color", "white")}>White</Button>
-        <Button onClick={() => fetchByParams("color", "black")}>Black</Button>
-        <Button onClick={() => fetchByParams("color", "gray")}>Gray</Button>
-        <Button onClick={() => fetchByParams("color", "red")}>Red</Button>
       </div>
     </div>
   );

@@ -31,6 +31,7 @@ const ProductList = () => {
 
   return (
     <div>
+<<<<<<< HEAD
       <h1>PRODUCT LIST</h1>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {products.length
@@ -38,8 +39,30 @@ const ProductList = () => {
               return <ProductCard key={item.id} item={item} />;
             })
           : null}
+=======
+      <h1 style={{textAlign:"center", margin:"20px"}}>PRODUCT LIST</h1>
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent:"space-evenly" }}>
+        {products?.map((item) => {
+          // return (genderCategory === item.gender || category === item.category) ? (
+          //   <ProductCard key={item.id} item={item} />
+          // ) : null;
+
+          // if (genderCategory === "all") {
+          //   return genderCategory === item.gender ||
+          //     category === item.category ? (
+          //     <ProductCard key={item.id} item={item} />
+          //   ) : null;
+          // } else {
+          //   return genderCategory === item.gender &&
+          //     category === item.category ? (
+          //     <ProductCard key={item.id} item={item} />
+          //   ) : null;
+          // }
+          return <ProductCard key={item.id} item={item} />;
+        })}
+>>>>>>> f67d7c9203053d5b1cd39817bcfdec705893097c
       </div>
-      <Pagination>
+      <Pagination style={{justifyContent:"center", margin:"10px"}}>
         <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} />
         {getPagesCount().map((item) =>
           item === currentPage ? (

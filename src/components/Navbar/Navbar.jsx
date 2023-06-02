@@ -114,7 +114,6 @@ function Navbar() {
           >
             Register
           </MenuItem>
-
           <MenuItem
             onClick={() => navigate("/login")}
             icon={<FaceIcon />}
@@ -122,6 +121,7 @@ function Navbar() {
           >
             LogIn
           </MenuItem>
+          
         </Menu>
       </Sidebar>
     </div>
