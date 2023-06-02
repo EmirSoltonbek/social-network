@@ -4,21 +4,52 @@ import ListGroup from "react-bootstrap/ListGroup";
 import "./PostCard.css";
 import { useProfile } from "../../../contexts/ProfileContextProvider";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 function PostCard({ post, setPostsState }) {
   const { commentPost, getOnePost, onePost, posts, getPosts, likePost } =
     useProfile();
+  const navigate = useNavigate();
   const [modalInput, setModalInput] = useState(false);
   const [commentState, setCommentState] = useState("");
   const handleCommentPost = () => {
     commentPost({ body: commentState, post: post.id });
     setCommentState("");
   };
+
+  const renderTimestamp = (timestamp) => {
+    let prefix = "";
+    const timeDiff = Math.round(
+      (new Date().getTime() - new Date(timestamp).getTime()) / 60000
+    );
+    if (timeDiff < 1) {
+      // less than one minute ago
+      prefix = "just now...";
+    } else if (timeDiff < 60 && timeDiff > 1) {
+      // less than sixty minutes ago
+      prefix = `${timeDiff} minutes ago`;
+    } else if (timeDiff < 24 * 60 && timeDiff > 60) {
+      // less than 24 hours ago
+      prefix = `${Math.round(timeDiff / 60)} hours ago`;
+    } else if (timeDiff < 31 * 24 * 60 && timeDiff > 24 * 60) {
+      // less than 7 days ago
+      prefix = `${Math.round(timeDiff / (60 * 24))} days ago`;
+    } else {
+      prefix = `${new Date(timestamp)}`;
+    }
+    return prefix;
+  };
+
   return (
     <Container style={{ display: "flex", justifyContent: "center" }}>
       <Card style={{ width: "55%" }}>
-        <Card.Title>
-          {post.title}/{post.body}/{post.id}
+        <Card.Title
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            navigate(`/profile-list/one-profile/${post.user}`);
+          }}
+        >
+          {post.title}
         </Card.Title>
         <Card.Img variant="top" src={post.image} />
         <Card.Body>
@@ -62,7 +93,7 @@ function PostCard({ post, setPostsState }) {
           <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
           <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
         </ListGroup> */}
-        <Card.Body>
+        <Card.Body style={{ display: "grid" }}>
           <p>likes: {post.likes}</p>
           {/* <Card.Link href="#">Card Link</Card.Link>
           <Card.Link href="#">Another Link</Card.Link> */}
@@ -99,6 +130,9 @@ function PostCard({ post, setPostsState }) {
           ) : (
             ""
           )}
+          <small style={{ opacity: "0.7", justifySelf: "flex-end" }}>
+            {renderTimestamp(post.created_at)}
+          </small>
         </Card.Body>
       </Card>
     </Container>

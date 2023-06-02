@@ -14,7 +14,7 @@ function AllPosts() {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>All Posts</h1>
-      {posts?.results?.map((post) => (
+      {posts?.results?.reverse().map((post) => (
         <div style={{ margin: "2em 0" }}>
           <PostCard post={post} />
         </div>

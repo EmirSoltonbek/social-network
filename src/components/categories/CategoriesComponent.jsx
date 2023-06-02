@@ -3,7 +3,7 @@ import { useProduct } from "../../contexts/ProductContextProvider";
 import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
-import "./CategoriesComponent.css"
+import "./CategoriesComponent.css";
 
 const CategoriesComponent = () => {
   const { getCategories, categories, category, fetchByParams } = useProduct();
@@ -66,64 +66,75 @@ const CategoriesComponent = () => {
             );
           })
         : null} */}
-<div className="filter-container">
-     
-      <div>
-        <label>Category:</label>
-        <select name="" id="" onChange={(e)=>fetchByParams("category", e.target.value)}>
-          <option value="all">
-          All
-          </option>
-        {
-        categories.length
-          ? categories.map((elem) => {
-              return (
-                <option
-                  value={elem.id}
-                  // key={elem.id}
-                >
-                  {elem.title}
-                </option>
-              );
-            })
-          : null}
-        </select>
-       
-      </div>
-      <div>
-      <label>Gender:</label>
-        <select name="" id="" onChange={(e) => fetchByParams("gender", e.target.value)}>
-          <option value="all" >All</option>
-          <option value="female">Female</option>
-          <option value="male">Male</option>
-        </select>
-      </div>
-      <div>
-      <label>Size:</label>
-        <select name="" id="" onChange={(e) => fetchByParams("size", e.target.value)}>
-          <option value="all">All</option>
-          <option value="s">S</option>
-          <option value="m">M</option>
-          <option value="l">L</option>
-        </select>
-      </div>
-      <div>
-        <label>Color:</label>
-        <select name="" id="" onChange={(e)=> fetchByParams("color", e.target.value)}>
-          <option value="all">All</option>
-          <option value="white">While</option>
-          <option value="black">Black</option>
-          <option value="gray">Gray</option>
-          <option value="red">Red</option>
-        </select>
-      </div>
-      <div>
-        <input
-        placeholder="Search"
-          type="text"
-          onChange={(e) => fetchByParams("search", e.target.value)}
-        />
-      </div>
+      <div className="filter-container">
+        <div>
+          <label>Category:</label>
+          <select
+            name=""
+            id=""
+            onChange={(e) => fetchByParams("category", e.target.value)}
+          >
+            <option value="all">All</option>
+            {categories.length
+              ? categories.map((elem) => {
+                  return (
+                    <option
+                      value={elem.id}
+                      // key={elem.id}
+                    >
+                      {elem.title}
+                    </option>
+                  );
+                })
+              : null}
+          </select>
+        </div>
+        <div>
+          <label>Gender:</label>
+          <select
+            name=""
+            id=""
+            onChange={(e) => fetchByParams("gender", e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+          </select>
+        </div>
+        <div>
+          <label>Size:</label>
+          <select
+            name=""
+            id=""
+            onChange={(e) => fetchByParams("size", e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="s">S</option>
+            <option value="m">M</option>
+            <option value="l">L</option>
+          </select>
+        </div>
+        <div>
+          <label>Color:</label>
+          <select
+            name=""
+            id=""
+            onChange={(e) => fetchByParams("color", e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="white">While</option>
+            <option value="black">Black</option>
+            <option value="gray">Gray</option>
+            <option value="red">Red</option>
+          </select>
+        </div>
+        <div className="categoryComponentInputDiv">
+          <input
+            placeholder="Search"
+            type="text"
+            onChange={(e) => fetchByParams("search", e.target.value)}
+          />
+        </div>
       </div>
     </div>
   );

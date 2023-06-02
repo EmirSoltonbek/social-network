@@ -32,8 +32,10 @@ const RegisterForm = () => {
 
   return (
     <div>
-      <div className="body">
-    
+      <div
+        style={{ display: "flex", justifyContent: "center" }}
+        className="body"
+      >
         <div className="circle"></div>
         <div className="register-form-container">
           <form action="">

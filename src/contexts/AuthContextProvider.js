@@ -119,7 +119,7 @@ const AuthContextProvider = ({ children }) => {
       localStorage.setItem("tokens", JSON.stringify(res.data));
       localStorage.setItem("email", email);
       setCurrentUser(email);
-      navigate("/");
+      navigate("/inst-profile");
     } catch (error) {
       setError(Object.values(error.message));
     } finally {
