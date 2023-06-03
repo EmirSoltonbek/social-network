@@ -45,7 +45,7 @@ function MyRoutes() {
     { link: "/details/:id", element: <DetailsPage />, id: 17 },
     { link: "/edit/:id", element: <EditProductPage />, id: 18 },
     { link: "/post-list", element: <AllPostsPage />, id: 19 },
-    { link: "/new-cart", element: <NewCart />, id: 20 },
+    { link: "/cart", element: <NewCart />, id: 20 },
   ];
   return (
     <div>
