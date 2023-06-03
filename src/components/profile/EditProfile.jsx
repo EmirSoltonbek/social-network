@@ -98,7 +98,7 @@ function EditProfile() {
       <button
         onClick={() => {
           handleEdit();
-          navigate("/inst-profile");
+          navigate("/");
         }}
       >
         edit

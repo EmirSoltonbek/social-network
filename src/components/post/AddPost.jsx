@@ -73,7 +73,7 @@ function AddPost() {
         <Button
           onClick={() => {
             handleMakePost();
-            navigate("/inst-profile");
+            navigate("/");
           }}
         >
           {" "}

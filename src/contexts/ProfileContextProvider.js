@@ -2,6 +2,9 @@ import axios from "axios";
 import { createContext, useContext, useReducer } from "react";
 import { API } from "../helpers/consts";
 import { useEffect } from "react";
+import { async } from "q";
+// import { useNavItem } from "@restart/ui/esm/NavItem";
+import { useLocation, useNavigate } from "react-router";
 
 export const profileContext = createContext();
 export const useProfile = () => useContext(profileContext);
@@ -42,6 +45,8 @@ const reducer = (state = INIT_STATE, action) => {
 
 function ProfileContextProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   function getConfig() {
     const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -79,7 +84,10 @@ function ProfileContextProvider({ children }) {
   };
 
   const getProfiles = async () => {
-    let { data } = await axios(`${API}/account/profiles/`, getConfig());
+    let { data } = await axios(
+      `${API}/account/profiles/${window.location.search}`,
+      getConfig()
+    );
     dispatch({
       type: "GET_PROFILES",
       payload: data,
@@ -158,6 +166,20 @@ function ProfileContextProvider({ children }) {
     }
     getPosts();
   };
+  // ! categoryProfile
+  async function categoryProfile(query, value) {
+    const search = new URLSearchParams(window.location.search);
+
+    if (value === "all") {
+      search.delete(query);
+    } else {
+      search.set(query, value);
+    }
+
+    const url = `${location.pathname}?${search.toString()}`;
+    navigate(url);
+  }
+  // ! categoryProfile end
 
   const values = {
     getProfileInfo,
@@ -178,6 +200,7 @@ function ProfileContextProvider({ children }) {
     editPost,
     commentPost,
     likePost,
+    categoryProfile,
   };
   return (
     <profileContext.Provider value={values}>{children}</profileContext.Provider>

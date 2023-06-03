@@ -105,17 +105,6 @@ const ProductContextProvider = ({ children }) => {
       getConfig()
     );
   }
-  // ! get categories
-
-  async function getCategories() {
-    try {
-      const res = await axios(`${API}/products/categories/`, getConfig());
-      dispatch({ type: "GET_CATEGORIES", payload: res.data.results });
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   async function addComment(body, id) {
     try {
@@ -128,6 +117,19 @@ const ProductContextProvider = ({ children }) => {
       console.log(error);
     }
   }
+  // ! get categories
+
+  async function getCategories() {
+    try {
+      const res = await axios(`${API}/products/categories/`, getConfig());
+      dispatch({ type: "GET_CATEGORIES", payload: res.data.results });
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
 
   // async function getCategories() {
   //   try {
@@ -141,32 +143,32 @@ const ProductContextProvider = ({ children }) => {
 
   // ! select category
 
-  function selectCategory(id) {
-    dispatch({ type: "GET_SELECT_ONE_CATEGORY", payload: id });
-    localStorage.setItem("category", id);
-  }
+  // function selectCategory(id) {
+  //   dispatch({ type: "GET_SELECT_ONE_CATEGORY", payload: id });
+  //   localStorage.setItem("category", id);
+  // }
 
-  function selectGenderCategory(select) {
-    dispatch({ type: "GET_SELECT_ONE_GENDER_CATEGORY", payload: select });
-    localStorage.setItem("genderCategory", select);
-  }
-  console.log(window.location.search)
-  // ! select category end
-
-  const location = useLocation();
-
-  async function fetchByParams(query, value) {
-    const search = new URLSearchParams(window.location.search);
-
-    if (value === "all") {
-      search.delete(query);
-    } else {
-      search.set(query, value);
+  // function selectGenderCategory(select) {
+  //   dispatch({ type: "GET_SELECT_ONE_GENDER_CATEGORY", payload: select });
+  //   localStorage.setItem("genderCategory", select);
+  // }
+  // console.log(window.location.search)
+  
+    const location = useLocation();
+  
+    async function fetchByParams(query, value) {
+      const search = new URLSearchParams(window.location.search);
+  
+      if (value === "all") {
+        search.delete(query);
+      } else {
+        search.set(query, value);
+      }
+  
+      const url = `${location.pathname}?${search.toString()}`;
+      navigate(url);
     }
-
-    const url = `${location.pathname}?${search.toString()}`;
-    navigate(url);
-  }
+  // ! select category end
 
   const values = {
     getCategories,
@@ -186,10 +188,9 @@ const ProductContextProvider = ({ children }) => {
     addRating,
     addComment,
     getConfig,
-    selectCategory,
+
     category: state.category,
-    genderCategory: state.genderCategory,
-    selectGenderCategory,
+
     fetchByParams
   };
 
