@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./RegisterForm.css";
 import { useAuth } from "../../../contexts/AuthContextProvider";
 import Loader from "../../Loader";
+import axios from "axios";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
@@ -22,9 +23,34 @@ const RegisterForm = () => {
       formData.append("password_confirm", passwordConfirm);
       formData.append("name", name);
       formData.append("last_name", lastName);
+    
       handleRegister(formData);
     }
+
+    // let data = {
+    //   "email": email,
+    //   "secret": password,
+    //   "username": name,
+    //   "first_name": name,
+    //   "last_name": lastName,
+    // };
+  //   axios.post('https://api.chatengine.io/users/', data, {
+  //   headers: {
+  //     'PRIVATE-KEY': '{{e752d700-e8b7-4458-b1ee-2be833a27a11}}'
+  //   }
+  // })
+    // .then(function(response) {
+    //   console.log(JSON.stringify(response.data));
+    //   // Дополнительный код, который нужно выполнить после успешной регистрации
+    // })
+    // .catch(function(error) {
+    //   console.log(error);
+    //   // Обработка ошибок при регистрации
+    // });
   }
+
+ 
+  
 
   if (loading) {
     return <Loader />;

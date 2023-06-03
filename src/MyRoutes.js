@@ -20,13 +20,14 @@ import EditPostPage from "./pages/EditPostPage";
 import AllPostsPage from "./pages/AllPostsPage";
 import NewCart from "./components/cart/NewCart";
 import CartComponent from "./components/cart/CartComponent";
+import Chat from "./components/chat2/Chat";
 
 function MyRoutes() {
   const PUBLIC_ROUTES = [
     { link: "/product-list", element: <ProductListPage />, id: 1 },
     // { link: "/", element: <HomePage />, id: 2 },
     { link: "/add", element: <AddProductPage />, id: 3 },
-    { link: "/chat", element: <ChatPage />, id: 4 },
+    { link: "/chat", element: <Chat />, id: 4 },
     { link: "/register", element: <RegisterFormPage />, id: 5 },
     { link: "/login", element: <Login />, id: 6 },
     { link: "/profile", element: <ProfilePage />, id: 7 },
