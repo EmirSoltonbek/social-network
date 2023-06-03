@@ -44,12 +44,24 @@ function PostCard({ post, setPostsState }) {
     <Container style={{ display: "flex", justifyContent: "center" }}>
       <Card style={{ width: "55%" }}>
         <Card.Title
-          style={{ cursor: "pointer" }}
+          style={{
+            cursor: "pointer",
+            margin: "0.2em",
+            display: "flex",
+            alignItems: "center",
+          }}
           onClick={() => {
             navigate(`/profile-list/one-profile/${post.user}`);
           }}
         >
-          {post.title}
+          <img
+            src={`http://34.125.13.20/${post.avatar}`}
+            alt=""
+            width="40px"
+            height="40px"
+            style={{ borderRadius: "50%" }}
+          />
+          <small>{post.name}</small>
         </Card.Title>
         <Card.Img variant="top" src={post.image} />
         <Card.Body>
