@@ -44,7 +44,11 @@ const ProductList = () => {
           }}
         >
           {products?.map((item) => {
-            return <ProductCard key={item.id} item={item} />;
+            return (
+              <div style={{ margin: "1em 0" }}>
+                <ProductCard key={item.id} item={item} />
+              </div>
+            );
           })}
         </div>
       </div>
