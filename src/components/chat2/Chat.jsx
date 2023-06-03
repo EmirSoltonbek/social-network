@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // import ChatFeed from '../ChatFeed/ChatFeed'
 import { ChatEngine, getOrCreateChat } from 'react-chat-engine'
 
 const DirectChatPage = () => {
 	const [username, setUsername] = useState('')
-
+let password = localStorage.getItem("password");
+let email = localStorage.getItem("email");
+console.log(password);
 	function createDirectChat(creds) {
 		getOrCreateChat(
 			creds,
@@ -32,8 +34,8 @@ const DirectChatPage = () => {
         <ChatEngine
         height="100vh"
         projectID="c5a9d876-10fd-4015-9c6d-4c43a98aca13"
-        userName="slartibartfast1998@gmail.com"
-        userSecret="1234567"
+        userName={email}
+        userSecret={password}
         renderNewChatForm={(creds) => renderChatForm(creds)}
        />
        
