@@ -18,6 +18,29 @@ function OneProfile() {
     getOneProfile(id);
   }, []);
 
+  const renderTimestamp = (timestamp) => {
+    let prefix = "";
+    const timeDiff = Math.round(
+      (new Date().getTime() - new Date(timestamp).getTime()) / 60000
+    );
+    if (timeDiff < 1) {
+      // less than one minute ago
+      prefix = "just now...";
+    } else if (timeDiff < 60 && timeDiff > 1) {
+      // less than sixty minutes ago
+      prefix = `${timeDiff} minutes ago`;
+    } else if (timeDiff < 24 * 60 && timeDiff > 60) {
+      // less than 24 hours ago
+      prefix = `${Math.round(timeDiff / 60)} hours ago`;
+    } else if (timeDiff < 31 * 24 * 60 && timeDiff > 24 * 60) {
+      // less than 7 days ago
+      prefix = `${Math.round(timeDiff / (60 * 24))} days ago`;
+    } else {
+      prefix = `${new Date(timestamp)}`;
+    }
+    return prefix;
+  };
+
   return (
     <div className="profile">
       <div className="profile-header">
@@ -77,23 +100,41 @@ function OneProfile() {
             {grid ? (
               <div>
                 <div key={post.id} className="post">
-                  <div className="post-image-container">
+                  <div
+                    className="post-image-container"
+                    onClick={() => {
+                      getOnePost(post.id);
+                      setLgShow(true);
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
                     <img
                       src={`http://34.125.13.20/${post.image}`}
                       alt="Post"
                       className="post-image"
                     />
                   </div>
-                  <p className="post-caption">{post.title}</p>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                    }}
+                  >
+                    <p className="post-caption">{post.title}</p>
+                    <small style={{ opacity: "0.6" }}>
+                      {renderTimestamp(post.created_at)}
+                    </small>
+                  </div>
 
-                  <Button
+                  {/* <Button
                     onClick={() => {
                       getOnePost(post.id);
                       setLgShow(true);
                     }}
                   >
                     details
-                  </Button>
+                  </Button> */}
                   {lgShow ? (
                     <BootstrapModal
                       setLgShow={setLgShow}

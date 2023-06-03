@@ -20,14 +20,14 @@ function BootstrapModal({ lgShow, setLgShow, onePost, oneProfile }) {
   console.log(onePost);
   return (
     <>
-      <Button>Large modal</Button>
+      {/* <Button>Large modal</Button> */}
       <Modal
         size="lg"
         show={lgShow}
         onHide={() => setLgShow(false)}
         aria-labelledby="example-modal-sizes-title-lg"
       >
-        <Modal.Header closeButton>
+        <Modal.Header closeButton onClick={() => setLgShow(false)}>
           <Modal.Title id="example-modal-sizes-title-lg">
             {onePost.title}
           </Modal.Title>
