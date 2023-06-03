@@ -29,28 +29,32 @@ function ProfileList() {
           }}
         />
       </div>
+
       <div className="language_category_wrap">
-        <Button
-          onClick={() => {
-            categoryProfile("programming_language", "all");
-          }}
+        <label>Language:</label>
+        <select
+          name=""
+          id=""
+          onChange={(e) =>
+            categoryProfile("programming_language", e.target.value)
+          }
         >
-          all
-        </Button>
-        <Button
-          onClick={() => {
-            categoryProfile("programming_language", "javascript");
-          }}
+          <option value="all">All</option>
+          <option value="javascript">javascript</option>
+          <option value="python">python</option>
+        </select>
+      </div>
+      <div>
+        <label>Group:</label>
+        <select
+          name=""
+          id=""
+          onChange={(e) => categoryProfile("group", e.target.value)}
         >
-          js
-        </Button>
-        <Button
-          onClick={() => {
-            categoryProfile("programming_language", "python");
-          }}
-        >
-          python
-        </Button>
+          <option value="all">All</option>
+          <option value="JS 31">JS31</option>
+          <option value="PY 27">PY27</option>
+        </select>
       </div>
       {/* <div className="language_category_wrap">
         <button
