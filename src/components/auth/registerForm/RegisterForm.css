@@ -30,7 +30,7 @@ input:not(:focus):invalid {
   border-color: #c1d9fd;
 }
 .main {
-  background: #f1f5fe;
+  /* background: #f1f5fe; */
   height: 100vh;
   display: flex;
 
