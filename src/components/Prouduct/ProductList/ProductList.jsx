@@ -33,14 +33,9 @@ const ProductList = () => {
 
   return (
     <div>
-      <h1>PRODUCT LIST</h1>
+      <h1 style={{ textAlign: "center", margin: "20px" }}>PRODUCT LIST</h1>
+
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {products.length
-          ? products.map((item) => {
-              return <ProductCard key={item.id} item={item} />;
-            })
-          : null}
-        <h1 style={{ textAlign: "center", margin: "20px" }}>PRODUCT LIST</h1>
         <div
           style={{
             display: "flex",
@@ -49,44 +44,29 @@ const ProductList = () => {
           }}
         >
           {products?.map((item) => {
-            // return (genderCategory === item.gender || category === item.category) ? (
-            //   <ProductCard key={item.id} item={item} />
-            // ) : null;
-
-            // if (genderCategory === "all") {
-            //   return genderCategory === item.gender ||
-            //     category === item.category ? (
-            //     <ProductCard key={item.id} item={item} />
-            //   ) : null;
-            // } else {
-            //   return genderCategory === item.gender &&
-            //     category === item.category ? (
-            //     <ProductCard key={item.id} item={item} />
-            //   ) : null;
-            // }
             return <ProductCard key={item.id} item={item} />;
           })}
         </div>
-        <Pagination style={{ justifyContent: "center", margin: "10px" }}>
-          <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} />
-          {getPagesCount().map((item) =>
-            item === currentPage ? (
-              <Pagination.Item
-                onClick={() => setCurrentPage(item)}
-                key={item}
-                active
-              >
-                {item}
-              </Pagination.Item>
-            ) : (
-              <Pagination.Item onClick={() => setCurrentPage(item)} key={item}>
-                {item}
-              </Pagination.Item>
-            )
-          )}
-          <Pagination.Next onClick={() => setCurrentPage(currentPage + 1)} />
-        </Pagination>
       </div>
+      <Pagination style={{ justifyContent: "center", margin: "10px" }}>
+        <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} />
+        {getPagesCount().map((item) =>
+          item === currentPage ? (
+            <Pagination.Item
+              onClick={() => setCurrentPage(item)}
+              key={item}
+              active
+            >
+              {item}
+            </Pagination.Item>
+          ) : (
+            <Pagination.Item onClick={() => setCurrentPage(item)} key={item}>
+              {item}
+            </Pagination.Item>
+          )
+        )}
+        <Pagination.Next onClick={() => setCurrentPage(currentPage + 1)} />
+      </Pagination>
     </div>
   );
 };
