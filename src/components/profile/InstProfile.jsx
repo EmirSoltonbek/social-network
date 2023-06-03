@@ -21,6 +21,7 @@ const InstProfile = () => {
     onePost,
   } = useProfile();
   const [profile, setProfile] = useState(profileMe);
+  console.log(profileMe);
   const { id } = useParams();
   const [grid, setGrid] = useState(true);
   const [lgShow, setLgShow] = useState(false);
