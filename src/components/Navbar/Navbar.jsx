@@ -12,15 +12,20 @@ import FaceIcon from "@mui/icons-material/Face";
 import { useNavigate } from "react-router";
 import { useProfile } from "../../contexts/ProfileContextProvider";
 import "./Navbar.css";
+import { useAuth } from "../../contexts/AuthContextProvider";
 
 function Navbar() {
   const { collapseSidebar, toggleSidebar, collapsed, toggled, broken, rtl } =
     useProSidebar();
   const { profileMe, getProfileInfo } = useProfile();
+  const { checkAuth, handleLogout } = useAuth();
   // Изначально закрытая боковая панель
   useEffect(() => {
     collapseSidebar();
     getProfileInfo();
+    if (localStorage.getItem("tokens")) {
+      checkAuth();
+    }
   }, []); // Вызывается только при монтировании компонента
 
   const toggle = () => {
@@ -133,6 +138,15 @@ function Navbar() {
             Cart
           </MenuItem>
           <MenuItem
+            icon={<i style={{ fontSize: "1.5rem" }} class="bi bi-star"></i>}
+            style={{ paddingLeft: "5px" }}
+            onClick={() => {
+              navigate("/favorite");
+            }}
+          >
+            Favorite
+          </MenuItem>
+          <MenuItem
             onClick={() => navigate("/register")}
             icon={<i style={{ fontSize: "1.5rem" }} class="bi bi-r-square"></i>}
             style={{ paddingLeft: "5px" }}
@@ -147,6 +161,20 @@ function Navbar() {
             style={{ paddingLeft: "5px" }}
           >
             LogIn
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              handleLogout();
+            }}
+            icon={
+              <i
+                style={{ fontSize: "1.5rem" }}
+                class="bi bi-box-arrow-right"
+              ></i>
+            }
+            style={{ paddingLeft: "5px" }}
+          >
+            LogOut
           </MenuItem>
         </Menu>
       </Sidebar>

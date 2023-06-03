@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./CartComponent.css";
 import "../../assets/bootstrap-icons/font/bootstrap-icons.css";
 import { Carousel } from "react-bootstrap";
@@ -17,6 +17,11 @@ const CartComponent = ({
   count,
 }) => {
   const navigate = useNavigate();
+  const [counter, setCounter] = useState(count);
+  useEffect(() => {
+    changeProductCount(counter, id);
+  }, [counter]);
+
   return (
     <div>
       <div className="product">
@@ -43,17 +48,32 @@ const CartComponent = ({
             <p>{description}</p>
             <p>{price}</p>
             <div className="product_counter">
-              <input
-                type="number"
-                onChange={(e) => changeProductCount(e.target.value, id)}
-                value={count}
-              />
+              <button
+                style={{
+                  backgroundColor: "white",
+                  border: "none",
+                }}
+                onClick={() => {
+                  setCounter(counter - 1);
+                }}
+              >
+                -
+              </button>
+              <p>{counter}</p>
+              <button
+                style={{ backgroundColor: "white", border: "none" }}
+                onClick={() => {
+                  setCounter(counter + 1);
+                }}
+              >
+                +
+              </button>
             </div>
           </div>
           <div className="sub_price">
             <p>{subPrice}</p>
             <button onClick={() => deleteCartProduct(id)}>
-              <i className="bi bi-trash3"></i>
+              <i className="bi bi-trash3" style={{ color: "red" }}></i>
             </button>
           </div>
         </div>
