@@ -129,14 +129,15 @@ const AuthContextProvider = ({ children }) => {
     // var axios = require("axios");
   }
 
-  async function handleLogin(formData, email) {
+  async function handleLogin(formData, email, password) {
     try {
       setLoading(true);
       const res = await axios.post(`${API}/account/login/`, formData);
       console.log(res);
       localStorage.setItem("tokens", JSON.stringify(res.data));
       localStorage.setItem("email", email);
-      setCurrentUser(email);
+      localStorage.setItem("password", password);
+      setCurrentUser(email, password);
       navigate("/");
       addChat(formData);
     } catch (error) {
