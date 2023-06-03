@@ -97,7 +97,7 @@ function EditPost() {
         <Button
           onClick={() => {
             handleEditPost();
-            navigate("/inst-profile");
+            navigate("/");
           }}
         >
           {" "}

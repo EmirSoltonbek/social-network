@@ -58,6 +58,16 @@
   margin: 0 0.3em;
 }
 
+.profile-username-container button:first-child {
+  font-size: 1em;
+  color: green;
+  border: 1px solid green;
+  border-radius: 5px;
+  background-color: white;
+  padding: 0.2em 0.3em;
+  margin: 0 0.3em;
+}
+
 .profile-username {
   font-size: 24px;
   margin-bottom: 5px;

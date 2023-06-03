@@ -24,13 +24,13 @@ import CartComponent from "./components/cart/CartComponent";
 function MyRoutes() {
   const PUBLIC_ROUTES = [
     { link: "/product-list", element: <ProductListPage />, id: 1 },
-    { link: "/", element: <HomePage />, id: 2 },
+    // { link: "/", element: <HomePage />, id: 2 },
     { link: "/add", element: <AddProductPage />, id: 3 },
     { link: "/chat", element: <ChatPage />, id: 4 },
     { link: "/register", element: <RegisterFormPage />, id: 5 },
     { link: "/login", element: <Login />, id: 6 },
     { link: "/profile", element: <ProfilePage />, id: 7 },
-    { link: "/inst-profile", element: <InstProfile />, id: 8 },
+    { link: "/", element: <InstProfile />, id: 8 },
     { link: "/edit/:id", element: <EditProductPage />, id: 9 },
     { link: "/profile/edit/:id", element: <EditProfile />, id: 10 },
     { link: "/cart", element: <CartPage />, id: 11 },
