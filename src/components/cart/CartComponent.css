@@ -22,6 +22,7 @@
   justify-content: center;
   gap: 1em;
   min-width: 300px;
+  text-align: center;
 }
 
 .product_counter {
@@ -29,13 +30,24 @@
   display: flex;
   width: 20%;
   justify-content: space-evenly;
-  margin: 0.5em 0;
+  margin: 0 auto;
+}
+
+.product_counter input {
+  width: 50px;
+  text-align: center;
 }
 
 .sub_price {
   margin-left: auto;
-  margin-right: 20px;
+  /* margin-right: 20px; */
   font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* align-self: flex-end; */
+  padding-bottom: 25%;
+  text-align: center;
 }
 
 .sub_price button {
