@@ -98,6 +98,23 @@ const AuthContextProvider = ({ children }) => {
 
   const navigate = useNavigate();
 
+  async function addChat(formData) {
+    axios
+      .post("https://api.chatengine.io/users/", formData, {
+        headers: {
+          "PRIVATE-KEY": "{{e752d700-e8b7-4458-b1ee-2be833a27a11}}",
+        },
+      })
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        // Дополнительный код, который нужно выполнить после успешной регистрации
+      })
+      .catch(function (error) {
+        console.log(error);
+        // Обработка ошибок при регистрации
+      });
+  }
+
   async function handleRegister(formData) {
     try {
       setLoading(true);
@@ -109,6 +126,7 @@ const AuthContextProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
+    // var axios = require("axios");
   }
 
   async function handleLogin(formData, email) {
@@ -120,6 +138,7 @@ const AuthContextProvider = ({ children }) => {
       localStorage.setItem("email", email);
       setCurrentUser(email);
       navigate("/");
+      addChat(formData);
     } catch (error) {
       setError(Object.values(error.message));
     } finally {
