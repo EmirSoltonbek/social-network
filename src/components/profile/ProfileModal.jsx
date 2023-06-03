@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "./BootstrapModal.css";
 import { useProfile } from "../../contexts/ProfileContextProvider";
+import { useNavigate } from "react-router";
 
 function ProfileModal({
   lgShow,
@@ -21,6 +22,7 @@ function ProfileModal({
     getOnePost(onePost.id);
     setCommentState("");
   };
+  const navigate = useNavigate();
   return (
     <>
       <Button>Large modal</Button>
@@ -60,13 +62,35 @@ function ProfileModal({
                     </div>
                     <div className="my-modal">
                       {onePost?.post_comments?.map((elem) => (
-                        <div style={{ display: "flex", gap: "0.5em" }}>
-                          <p>{elem?.user}</p>
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: "0.5em",
+                            alignContent: "center",
+                          }}
+                        >
+                          <img
+                            src={`http://34.125.13.20/${elem.avatar}`}
+                            alt=""
+                            width="25px"
+                            height="25px"
+                            style={{ borderRadius: "50%" }}
+                          />
+                          <div
+                            onClick={() => {
+                              navigate(
+                                `/profile-list/one-profile/${elem.user}`
+                              );
+                            }}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {elem.name}:
+                          </div>
                           <p class="card-text">{elem?.body}</p>
                         </div>
                       ))}
                     </div>
-                    <Button
+                    {/* <Button
                       href="#"
                       className="btn btn-primary"
                       style={{ margin: "10px" }}
@@ -80,7 +104,7 @@ function ProfileModal({
                       onClick={() => setModalInput(!modalInput)}
                     >
                       comment
-                    </Button>
+                    </Button> */}
                     {modalInput ? (
                       <div>
                         <input

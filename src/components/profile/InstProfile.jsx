@@ -51,18 +51,17 @@ const InstProfile = () => {
           <div className="profile-username-container">
             <h2 className="profile-username">
               {profile.name}
-              {"  "}
               {profile.last_name}
             </h2>
             <span>
-              <button className="msg-button">Message</button>
+              {/* <button className="msg-button">Message</button> */}
               <button
                 onClick={() => {
                   navigate(`/profile/edit/${profile.id}`);
                 }}
                 className="edit-button"
               >
-                Edit
+                Edit Profile
               </button>
               <button
                 onClick={() => {
@@ -109,29 +108,36 @@ const InstProfile = () => {
                   />
                 </div>
                 <p className="post-caption">{post.title}</p>
-                <Button
-                  onClick={() => {
-                    deletePost(post.id);
-                  }}
+                <div
+                  style={{ display: "flex", justifyContent: "space-around" }}
                 >
-                  delete
-                </Button>
-                <Button
-                  onClick={() => {
-                    navigate(`/edit-post/${post.id}`);
-                  }}
-                >
-                  edit
-                </Button>
+                  <Button
+                    onClick={() => {
+                      deletePost(post.id);
+                    }}
+                    variant="outline-danger"
+                  >
+                    delete
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      navigate(`/edit-post/${post.id}`);
+                    }}
+                    variant="outline-success"
+                  >
+                    edit
+                  </Button>
 
-                <Button
-                  onClick={() => {
-                    getOnePost(post.id);
-                    setLgShow(true);
-                  }}
-                >
-                  details
-                </Button>
+                  <Button
+                    onClick={() => {
+                      getOnePost(post.id);
+                      setLgShow(true);
+                    }}
+                    variant="outline-primary"
+                  >
+                    details
+                  </Button>
+                </div>
                 {lgShow ? (
                   <ProfileModal
                     setLgShow={setLgShow}

@@ -93,11 +93,6 @@ function ProfileContextProvider({ children }) {
       payload: data,
     });
   };
-  useEffect(() => {
-    getProfiles();
-  }, []);
-
-  console.log(state.profiles);
 
   const getOneProfile = async (id) => {
     let { data } = await axios(`${API}/account/${id}/profile/`, getConfig());
