@@ -16,6 +16,7 @@ const INIT_STATE = {
   posts: [],
   myPosts: [],
   onePost: [],
+  pages: 1,
   oneEmail: "",
 };
 
@@ -25,7 +26,7 @@ const reducer = (state = INIT_STATE, action) => {
       return { ...state, profileMe: action.payload };
 
     case "GET_PROFILES":
-      return { ...state, profiles: action.payload };
+      return { ...state, profiles: action.payload, pages: Math.ceil(action.payload.count / 12) };
 
     case "GET_ONE_PROFILE":
       return { ...state, oneProfile: action.payload };
@@ -208,6 +209,7 @@ function ProfileContextProvider({ children }) {
     commentPost,
     likePost,
     categoryProfile,
+    pages: state.pages,
     oneEmail: state.oneEmail,
     getOneEmail,
   };
