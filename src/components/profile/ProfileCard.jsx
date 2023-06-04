@@ -3,7 +3,6 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 
 function ProfileCard({ item }) {
-  console.log(item);
   return (
     <Card style={{ width: "10rem" }}>
       <Card.Img variant="top" src={item.avatar} />
