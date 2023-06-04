@@ -27,7 +27,7 @@ const [oneEmail, setOneEmail] = useState("")
       setOneEmail(oneProfile.email);
     }
   }, [oneProfile]);
-JSON.stringify(localStorage.setItem("oneEmail" ,oneEmail)
+JSON.stringify(localStorage.setItem("oneEmail" ,oneEmail))
                
   const renderTimestamp = (timestamp) => {
     let prefix = "";

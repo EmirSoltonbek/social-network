@@ -17,7 +17,7 @@ const Login = () => {
       formData.append("email", email);
       formData.append("password", password);
       formData.append("secret", password);
-      // formData.append("username", email)
+      formData.append("username", email)
       handleLogin(formData, email, password);
     }
   }
