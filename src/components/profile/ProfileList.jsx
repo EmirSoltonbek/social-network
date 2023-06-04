@@ -5,19 +5,34 @@ import ProfileCard from "./ProfileCard";
 import "./Profile.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Javascript } from "@mui/icons-material";
-import { Button } from "react-bootstrap";
+import { Button, Pagination } from "react-bootstrap";
 
 function ProfileList() {
   const [language, setLanguage] = useState("all");
   // const [language, setLanguage] = useState("all");
-  const { profiles, getProfiles, categoryProfile } = useProfile();
+  const { profiles, getProfiles, categoryProfile, pages } = useProfile();
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  function getPagesCount() {
+    const pageCountArr = [];
+    for (let i = 1; i <= pages; i++) {
+      pageCountArr.push(i);
+    }
+    return pageCountArr;
+  }
+
+  useEffect(() => {
+    setSearchParams({ page: currentPage });
+  }, [currentPage]);
 
   const navigate = useNavigate();
   useEffect(() => {
     getProfiles();
+    console.log("profiles", profiles);
   }, [searchParams]);
-  console.log(profiles);
+  console.log("pages", pages);
   return (
     <>
       <h1>All Users List</h1>
@@ -108,6 +123,25 @@ function ProfileList() {
           </div>
         ))}
       </div>
+      <Pagination>
+        <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} />
+        {getPagesCount().map((item) =>
+          item === currentPage ? (
+            <Pagination.Item
+              onClick={() => setCurrentPage(item)}
+              key={item}
+              active
+            >
+              {item}
+            </Pagination.Item>
+          ) : (
+            <Pagination.Item onClick={() => setCurrentPage(item)} key={item}>
+              {item}
+            </Pagination.Item>
+          )
+        )}
+        <Pagination.Next onClick={() => setCurrentPage(currentPage + 1)} />
+      </Pagination>
     </>
   );
 }
