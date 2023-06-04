@@ -1,0 +1,51 @@
+.payment-receipt {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+  }
+  
+  .receipt-heading {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .receipt-details {
+    margin-bottom: 20px;
+  }
+  
+  .receipt-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .receipt-label {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .receipt-value {
+    font-weight: normal;
+    color: #777;
+  }
+  
+  .receipt-message {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #008000;
+  }
+  
+  .receipt-note {
+    font-size: 14px;
+    color: #888;
+    text-align: center;
+  }

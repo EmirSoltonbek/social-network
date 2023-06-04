@@ -21,6 +21,8 @@ import AllPostsPage from "./pages/AllPostsPage";
 import NewCart from "./components/cart/NewCart";
 import CartComponent from "./components/cart/CartComponent";
 import Chat from "./components/chat2/Chat";
+import CreditCard from "./components/CreditCard/CreditCard";
+import PaymentCheck from "./components/PaymentCheck/PaymentCheck";
 
 function MyRoutes() {
   const PUBLIC_ROUTES = [
@@ -47,6 +49,8 @@ function MyRoutes() {
     { link: "/details/:id", element: <DetailsPage />, id: 17 },
     { link: "/edit/:id", element: <EditProductPage />, id: 18 },
     { link: "/post-list", element: <AllPostsPage />, id: 19 },
+    { link: "/credit-card", element: <CreditCard />, id: 20 },
+    { link: "/paymentCheck", element: <PaymentCheck />, id: 21 },
   ];
   return (
     <div>

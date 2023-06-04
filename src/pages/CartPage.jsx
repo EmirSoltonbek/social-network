@@ -46,7 +46,7 @@ const CartPage = () => {
       <button
         onClick={() => {
           // cartCleaner();
-          navigate("/product-list");
+          navigate("/credit-card");
         }}
         style={{
           width: "60%",
