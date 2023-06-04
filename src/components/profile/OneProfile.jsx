@@ -1,6 +1,6 @@
 import React from "react";
 import { useProfile } from "../../contexts/ProfileContextProvider";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import back from "../../assets/Background of Profile Image.jpg";
@@ -9,15 +9,26 @@ import ProfileModal from "./ProfileModal";
 import BootstrapModal from "./BootstrapModal";
 
 function OneProfile() {
-  const { oneProfile, getOneProfile, getOnePost, onePost } = useProfile();
+  const { oneProfile, getOneProfile, getOnePost, onePost, getOneEmail } = useProfile();
   const { id } = useParams();
   const [grid, setGrid] = useState(true);
   const [modal, setModal] = useState(false);
   const [lgShow, setLgShow] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     getOneProfile(id);
+    // console.log(oneProfile)
   }, []);
 
+
+const [oneEmail, setOneEmail] = useState("")
+  useEffect(() => {
+    if (oneProfile) {
+      setOneEmail(oneProfile.email);
+    }
+  }, [oneProfile]);
+JSON.stringify(localStorage.setItem("oneEmail" ,oneEmail)
+               
   const renderTimestamp = (timestamp) => {
     let prefix = "";
     const timeDiff = Math.round(
@@ -59,7 +70,7 @@ function OneProfile() {
               {oneProfile.last_name}
             </h2>
             <span>
-              <button className="msg-button">Message</button>
+              <button className="msg-button" onClick={()=>{navigate("/chat"); getOneEmail(oneProfile.email)}}>Message</button>
               {/* <button
             onClick={() => {
               navigate(`/profile/edit/${profile.id}`);

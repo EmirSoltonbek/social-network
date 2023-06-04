@@ -17,6 +17,7 @@ const INIT_STATE = {
   myPosts: [],
   onePost: [],
   pages: 1,
+  oneEmail: "",
 };
 
 const reducer = (state = INIT_STATE, action) => {
@@ -38,6 +39,8 @@ const reducer = (state = INIT_STATE, action) => {
 
     case "ONE_POST":
       return { ...state, onePost: action.payload };
+    case "ONE_EMAIL":
+      return { ...state, oneEmail: action.payload };
 
     default:
       return state;
@@ -182,6 +185,10 @@ function ProfileContextProvider({ children }) {
   }
   // ! categoryProfile end
 
+  function getOneEmail(email) {
+    dispatch({ type: "ONE_EMAIL", payload: email });
+  }
+
   const values = {
     getProfileInfo,
     profileMe: state.profileMe,
@@ -203,6 +210,8 @@ function ProfileContextProvider({ children }) {
     likePost,
     categoryProfile,
     pages: state.pages,
+    oneEmail: state.oneEmail,
+    getOneEmail,
   };
   return (
     <profileContext.Provider value={values}>{children}</profileContext.Provider>

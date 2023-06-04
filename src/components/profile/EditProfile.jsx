@@ -83,7 +83,7 @@ function EditProfile() {
         id=""
       >
         <option value="javascript">javascript</option>
-        <option value="phyton">phyton</option>
+        <option value="python">python</option>
       </select>
       <select onChange={(e) => setGroup(e.target.value)} name="" id="">
         <option value="JS 31">JS 31</option>
