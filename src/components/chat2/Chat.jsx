@@ -1,30 +1,47 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 // import ChatFeed from '../ChatFeed/ChatFeed'
 import { ChatEngine, getOrCreateChat } from 'react-chat-engine'
+import { useProfile } from '../../contexts/ProfileContextProvider'
 
 const DirectChatPage = () => {
-	const [username, setUsername] = useState('')
+	const {oneEmail} = useProfile()
+	const [username, setUsername] = useState(oneEmail)
 let password = localStorage.getItem("password");
 let email = localStorage.getItem("email");
+// let oneEmail = localStorage.getItem("oneEmail");
 console.log(password);
-	function createDirectChat(creds) {
+
+// const inputRef = useRef(null);
+
+// const handleCopy = () => {
+//     inputRef.current.select();
+//     document.execCommand('copy');
+//   };
+
+ 	function createDirectChat(creds) {
+        console.log(creds);
 		getOrCreateChat(
 			creds,
 			{ is_direct_chat: true, usernames: [username] },
-			() => setUsername('')
+			() => setUsername("")
 		)
 	}
 
 	function renderChatForm(creds) {
 		return (
 			<div>
+				{/* <div><input  ref={inputRef}
+        type="text"
+        value={oneEmail}
+        readOnly /> <button onClick={handleCopy}>COPY USERNAME</button></div> */}
 				<input 
 					placeholder='Username' 
 					value={username} 
-					onChange={(e) => setUsername(e.target.value)} 
+					style={{display:"none"}}
+					// onChange={(e) => setUsername(e.target.value)} 
 				/>
 				<button onClick={() => createDirectChat(creds)}>
-					Create
+					Start chat 
 				</button>
 			</div>
 		)
