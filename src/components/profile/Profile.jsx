@@ -105,6 +105,7 @@ function Profile() {
             fontSize: "0.9em",
             gap: "0.5em",
           }}
+          
         >
           <span>
             <ChatBubbleOutlineIcon style={{ color: "lightblue" }} />
