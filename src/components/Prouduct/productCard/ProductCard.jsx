@@ -17,6 +17,7 @@ const ProductCard = ({ item }) => {
   const { addProductToFavorite, checkProductInFavorite } = useFavorite();
   const navigate = useNavigate();
   const { deleteProduct } = useProduct();
+  const admin = localStorage.getItem("email");
 
   // const [val , setVal] = useState(item.ratings);
   // useEffect(()=>{setVal(val)},[item.ratings])
@@ -97,8 +98,7 @@ const ProductCard = ({ item }) => {
           {/* <p className="card-text">Description: {item.description}</p> */}
           <p className="card-text">Price: {item.price}</p>
           {/* <p className="card-text">Category: {item.category}</p> */}
-
-          <div style={{display:"flex", justifyContent:"space-between"}}>
+{admin == "emirsoltonbekov7@gmail.com" ?   <div style={{display:"flex", justifyContent:"space-between"}}>
           {checkProductInCart(item.id) ? (
             <i class="bi bi-bag-check-fill" onClick={() => addProductToCart(item)} style={{color:"blue", fontSize:"1.6rem"}}></i>
           ) : (
@@ -113,7 +113,17 @@ const ProductCard = ({ item }) => {
               deleteProduct(item.id);
             }}></i>
             <i class="bi bi-pencil-square"  onClick={() => navigate(`/edit/${item.id}`)} style={{color:"orange", fontSize:"1.6rem"}}></i>
-            </div>
+            </div> :  <div style={{display:"flex", justifyContent:"space-around"}}>{checkProductInCart(item.id) ? (
+            <i class="bi bi-bag-check-fill" onClick={() => addProductToCart(item)} style={{color:"blue", fontSize:"1.6rem"}}></i>
+          ) : (
+            <i class="bi bi-bag-check-fill" onClick={() => addProductToCart(item)} style={{fontSize:"1.6rem"}}></i>
+          )}
+
+          {checkProductInFavorite(item.id)?(
+          <i class="bi bi-heart-fill" style={{color:"red", fontSize:"1.6rem"}} onClick={() => addProductToFavorite(item)}></i>
+          ):<i class="bi bi-heart-fill" onClick={() => addProductToFavorite(item)} style={{fontSize:"1.6rem"}}></i>}</div>
+    }
+        
           <div style={{textAlign:"right", marginTop:"8px"}}>
           {stars.map((elem, index)=>(
             <i className={`bi bi-star-fill ${index < item.ratings ? "gold" : "grey"}`} style={{fontSize:"1rem"}}></i>

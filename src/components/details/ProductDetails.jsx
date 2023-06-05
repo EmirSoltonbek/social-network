@@ -46,32 +46,20 @@ const ProductDetails = ({ oneProduct }) => {
         <p>Description: {oneProduct.description}</p>
         <p>Price: {oneProduct.price}</p>
         <p>Size: {oneProduct.size}</p>
-        {/* {oneProduct.product_comments.map((elem, index) => (
-          <p>
-            <span
-              style={{
-                margin: "5px",
-                padding: "10px 20px",
-                borderRadius: "50%",
-                backgroundColor: "green",
-              }}
-            >
-              {elem.user[0]}
-            </span>
-            {elem.body}
-          </p>
-        ))} */}
+       
         </div>
         </div>
         <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center",gap:"5px"}}>
+          <form action="">
          <div>
           <textarea
-            placeholder="enter feedback"
+            placeholder="ENTER COMMENT"
             onChange={(e) => {
               setComment(e.target.value);
             }}
             cols="25"
             rows="3"
+            style={{padding:"10px"}}
           ></textarea>
           </div>
            <div>{stars.map((elem, index) => (
@@ -93,14 +81,37 @@ const ProductDetails = ({ oneProduct }) => {
           }}
           className="feedback-button"
         >
-          Leave Feedback
+          LEAVE FEEDBACK
         </button>
+        </form>
         <div style={{marginTop:"30px"}}>
         <button onClick={() => navigate(-1)} className="goback">
         Go Back
       </button>
       </div>
       </div>
+</div>
+
+<div>
+  <div style={{fontSize:"30px", color:"grey", margin:"8px"}}>Comments ...</div>
+   {oneProduct.product_comments.map((elem, index) => (
+          <p style={{display:"flex",alignItems:"center"}}>
+            <span
+              style={{
+                // margin: "5px",
+                padding: "15px 20px",
+                borderRadius: "50%",
+                backgroundColor: "grey",
+                color:"white",
+                fontWeight:"bold",
+                margin:"8px",
+              }}
+            >
+              {elem.user[0].toUpperCase()}
+            </span>
+            {elem.body}
+          </p>
+        ))}
 </div>
      
     </div>

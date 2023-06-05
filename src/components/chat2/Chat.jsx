@@ -38,7 +38,7 @@ console.log(password);
 					placeholder='Username' 
 					value={username} 
 					style={{display:"none"}}
-					// onChange={(e) => setUsername(e.target.value)} 
+					onChange={(e) => setUsername(e.target.value)} 
 				/>
 				<button onClick={() => createDirectChat(creds)}>
 					Start chat 
