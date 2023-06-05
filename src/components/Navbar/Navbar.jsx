@@ -176,6 +176,17 @@ function Navbar() {
           >
             LogOut
           </MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate("/about-us");
+            }}
+            icon={
+              <i style={{ fontSize: "1.5rem" }} class="bi bi-file-person"></i>
+            }
+            style={{ paddingLeft: "5px" }}
+          >
+            About Us
+          </MenuItem>
         </Menu>
       </Sidebar>
     </div>
