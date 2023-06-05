@@ -1,0 +1,27 @@
+.rccs__card--front, .rccs__card--back{ 
+    background-image: url("https://avatars.mds.yandex.net/i?id=25b31396a7ce20871ed7833de84ecb39de7e5355-7083166-images-thumbs&ref=rim&n=33&w=188&h=188") !important; 
+} 
+
+.container{ 
+   display: flex; 
+   justify-content: center; 
+   /* flex-wrap: wrap; */ 
+   margin:  100px 0px; 
+} 
+
+.credit-form{ 
+   display: flex; 
+   flex-wrap: wrap; 
+   justify-content: center; 
+} 
+.cCard{ 
+   width: 80%; 
+   margin: 5px auto; 
+
+  
+} 
+.cardBtn{ 
+ display: flex; 
+ justify-content: center; 
+ margin: 30px auto; 
+}
