@@ -29,7 +29,6 @@ function OneProfile() {
     }
   }, [oneProfile]);
   JSON.stringify(localStorage.setItem("oneEmail", oneEmail));
-
   const renderTimestamp = (timestamp) => {
     let prefix = "";
     const timeDiff = Math.round(

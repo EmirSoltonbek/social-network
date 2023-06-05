@@ -100,7 +100,7 @@ const AuthContextProvider = ({ children }) => {
 
   async function addChat(formData) {
     axios
-      .post("https://api.chatengine.io/users/", formData, {
+      ?.post("https://api.chatengine.io/users/", formData, {
         headers: {
           "PRIVATE-KEY": "{{e752d700-e8b7-4458-b1ee-2be833a27a11}}",
         },

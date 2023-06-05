@@ -34,6 +34,7 @@ const DirectChatPage = () => {
         type="text"
         value={oneEmail}
         readOnly /> <button onClick={handleCopy}>COPY USERNAME</button></div> */}
+
         <input
           placeholder="Username"
           value={username}
