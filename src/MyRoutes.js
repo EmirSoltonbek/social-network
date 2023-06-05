@@ -21,6 +21,8 @@ import AllPostsPage from "./pages/AllPostsPage";
 import NewCart from "./components/cart/NewCart";
 import CartComponent from "./components/cart/CartComponent";
 import Chat from "./components/chat2/Chat";
+import AboutUs from "./components/aboutUs/AboutUs";
+import AboutUsPage from "./pages/AboutUsPage";
 
 function MyRoutes() {
   const PUBLIC_ROUTES = [
@@ -47,6 +49,7 @@ function MyRoutes() {
     { link: "/details/:id", element: <DetailsPage />, id: 17 },
     { link: "/edit/:id", element: <EditProductPage />, id: 18 },
     { link: "/post-list", element: <AllPostsPage />, id: 19 },
+    { link: "/about-us", element: <AboutUsPage />, id: 20 },
   ];
   return (
     <div>

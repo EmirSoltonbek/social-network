@@ -30,9 +30,9 @@ function ProfileList() {
   const navigate = useNavigate();
   useEffect(() => {
     getProfiles();
-    console.log("profiles", profiles);
+    // console.log("profiles", profiles);
   }, [searchParams]);
-  console.log("pages", pages);
+  // console.log("pages", pages);
   return (
     <>
       <h1>All Users List</h1>
