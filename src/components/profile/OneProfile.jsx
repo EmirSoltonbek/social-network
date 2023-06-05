@@ -9,7 +9,8 @@ import ProfileModal from "./ProfileModal";
 import BootstrapModal from "./BootstrapModal";
 
 function OneProfile() {
-  const { oneProfile, getOneProfile, getOnePost, onePost, getOneEmail } = useProfile();
+  const { oneProfile, getOneProfile, getOnePost, onePost, getOneEmail } =
+    useProfile();
   const { id } = useParams();
   const [grid, setGrid] = useState(true);
   const [modal, setModal] = useState(false);
@@ -17,18 +18,18 @@ function OneProfile() {
   const navigate = useNavigate();
   useEffect(() => {
     getOneProfile(id);
-    // console.log(oneProfile)
+    console.log("oneProfile", oneProfile);
+    console.log("oneProfile.email", oneProfile.email);
   }, []);
 
-
-const [oneEmail, setOneEmail] = useState("")
+  const [oneEmail, setOneEmail] = useState("");
   useEffect(() => {
     if (oneProfile) {
       setOneEmail(oneProfile.email);
     }
   }, [oneProfile]);
-JSON.stringify(localStorage.setItem("oneEmail" ,oneEmail)
-               
+  JSON.stringify(localStorage.setItem("oneEmail", oneEmail));
+
   const renderTimestamp = (timestamp) => {
     let prefix = "";
     const timeDiff = Math.round(
@@ -70,7 +71,15 @@ JSON.stringify(localStorage.setItem("oneEmail" ,oneEmail)
               {oneProfile.last_name}
             </h2>
             <span>
-              <button className="msg-button" onClick={()=>{navigate("/chat"); getOneEmail(oneProfile.email)}}>Message</button>
+              <button
+                className="msg-button"
+                onClick={() => {
+                  navigate("/chat");
+                  getOneEmail(oneProfile.email);
+                }}
+              >
+                Message
+              </button>
               {/* <button
             onClick={() => {
               navigate(`/profile/edit/${profile.id}`);

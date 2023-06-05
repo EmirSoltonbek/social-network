@@ -6,7 +6,7 @@ import ProductCard from "./components/Prouduct/productCard/ProductCard";
 
 const App = () => {
   return (
-    <div>
+    <div style={{margin: "0px", padding: "0px", width: "100%"}}>
       <Navbar />
       <div
         style={{
