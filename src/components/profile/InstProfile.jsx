@@ -7,6 +7,8 @@ import { useProfile } from "../../contexts/ProfileContextProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import ProfileModal from "./ProfileModal";
 import BootstrapModal from "./BootstrapModal";
+import { useNight } from "../../contexts/NightContextProvider";
+import PostCardForProfile from "../post/allPosts/PostCardForProfile";
 
 const InstProfile = () => {
   const {
@@ -64,140 +66,145 @@ const InstProfile = () => {
   }, [profileMe]);
 
   const [posts1, setPost1] = useState(myPosts);
+  const { night, setNight } = useNight();
 
   return (
-    <div className="profile">
-      <div className="profile-header">
-        <div className="profile-image-container">
-          <img src={profile.avatar} alt="Profile" className="profile-image" />
-        </div>
-        <div className="profile-info">
-          <div className="profile-username-container">
-            <h2 className="profile-username">
-              {profile.name}
-              {profile.last_name}
-            </h2>
-            <span>
-              {/* <button className="msg-button">Message</button> */}
-              <button
-                onClick={() => {
-                  navigate(`/profile/edit/${profile.id}`);
-                }}
-                className="edit-button"
-              >
-                Edit Profile
-              </button>
-              <button
-                onClick={() => {
-                  navigate(`/add-post`);
-                }}
-                className="makePost-button"
-              >
-                Make Post
-              </button>
-            </span>
+    <div
+      className="big-profile"
+      style={{
+        backgroundColor: `${night ? "white" : "black"}`,
+        position: "absolute",
+        top: "0",
+        width: "96.5%",
+        paddingTop: "2rem",
+      }}
+    >
+      <div className={night ? "profile" : "profile2"}>
+        <div className="profile-header">
+          <div className="profile-image-container">
+            <img src={profile.avatar} alt="Profile" className="profile-image" />
           </div>
-          <div>
-            <p className="profile-bio">bio: {profile.bio}</p>
-            <p className="profile-bio">email: {profile.email}</p>
-            <p className="profile-bio">
-              tongue: {profile.programming_language}
-            </p>
-            <p className="profile-bio">group: {profile.group}</p>
-            <p className="profile-bio">live since: {profile.date_of_birth}</p>
-          </div>
-        </div>
-      </div>
-      <div className="upperPostsContainer">
-        <h1>Activity</h1>
-        <span>
-          <button onClick={() => setGrid(true)}>
-            <i class="bi bi-grid-3x3"></i>
-          </button>
-          <button onClick={() => setGrid(false)}>
-            <i style={{ fontSize: "2.7rem" }} class="bi bi-list"></i>
-          </button>
-        </span>
-      </div>
-      <div className="profile-content">
-        {profileMe?.posts?.map((post) => (
-          <div key={post.id}>
-            {grid ? (
-              <div className="post">
-                <div className="post-image-container">
-                  <img
-                    src={`http://34.125.13.20/${post.image}`}
-                    alt="Post"
-                    className="post-image"
-                  />
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-around",
-                    alignItems: "center",
+          <div className="profile-info">
+            <div className="profile-username-container">
+              <h2 className="profile-username">
+                {profile.name}
+                {profile.last_name}
+              </h2>
+              <span>
+                {/* <button className="msg-button">Message</button> */}
+                <Button
+                  onClick={() => {
+                    navigate(`/profile/edit/${profile.id}`);
                   }}
+                  variant="outline-primary"
                 >
-                  <p className="post-caption">{post.title}</p>
-                  <small style={{ opacity: "0.6" }}>
-                    {renderTimestamp(post.created_at)}
-                  </small>
-                </div>
-                <div
-                  style={{ display: "flex", justifyContent: "space-around" }}
+                  Edit Profile
+                </Button>
+                <Button
+                  onClick={() => {
+                    navigate(`/add-post`);
+                  }}
+                  variant="outline-success"
                 >
-                  <Button
-                    onClick={() => {
-                      deletePost(post.id);
-                    }}
-                    variant="outline-danger"
-                  >
-                    delete
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      navigate(`/edit-post/${post.id}`);
-                    }}
-                    variant="outline-success"
-                  >
-                    edit
-                  </Button>
-
-                  <Button
-                    onClick={() => {
-                      getOnePost(post.id);
-                      setLgShow(true);
-                    }}
-                    variant="outline-primary"
-                  >
-                    details
-                  </Button>
-                </div>
-                {lgShow ? (
-                  <ProfileModal
-                    setLgShow={setLgShow}
-                    profileMe={profileMe}
-                    myPosts={myPosts}
-                    lgShow={lgShow}
-                    onePost={onePost}
-                    getOnePost={getOnePost}
-                  />
-                ) : null}
-              </div>
-            ) : (
-              <div className="post-big">
-                <div className="post-image-container-big">
-                  <img
-                    src={`${post.image}`}
-                    alt="Post"
-                    className="post-image-big"
-                  />
-                </div>
-                <p className="post-caption-big">{post.title}</p>
-              </div>
-            )}
+                  Make Post
+                </Button>
+              </span>
+            </div>
+            <div>
+              <p className="profile-bio">bio: {profile.bio}</p>
+              <p className="profile-bio">email: {profile.email}</p>
+              <p className="profile-bio">
+                tongue: {profile.programming_language}
+              </p>
+              <p className="profile-bio">group: {profile.group}</p>
+              <p className="profile-bio">live since: {profile.date_of_birth}</p>
+            </div>
           </div>
-        ))}
+        </div>
+        <div className="upperPostsContainer">
+          <h1>Activity</h1>
+          <span>
+            <button onClick={() => setGrid(true)}>
+              <i class="bi bi-grid-3x3"></i>
+            </button>
+            <button onClick={() => setGrid(false)}>
+              <i style={{ fontSize: "2.7rem" }} class="bi bi-list"></i>
+            </button>
+          </span>
+        </div>
+        <div className={grid ? "profile-content" : "profile-content2"}>
+          {profileMe?.posts?.map((post) => (
+            <div key={post.id}>
+              {grid ? (
+                <div className="post">
+                  <div className="post-image-container">
+                    <img
+                      src={`http://34.125.13.20/${post.image}`}
+                      alt="Post"
+                      className="post-image"
+                    />
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                    }}
+                  >
+                    <p className="post-caption">{post.title}</p>
+                    <small style={{ opacity: "0.6" }}>
+                      {renderTimestamp(post.created_at)}
+                    </small>
+                  </div>
+                  <div
+                    style={{ display: "flex", justifyContent: "space-around" }}
+                  >
+                    <Button
+                      onClick={() => {
+                        deletePost(post.id);
+                      }}
+                      variant="outline-danger"
+                    >
+                      delete
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        navigate(`/edit-post/${post.id}`);
+                      }}
+                      variant="outline-success"
+                    >
+                      edit
+                    </Button>
+
+                    <Button
+                      onClick={() => {
+                        getOnePost(post.id);
+                        setLgShow(true);
+                      }}
+                      variant="outline-primary"
+                    >
+                      details
+                    </Button>
+                  </div>
+                  {lgShow ? (
+                    <ProfileModal
+                      setLgShow={setLgShow}
+                      profileMe={profileMe}
+                      myPosts={myPosts}
+                      lgShow={lgShow}
+                      onePost={onePost}
+                      getOnePost={getOnePost}
+                    />
+                  ) : null}
+                </div>
+              ) : (
+                <div className="profile-content2">
+                  <PostCardForProfile post={post} />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

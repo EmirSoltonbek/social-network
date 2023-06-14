@@ -9,6 +9,15 @@
   margin: 0 auto;
 }
 
+.profile2 {
+  background-color: #000000;
+  border: 1px solid #1d1d1d;
+  border-radius: 6px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 .profile-header {
   display: flex;
   align-items: center;
@@ -48,7 +57,7 @@
   flex-wrap: wrap;
 }
 
-.profile-username-container button {
+/* .profile-username-container button {
   font-size: 1em;
   color: blue;
   border: 1px solid blue;
@@ -66,7 +75,7 @@
   background-color: white;
   padding: 0.2em 0.3em;
   margin: 0 0.3em;
-}
+} */
 
 .profile-username {
   font-size: 24px;
@@ -145,7 +154,13 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
-
+.profile-content2 {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: column;
+}
 .post-big {
   margin-bottom: 0;
 }

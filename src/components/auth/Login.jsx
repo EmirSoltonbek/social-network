@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import "../auth/registerForm/RegisterForm.css";
 import { useAuth } from "../../contexts/AuthContextProvider";
 import Loader from "../Loader";
+import { useNavigate } from "react-router";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const { handleLogin, loading, error, setError } = useAuth();
 
@@ -18,7 +20,7 @@ const Login = () => {
       formData.append("password", password);
       formData.append("secret", password);
       formData.append("username", email);
-      formData.append("username", email)
+      formData.append("username", email);
       handleLogin(formData, email, password);
     }
   }
@@ -83,6 +85,9 @@ const Login = () => {
                 </a>
               </div>
             </form>
+            <a onClick={() => navigate("/newPassword")} href="">
+              Forgot password
+            </a>
           </div>
         </div>
       </div>
