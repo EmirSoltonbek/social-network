@@ -11,24 +11,27 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ProfileContextProvider from "./contexts/ProfileContextProvider";
 import FavoriteContextProvider from "./contexts/FavoriteContextProvider";
 import CreditCardProvider from "./contexts/CreditCardProvider";
+import NightContextProvider from "./contexts/NightContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <CreditCardProvider>
-      <ProfileContextProvider>
-        <ProductContextProvider>
-          <AuthContextProvider>
-            <CartContextProvider>
-              <FavoriteContextProvider>
-                <ProSidebarProvider>
-                  <App />
-                </ProSidebarProvider>
-              </FavoriteContextProvider>
-            </CartContextProvider>
-          </AuthContextProvider>
-        </ProductContextProvider>
-      </ProfileContextProvider>
-    </CreditCardProvider>
+    <NightContextProvider>
+      <CreditCardProvider>
+        <ProfileContextProvider>
+          <ProductContextProvider>
+            <AuthContextProvider>
+              <CartContextProvider>
+                <FavoriteContextProvider>
+                  <ProSidebarProvider>
+                    <App />
+                  </ProSidebarProvider>
+                </FavoriteContextProvider>
+              </CartContextProvider>
+            </AuthContextProvider>
+          </ProductContextProvider>
+        </ProfileContextProvider>
+      </CreditCardProvider>
+    </NightContextProvider>
   </BrowserRouter>
 );

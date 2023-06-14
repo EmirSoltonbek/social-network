@@ -13,12 +13,14 @@ import { useNavigate } from "react-router";
 import { useProfile } from "../../contexts/ProfileContextProvider";
 import "./Navbar.css";
 import { useAuth } from "../../contexts/AuthContextProvider";
+import { useNight } from "../../contexts/NightContextProvider";
 
 function Navbar() {
   const { collapseSidebar, toggleSidebar, collapsed, toggled, broken, rtl } =
     useProSidebar();
   const { profileMe, getProfileInfo } = useProfile();
   const { checkAuth, handleLogout } = useAuth();
+  const { night, setNight } = useNight();
   // Изначально закрытая боковая панель
   useEffect(() => {
     collapseSidebar();
@@ -186,6 +188,13 @@ function Navbar() {
             style={{ paddingLeft: "5px" }}
           >
             About Us
+          </MenuItem>
+          <MenuItem
+            icon={<i style={{ fontSize: "1.5rem" }} class="bi bi-moon"></i>}
+            style={{ paddingLeft: "5px" }}
+            onClick={() => setNight(!night)}
+          >
+            Night Mode
           </MenuItem>
         </Menu>
       </Sidebar>
